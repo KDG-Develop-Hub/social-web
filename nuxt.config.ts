@@ -26,4 +26,11 @@ export default defineNuxtConfig({
   ],
   css: ["@/assets/css/global.css"],
   devtools: {enabled: true},
+  googleFonts: {
+    families: {
+      "Zen Maru Gothic": [400, 500, 600, 700],
+      "JetBrains Mono": [400],
+    },
+  },
+  modules: ["@nuxtjs/google-fonts"],
 });
