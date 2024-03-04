@@ -1,5 +1,4 @@
 import { createResolver } from "@nuxt/kit";
-import GoogleFontsModule from "@nuxtjs/google-fonts";
 const { resolve } = createResolver(import.meta.url);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -36,8 +35,8 @@ export default defineNuxtConfig({
       {
         from: "clsx",
         imports: ["clsx"],
-      }
-    ]
+      },
+    ],
   },
-  modules: [[GoogleFontsModule]],
-})
+  modules: ["@nuxtjs/google-fonts"],
+});
