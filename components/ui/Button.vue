@@ -1,44 +1,59 @@
 <script setup lang="ts">
-import {css, cva} from "styled-system/css";
+import { css, cva } from "styled-system/css";
 
-const props = withDefaults(defineProps<{ size?: "sm" | "md" | "lg" }>(), {
-  size: "md",
-});
-const sizes = cva({
-  variants: {
-    size: {
-      sm: {
-        fontSize: "0.75rem",
-        height: "1.75rem",
-        paddingX: "0.75rem",
-      },
-      md: {
-        fontSize: "0.875rem",
-        height: "2.5rem",
-        paddingX: "4",
-      },
-      lg: {
-        fontSize: "1rem",
-        height: "3rem",
-        paddingX: "1.25rem",
-      },
-    }
+const props = withDefaults(
+  defineProps<{variant: "filled" | "text" }>(),
+  {
+    variant: "filled",
   }
+);
+const recipe = cva({
+  variants: {
+    variant: {
+      filled: {
+        bgColor: "green.600",
+        color: "white",
+      },
+      text: {
+        bgColor: "transparent",
+        color: "black",
+      },
+    },
+  },
 });
 </script>
 
 <template>
   <button
-      :class="clsx(
-      css({
-        border: 'none',
-        borderRadius: '99rem',
-        fontWeight: '500',
-        bgColor: 'blue.900',
-        color: 'white',
-      }), sizes(props)
-      )"
+    :class="
+      clsx(
+        css({
+          fontSize: 'sm',
+          height: '2.5rem',
+          paddingX: '4',
+          border: 'none',
+          borderRadius: '99rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontWeight: '500',
+          cursor: 'pointer',
+          _hover: {
+          },
+        }),
+        recipe(props)
+      )
+    "
   >
-    <slot>Click me</slot>
+    <slot name="icon" />
+    <span
+      :class="
+        css({
+          px: '2',
+        })
+      "
+    >
+      <slot>ここを押してね</slot>
+    </span>
   </button>
 </template>
