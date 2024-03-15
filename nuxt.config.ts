@@ -11,11 +11,6 @@ export default defineNuxtConfig({
       title: "kdg.social",
     },
   },
-  postcss: {
-    plugins: {
-      "@pandacss/dev/postcss": {},
-    },
-  },
   components: [
     {
       path: "~/components",

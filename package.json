@@ -3,7 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "panda codegen",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -14,6 +13,7 @@
     "@nuxt/kit": "^3.10.3",
     "clsx": "^2.1.0",
     "nuxt": "^3.10.2",
+    "open-props": "^1.6.21",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   },

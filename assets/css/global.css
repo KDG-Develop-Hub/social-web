@@ -1,4 +1,5 @@
-@layer reset, base, tokens, recipes, utilities;
+@import "open-props/green.min.css";
+@import "open-props/borders.min.css";
 
 * {
     font-family: Zen Maru Gothic, sans-serif;
