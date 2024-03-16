@@ -1,6 +1,12 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{ variant: "filled" | "text"; as: string | object, width: "fit" | "full" }>(),
+withDefaults(
+  defineProps<
+    Partial<{
+      variant: "filled" | "text";
+      as: string | object;
+      width: "fit" | "full";
+    }>
+  >(),
   {
     variant: "filled",
     width: "fit",
@@ -10,9 +16,14 @@ const props = withDefaults(
 </script>
 
 <template>
-  <component :is="as" :data-width="width" :data-variant="variant" class="container">
+  <component
+    :is="as"
+    :data-width="width"
+    :data-variant="variant"
+    class="container"
+  >
     <slot name="icon" />
-    <span class="label-wrapper">
+    <span :data-variant="variant" class="label-wrapper">
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -21,45 +32,78 @@ const props = withDefaults(
 <style scoped>
 .container {
   border: none;
-  cursor: pointer;
-  display: flex;
+  cursor: var(--button-ctn-cursor);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
   border-radius: var(--radius-round);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5;
   height: 2.5rem;
-  background-color: var(--container-color);
-
-  &:hover {
-    background-color: color-mix(in srgb, var(--container-color), white 10%);
-  }
-
-  &:active {
-    background-color: color-mix(in srgb, var(--container-color), white 15%);
-  }
+  background-color: var(--button-ctn-bgcolor);
+  width: var(--button-ctn-width);
 
   &[data-variant="filled"] {
-    --container-color: var(--green-6);
+    --button-ctn-bgcolor-basic: var(--green-7);
+    --button-ctn-bgcolor-to-mix: white;
+  }
+
+  &:enabled {
+    --button-ctn-bgcolor: var(--button-ctn-bgcolor-basic);
+    --button-ctn-cursor: pointer;
+  }
+
+  &:disabled {
+    --button-ctn-cursor: not-allowed;
+  }
+
+  &:enabled:hover {
+    --button-ctn-bgcolor: color-mix(
+      in srgb,
+      var(--button-ctn-bgcolor-basic),
+      var(--button-ctn-bgcolor-to-mix) 10%
+    );
+  }
+
+  &:enabled:active {
+    --button-ctn-bgcolor: color-mix(
+      in srgb,
+      var(--button-ctn-bgcolor-basic),
+      var(--button-ctn-bgcolor-to-mix) 18%
+    );
   }
 
   &[data-variant="text"] {
-    --container-color: transparent;
+    --button-ctn-bgcolor-basic: transparent;
+    --button-ctn-bgcolor-to-mix: var(--green-7);
   }
 
   &[data-width="fit"] {
-    width: fit-content;
+    --button-ctn-width: fit-content;
   }
 
   &[data-width="full"] {
-    width: 100%;
+    --button-ctn-width: 100%;
   }
 }
 
 .label-wrapper {
   padding: 0 0.5rem;
-}
+  color: var(--button-lb-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  pointer-events: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
 
+  &[data-variant="filled"] {
+    --button-lb-color: white;
+  }
+
+  &[data-variant="text"] {
+    --button-lb-color: black;
+  }
+}
 </style>

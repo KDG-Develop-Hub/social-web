@@ -4,7 +4,7 @@ const route = useRoute()
 
 <template>
   <div>
-    <Button variant="text" width="full">今すぐ始めるっ！</Button>
+    <Button variant="text">今すぐ始めるっ！</Button>
     <Button variant="filled">今すぐ始めるっ！</Button>
     <h1>Nuxt Routing set up successfully!</h1>
     <p>Current route: {{ route.path }}</p>
