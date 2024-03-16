@@ -10,12 +10,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/kit": "^3.10.3",
+    "clsx": "^2.1.0",
+    "normalize.css": "^8.0.1",
     "nuxt": "^3.10.2",
+    "open-props": "^1.6.21",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   },
   "engines": {
     "node": ">=20.11.1",
     "pnpm": ">=8.15.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.1.3"
   }
 }
