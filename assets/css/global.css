@@ -1,5 +1,6 @@
 @import "open-props/green.min.css";
 @import "open-props/gray.min.css";
+@import "open-props/blue.min.css";
 @import "open-props/red.min.css";
 @import "open-props/borders.min.css";
 
@@ -9,4 +10,11 @@
 
 code, pre{
     font-family: JetBrains Mono, monospace;
+}
+
+/* classes */
+
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
 }
