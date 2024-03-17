@@ -5,7 +5,7 @@ const linkContents = ref([
   {to: "/", icon: History, text: "アプデ"},
   {to: "/browse", icon: Compass, text: "見つける"},
   {to: "/u/user", icon: User, text: "君とは"},
-  {to: "/acquaintances", icon: Users, text: "知り合い"},
+  {to: "/friends", icon: Users, text: "知り合い"},
   {to: "/setting", icon: Settings2, text: "せってー"}
 ])
 </script>
@@ -18,7 +18,7 @@ const linkContents = ref([
     <div class="h-stack link-list">
       <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="h-stack link">
         <span class="indicator v-stack">
-          <component :is="linkContent.icon" />
+          <component :is="linkContent.icon" strokeWidth="var(--navr-link-icon-width)"/>
         </span>
         {{ linkContent.text }}
       </NuxtLink>
@@ -45,12 +45,47 @@ const linkContents = ref([
   color: black;
   text-decoration: none;
   --stack-gap: 0.25rem;
+  --navr-link-icon-width: 2;
+
+  &:active {
+    font-weight: 400;
+    --navr-link-icon-width: 1.75;
+  }
+
+  &:is(:hover, .router-link-active) {
+    font-weight: 600;
+    --navr-link-icon-width: 2.25;
+  }
 }
 
 .indicator {
+  position: relative;
   width: 3.5rem;
   justify-content: center;
   border-radius: var(--radius-round);
   height: 2rem;
+
+  &::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    transition: all 200ms ease;
+    opacity: 0;
+    border-radius: var(--radius-round);
+    background-color: var(--green-2);
+  }
 }
+
+.link:hover .indicator {
+  background-color: color-mix(in srgb, var(--gray-5), transparent 80%);
+}
+
+.link.router-link-active .indicator::before {
+  opacity: 1;
+  width: 100%;
+}
+
+
 </style>
