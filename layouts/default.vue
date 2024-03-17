@@ -19,6 +19,7 @@ import NavigationRail from "~/components/org/NavigationRail.vue";
 
 .main {
   width: 100%;
+  padding: 2rem;
 }
 
 </style>

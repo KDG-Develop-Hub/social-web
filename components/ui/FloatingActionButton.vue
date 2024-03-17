@@ -3,9 +3,11 @@
 </script>
 
 <template>
-  <button class="container square">
-    <slot />
-  </button>
+  <span>
+    <button class="container square">
+      <slot/>
+    </button>
+  </span>
 </template>
 
 <style scoped>

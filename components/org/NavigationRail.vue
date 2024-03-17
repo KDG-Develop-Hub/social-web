@@ -6,7 +6,7 @@ const linkContents = ref([
   {to: "/browse", icon: Compass, text: "見つける"},
   {to: "/u/user", icon: User, text: "君とは"},
   {to: "/friends", icon: Users, text: "知り合い"},
-  {to: "/setting", icon: Settings2, text: "せってー"}
+  {to: "/settings", icon: Settings2, text: "せってー"}
 ])
 </script>
 
@@ -30,6 +30,7 @@ const linkContents = ref([
 .navigation-rail {
   height: 100%;
   box-sizing: border-box;
+  flex-shrink: 0;
   width: 5.5rem;
   padding: 2rem 0;
   --stack-gap: 2.5rem;
