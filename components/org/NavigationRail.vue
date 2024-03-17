@@ -18,7 +18,7 @@ const linkContents = ref([
     <div class="h-stack link-list">
       <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="h-stack link">
         <span class="indicator v-stack">
-          <component :is="linkContent.icon" strokeWidth="var(--navr-link-icon-width)"/>
+          <component :is="linkContent.icon" class="link-icon" strokeWidth="var(--navr-link-icon-width)"/>
         </span>
         {{ linkContent.text }}
       </NuxtLink>
@@ -48,15 +48,14 @@ const linkContents = ref([
   --stack-gap: 0.25rem;
   --navr-link-icon-width: 2;
 
-  &:active {
-    font-weight: 400;
-    --navr-link-icon-width: 1.75;
-  }
-
   &:is(:hover, .router-link-active) {
     font-weight: 600;
     --navr-link-icon-width: 2.25;
   }
+}
+
+.link-icon {
+  transition: stroke-width 200ms ease;
 }
 
 .indicator {
@@ -81,6 +80,10 @@ const linkContents = ref([
 
 .link:hover .indicator {
   background-color: color-mix(in srgb, var(--gray-5), transparent 80%);
+}
+
+.link:active .indicator {
+  background-color: color-mix(in srgb, var(--gray-5), transparent 72%);
 }
 
 .link.router-link-active .indicator::before {
