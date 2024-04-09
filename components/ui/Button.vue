@@ -2,7 +2,7 @@
 withDefaults(
   defineProps<
     Partial<{
-      variant: "filled" | "text";
+      variant: "filled" | "text" | "outlined";
       as: string | object;
       width: "fit" | "full";
     }>
@@ -69,13 +69,13 @@ withDefaults(
   }
 
   &[data-variant="filled"] {
-    --button-ctn-bgcolor-basic: var(--green-7);
+    --button-ctn-bgcolor-basic: var(--pallete-color-primary40);
     --button-ctn-bgcolor-to-mix: white;
   }
 
   &[data-variant="text"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--green-7);
+    --button-ctn-bgcolor-to-mix: var(--pallete-color-primary40);
   }
 
   &[data-width="fit"] {
@@ -87,11 +87,17 @@ withDefaults(
   }
 
   &[data-variant="filled"]:disabled {
-    --button-ctn-bgcolor: var(--gray-7);
+    --button-ctn-bgcolor: var(--pallete-color-neutral30);
   }
 
   &[data-variant="text"]:disabled {
     --button-ctn-bgcolor: transparent;
+  }
+
+  &[data-variant="outlined"] {
+    --button-ctn-bgcolor-basic: transparent;
+    --button-ctn-bgcolor-to-mix: var(--pallete-color-primary40);
+    border: 1px solid var(--pallete-color-neutral50);
   }
 }
 
@@ -113,6 +119,10 @@ withDefaults(
 
   &[data-variant="text"] {
     --button-lb-color: black;
+  }
+
+  &[data-variant="outlined"] {
+    --button-lb-color: var(--pallete-color-primary40);
   }
 }
 </style>
