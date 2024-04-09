@@ -1,7 +1,7 @@
 export type BasicUserInfo = {
     avatarUrl: string;
     displayName: string;
-    userName: string;
+    name: string;
 }
 
 export type User = BasicUserInfo & {
