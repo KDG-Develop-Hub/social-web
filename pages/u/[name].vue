@@ -2,23 +2,21 @@
 const { name } = useRoute().params
 const routePrefix = `/u/${name}`
 const currentUser = useCurrentUserStore()
+const bio = "This is bio"
 </script>
 
 <template>
   <div class="profile">
     <header class="v-stack profile-header">
-      <AvatarRoot class="square avatar">
-        <AvatarImage src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4" :alt="`${currentUser.name}のプロフィールの写真`" />
-        <AvatarFallback class="square avatar-fallback">{{ currentUser.name[0] }}</AvatarFallback>
-      </AvatarRoot>
+      <Avatar size="lg" :name="currentUser.name" src="https://avatars.githubusercontent.com/u/103516503?s=60&v=" />
       <div class="names">
-        <h1>{{ "hi" }}</h1>
+        <h1>{{ name }}</h1>
         <span>{{ name }}</span>
       </div>
       <Button v-if="name === currentUser.name" variant="outlined">プローフィールをいじる</Button>
       <Button v-else>この人を知っておく</Button>
     </header>
-    <p>{{ "This is bio" }}</p>
+    <p>{{ bio }}</p>
   </div>
   <TabsRoot :model-value="$route.fullPath">
     <TabsList class="tabs-list">
@@ -43,28 +41,12 @@ const currentUser = useCurrentUserStore()
   <NuxtPage />
 </template>
 
-<style scoped>
+<style>
 .profile {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
-}
-.avatar {
-  --square-size: 4rem;
-  flex-shrink: 0;
-  display: inline-flex;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-.avatar-fallback {
-  --square-size: 4rem;
-  display: grid;
-  place-items: center;
-  font-size: 1.5rem;
-  font-weight: 500;
-  background-color: var(--pallete-color-neutral70);
-  position: relative;
 }
 .tabs-list {
   width: 100%;
