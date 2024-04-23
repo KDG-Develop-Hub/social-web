@@ -1,19 +1,25 @@
 <script setup lang="ts">
-const { name } = useRoute().params
-const routePrefix = `/u/${name}`
-const currentUser = useCurrentUserStore()
-const bio = "This is bio"
+const { name } = useRoute().params;
+const routePrefix = `/u/${name}`;
+const currentUser = useCurrentUserStore();
+const bio = "This is bio";
 </script>
 
 <template>
   <div class="profile">
     <header class="v-stack profile-header">
-      <Avatar size="lg" :name="currentUser.name" src="https://avatars.githubusercontent.com/u/103516503?s=60&v=" />
+      <Avatar
+        size="lg"
+        :name="currentUser.name"
+        src="https://avatars.githubusercontent.com/u/103516503?s=60&v="
+      />
       <div class="names">
         <h1>{{ name }}</h1>
         <span>{{ name }}</span>
       </div>
-      <Button v-if="name === currentUser.name" variant="outlined">プローフィールをいじる</Button>
+      <Button v-if="name === currentUser.name" variant="outlined"
+        >プローフィールをいじる</Button
+      >
       <Button v-else>この人を知っておく</Button>
     </header>
     <p>{{ bio }}</p>
@@ -23,7 +29,7 @@ const bio = "This is bio"
       <TabsIndicator class="tabs-indicator" />
       <label class="tab-wrapper">
         <TabsTrigger as-child class="tab" :value="routePrefix">
-          <NuxtLink :to="routePrefix" >つぶやき</NuxtLink>
+          <NuxtLink :to="routePrefix">つぶやき</NuxtLink>
         </TabsTrigger>
       </label>
       <label class="tab-wrapper">
@@ -32,8 +38,8 @@ const bio = "This is bio"
         </TabsTrigger>
       </label>
       <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="`${routePrefix}/friends`">
-          <NuxtLink :to="`${routePrefix}/friends`">友達</NuxtLink>
+        <TabsTrigger as-child class="tab" :value="`${routePrefix}/media`">
+          <NuxtLink :to="`${routePrefix}/media`">メディア</NuxtLink>
         </TabsTrigger>
       </label>
     </TabsList>
@@ -57,7 +63,9 @@ const bio = "This is bio"
 .tabs-indicator {
   position: absolute;
   width: var(--radix-tabs-indicator-size);
-  transition: translate 200ms ease, width 200ms ease;
+  transition:
+    translate 200ms ease,
+    width 200ms ease;
   translate: var(--radix-tabs-indicator-position) 0;
   bottom: 0;
   height: 3px;
