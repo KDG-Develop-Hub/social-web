@@ -1,7 +1,7 @@
-import { DateTime } from "luxon"
+import {DateTime} from "luxon"
 
 export function initialName(name: string) {
-    return name.substring(0,2)
+    return name.substring(0, 2)
 }
 
 export const dateTimeFormatter = new Intl.DateTimeFormat("ja-JP", {
@@ -9,19 +9,34 @@ export const dateTimeFormatter = new Intl.DateTimeFormat("ja-JP", {
     timeStyle: "short"
 })
 
+const durationUnits = ["minute", "hours", "days", "weeks", "months", "years"] as const
+
 export function formatDateTime(dateTime: Date): string {
-    // dateTimeが現在から１分後までなら、"たった今"を返す
-    if (dateTime.getMinutes() >= new Date().getMinutes()) {
+    const given = DateTime.fromJSDate(dateTime).setLocale("ja-JP")
+    const diffBy = durationUnits.reduce((prev, value) => {
+        prev[value] = Math.trunc(Math.abs(given.diffNow(value).get(value)))
+        return prev
+    }, {} as Record<(typeof durationUnits)[number], number>)
+    if (diffBy.minute < 1) {
         return "たった今"
     }
-    if (dateTime.getMinutes() - new Date().getMinutes() < 60) {
-        return `${dateTime.getMinutes() - new Date().getMinutes()}分前`
+    if (diffBy.hours <= 1) {
+        return `${diffBy.minute}分前`
     }
-    if (dateTime.getHours() - new Date().getHours() < 25) {
-        return `${dateTime.getHours() - new Date().getHours()}時間前`
+    if (diffBy.days <= 2) {
+        return `${diffBy.hours}時間前`
     }
-    if (dateTime.getDay() - new Date().getDay() < 14) {
-        return `${dateTime.getHours() - new Date().getHours()}日前`
+    if (diffBy.weeks <= 2) {
+        return `${diffBy.days}日前`
     }
-    return dateTime.toTimeString()
+    if (diffBy.months <= 2) {
+        return `${diffBy.weeks}週間前`
+    }
+    if (diffBy.years < 1) {
+        return `${diffBy.months}ヶ月前`
+    }
+    return given.toLocaleString({
+        dateStyle: "long",
+        timeStyle: "short"
+    })
 }
