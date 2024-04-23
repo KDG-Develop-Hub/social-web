@@ -4,9 +4,9 @@ import NavigationRail from "~/components/org/NavigationRail.vue";
 
 <template>
   <div class="layout">
-    <NavigationRail/>
-    <main class="main">
-      <slot/>
+    <NavigationRail />
+    <main>
+      <slot />
     </main>
   </div>
 </template>
@@ -17,9 +17,9 @@ import NavigationRail from "~/components/org/NavigationRail.vue";
   height: 100vh;
 }
 
-.main {
+main {
+  overflow-y: auto;
   width: 100%;
   padding: 2rem;
 }
-
 </style>
