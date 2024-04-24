@@ -12,8 +12,8 @@
   "dependencies": {
     "@nuxt/kit": "^3.10.3",
     "clsx": "^2.1.0",
+    "date-fns": "^3.6.0",
     "lucide-vue-next": "^0.358.0",
-    "luxon": "^3.4.4",
     "normalize.css": "^8.0.1",
     "nuxt": "^3.10.2",
     "open-props": "^1.6.21",
@@ -27,7 +27,6 @@
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.1.3",
     "@pinia/nuxt": "^0.5.1",
-    "@types/luxon": "^3.4.2",
     "radix-vue": "^1.6.2"
   },
   "packageManager": "pnpm@8.15.3+sha1.64838798f519c18029c1e8a1310e16101fc2eda0"
