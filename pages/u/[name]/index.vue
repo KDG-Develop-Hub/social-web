@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type {Tweet} from "~/types/tweet";
-import {dateTimeFormatter, formatDateTime} from "~/composables/formatter";
+import {dateTimeFormatter, formatDateTimeDiffNow} from "~/composables/formatter";
 import {DateTime} from "luxon";
 
 const tweets: Tweet[] = Array.from({length: 6}, () => (
@@ -19,7 +19,7 @@ const tweets: Tweet[] = Array.from({length: 6}, () => (
       <div class="body">
         <header class="v-stack">
           <strong>{{ tweet.user }}</strong>
-          <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{ formatDateTime(tweet.createdAt) }}</time>
+          <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{ formatDateTimeDiffNow(tweet.createdAt) }}</time>
         </header>
         <p>{{ tweet.content }}</p>
       </div>

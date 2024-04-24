@@ -11,7 +11,7 @@ export const dateTimeFormatter = new Intl.DateTimeFormat("ja-JP", {
 
 const durationUnits = ["minute", "hours", "days", "weeks", "months", "years"] as const
 
-export function formatDateTime(dateTime: Date): string {
+export function formatDateTimeDiffNow(dateTime: Date): string {
     const given = DateTime.fromJSDate(dateTime).setLocale("ja-JP")
     const diffBy = durationUnits.reduce((prev, value) => {
         prev[value] = Math.trunc(Math.abs(given.diffNow(value).get(value)))
