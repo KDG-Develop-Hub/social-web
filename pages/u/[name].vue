@@ -7,7 +7,7 @@ const bio = "This is bio";
 
 <template>
   <div class="profile">
-    <header class="v-stack profile-header">
+    <header class="h-stack profile-header">
       <Avatar
         size="lg"
         :name="currentUser.name"

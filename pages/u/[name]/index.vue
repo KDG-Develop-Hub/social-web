@@ -13,11 +13,11 @@ const tweets: Tweet[] = Array.from({length: 6}, () => (
 </script>
 
 <template>
-  <div class="articles h-stack">
+  <div class="articles v-stack">
     <article v-for="tweet in tweets" class="tweet">
       <Avatar :name="tweet.user" src="/img/aa.jpg"/>
       <div class="body">
-        <header class="v-stack">
+        <header class="h-stack">
           <strong>{{ tweet.user }}</strong>
           <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{ formatDistanceFromNow(tweet.createdAt) }}</time>
         </header>
@@ -47,7 +47,6 @@ const tweets: Tweet[] = Array.from({length: 6}, () => (
 
   header {
     height: 1.5rem;
-    gap: 0.5rem;
 
     time {
       font-size: 0.875rem;

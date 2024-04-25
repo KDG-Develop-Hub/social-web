@@ -12,13 +12,13 @@ const linkContents = ref([
 </script>
 
 <template>
-  <nav class="navigation-rail h-stack">
+  <nav class="navigation-rail v-stack">
     <FloatingActionButton>
       <Feather color="white"/>
     </FloatingActionButton>
-    <div class="h-stack link-list">
-      <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="h-stack link">
-        <span class="indicator v-stack">
+    <div class="v-stack link-list">
+      <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="v-stack link">
+        <span class="indicator h-stack">
           <component :is="linkContent.icon" class="link-icon" strokeWidth="var(--navr-link-icon-width)"/>
         </span>
         {{ linkContent.text }}
@@ -34,11 +34,11 @@ const linkContents = ref([
   flex-shrink: 0;
   width: 5.5rem;
   padding: 2rem 0;
-  --stack-gap: 2.5rem;
+  gap: 2.5rem;
 }
 
 .link-list {
-  --stack-gap: 0.75rem;
+  gap: 0.75rem;
 }
 
 .link {
@@ -46,7 +46,7 @@ const linkContents = ref([
   font-weight: 500;
   color: black;
   text-decoration: none;
-  --stack-gap: 0.25rem;
+  gap: 0.25rem;
   --navr-link-icon-width: 2;
 
   &:is(:hover, .router-link-active) {

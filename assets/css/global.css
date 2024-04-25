@@ -25,16 +25,16 @@ code, pre {
     height: var(--square-size);
 }
 
-.v-stack {
+.h-stack, .v-stack {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: var(--stack-gap);
+    gap: 0.5rem;
 }
 
 .h-stack {
-    display: flex;
+    flex-direction: row;
+}
+
+.v-stack {
     flex-direction: column;
-    align-items: center;
-    gap: var(--stack-gap);
 }
