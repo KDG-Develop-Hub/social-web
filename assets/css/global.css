@@ -1,12 +1,14 @@
-@import "open-props/green.min.css";
-@import "open-props/gray.min.css";
-@import "open-props/blue.min.css";
-@import "open-props/red.min.css";
 @import "open-props/borders.min.css";
+@import "assets/css/colors.css";
 
 * {
     font-family: Zen Maru Gothic, sans-serif;
     margin: 0;
+}
+
+body {
+    background-color: var(--pallete-color-neutral96);
+    overflow: hidden;
 }
 
 code, pre {

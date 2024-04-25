@@ -7,8 +7,12 @@ export default defineNuxtConfig({
     },
     components: [
         {
-            path: "~/components",
-            pathPrefix: false,
+            path: "~/components/ui",
+            pathPrefix: true,
+        },
+        {
+            path: "~/components/org",
+            pathPrefix: true,
         },
     ],
     css: ["@/assets/css/global.css"],
@@ -27,5 +31,5 @@ export default defineNuxtConfig({
             },
         ],
     },
-    modules: ["@nuxtjs/google-fonts"],
+    modules: ["@nuxtjs/google-fonts", "@pinia/nuxt", "radix-vue/nuxt"],
 });

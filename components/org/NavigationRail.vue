@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {Compass, Feather, History, Settings2, User, Users} from "lucide-vue-next";
 
+const currentUser = useCurrentUserStore()
 const linkContents = ref([
   {to: "/", icon: History, text: "アプデ"},
   {to: "/browse", icon: Compass, text: "見つける"},
-  {to: "/u/user", icon: User, text: "君とは"},
+  {to: `/u/${currentUser.name}`, icon: User, text: "君とは"},
   {to: "/friends", icon: Users, text: "知り合い"},
   {to: "/settings", icon: Settings2, text: "せってー"}
 ])
@@ -74,22 +75,20 @@ const linkContents = ref([
     transition: all 200ms ease;
     opacity: 0;
     border-radius: var(--radius-round);
-    background-color: var(--green-2);
+    background-color: var(--pallete-color-primary80);
   }
 }
 
 .link:hover .indicator {
-  background-color: color-mix(in srgb, var(--gray-5), transparent 80%);
+  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 80%);
 }
 
 .link:active .indicator {
-  background-color: color-mix(in srgb, var(--gray-5), transparent 72%);
+  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 72%);
 }
 
 .link.router-link-active .indicator::before {
   opacity: 1;
   width: 100%;
 }
-
-
 </style>
