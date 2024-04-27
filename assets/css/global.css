@@ -2,39 +2,47 @@
 @import "assets/css/colors.css";
 
 * {
-    font-family: Zen Maru Gothic, sans-serif;
-    margin: 0;
+  font-family:
+    Zen Maru Gothic,
+    sans-serif;
+  margin: 0;
+  color: var(--color-on-surface);
 }
 
 body {
-    background-color: var(--palette-neutral96);
-    overflow: hidden;
+  background-color: var(--color-surface);
+  overflow: hidden;
 }
 
-code, pre {
-    font-family: JetBrains Mono, monospace;
+code,
+pre {
+  font-family:
+    JetBrains Mono,
+    monospace;
 }
 
-:enabled, a {
-    cursor: pointer;
+:enabled,
+a {
+  cursor: pointer;
 }
 
 /* classes */
 .square {
-    width: var(--square-size);
-    height: var(--square-size);
+  width: var(--square-size);
+  height: var(--square-size);
 }
 
-.h-stack, .v-stack {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.h-stack,
+.v-stack {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .h-stack {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 .v-stack {
-    flex-direction: column;
+  flex-direction: column;
 }

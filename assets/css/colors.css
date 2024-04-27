@@ -1,34 +1,61 @@
 * {
-    /* color primary */
-    --palette-primary10: hsl(104, 60%, 10%);
-    --palette-primary20: hsl(104, 60%, 20%);
-    --palette-primary30: hsl(104, 60%, 30%);
-    --palette-primary40: hsl(104, 60%, 40%);
-    --palette-primary50: hsl(104, 60%, 50%);
-    --palette-primary60: hsl(104, 60%, 60%);
-    --palette-primary70: hsl(104, 60%, 70%);
-    --palette-primary80: hsl(104, 60%, 80%);
-    --palette-primary90: hsl(104, 60%, 90%);
-    /* color secondary */
-    --palette-secondary10: hsl(233, 50%, 10%);
-    --palette-secondary20: hsl(233, 50%, 20%);
-    --palette-secondary30: hsl(233, 50%, 30%);
-    --palette-secondary40: hsl(233, 50%, 40%);
-    --palette-secondary50: hsl(233, 50%, 50%);
-    --palette-secondary60: hsl(233, 50%, 60%);
-    --palette-secondary70: hsl(233, 50%, 70%);
-    --palette-secondary80: hsl(233, 50%, 80%);
-    --palette-secondary90: hsl(233, 50%, 90%);
-    /* color neutral */
-    --palette-neutral10: hsl(60, 4%, 10%);
-    --palette-neutral20: hsl(60, 4%, 20%);
-    --palette-neutral30: hsl(60, 4%, 30%);
-    --palette-neutral40: hsl(60, 4%, 40%);
-    --palette-neutral50: hsl(60, 4%, 50%);
-    --palette-neutral60: hsl(60, 4%, 60%);
-    --palette-neutral70: hsl(60, 4%, 70%);
-    --palette-neutral80: hsl(60, 4%, 80%);
-    --palette-neutral90: hsl(60, 4%, 90%);
-    --palette-neutral96: hsl(60, 4%, 96%);
-    --palette-neutral98: hsl(60, 4%, 98%);
+  /* palette primary */
+  --palette-primary10: hsl(104, 60%, 10%);
+  --palette-primary20: hsl(104, 60%, 20%);
+  --palette-primary30: hsl(104, 60%, 30%);
+  --palette-primary40: hsl(104, 60%, 40%);
+  --palette-primary50: hsl(104, 60%, 50%);
+  --palette-primary60: hsl(104, 60%, 60%);
+  --palette-primary70: hsl(104, 60%, 70%);
+  --palette-primary80: hsl(104, 60%, 80%);
+  --palette-primary90: hsl(104, 60%, 90%);
+  /* palette secondary */
+  --palette-secondary10: hsl(233, 50%, 10%);
+  --palette-secondary20: hsl(233, 50%, 20%);
+  --palette-secondary30: hsl(233, 50%, 30%);
+  --palette-secondary40: hsl(233, 50%, 40%);
+  --palette-secondary50: hsl(233, 50%, 50%);
+  --palette-secondary60: hsl(233, 50%, 60%);
+  --palette-secondary70: hsl(233, 50%, 70%);
+  --palette-secondary80: hsl(233, 50%, 80%);
+  --palette-secondary90: hsl(233, 50%, 90%);
+  /* palette neutral */
+  --palette-neutral10: hsl(60, 4%, 10%);
+  --palette-neutral20: hsl(60, 4%, 20%);
+  --palette-neutral30: hsl(60, 4%, 30%);
+  --palette-neutral40: hsl(60, 4%, 40%);
+  --palette-neutral50: hsl(60, 4%, 50%);
+  --palette-neutral60: hsl(60, 4%, 60%);
+  --palette-neutral70: hsl(60, 4%, 70%);
+  --palette-neutral80: hsl(60, 4%, 80%);
+  --palette-neutral90: hsl(60, 4%, 90%);
+  --palette-neutral96: hsl(60, 4%, 96%);
+  --palette-neutral98: hsl(60, 4%, 98%);
+  /* colors */
+  --color-primary: var(--palette-primary40);
+  --color-on-primary: white;
+  --color-primary-container: var(--palette-primary90);
+  --color-on-primary-container: var(--palette-primary10);
+  --color-secondary: var(--palette-secondary40);
+  --color-on-secondary: white;
+  --color-secondary-container: var(--palette-secondary90);
+  --color-on-secondary-container: var(--palette-secondary10);
+  --color-surface: var(--palette-neutral96);
+  --color-on-surface: var(--palette-neutral10);
+  --color-outline: var(--palette-neutral50);
+  --color-outline-variant: var(--palette-neutral80);
+  /* color dark */
+  @media (prefers-color-scheme: dark) {
+    --color-primary: var(--palette-primary60);
+    --color-on-primary: white;
+    --color-primary-container: var(--palette-primary20);
+    --color-on-primary-container: var(--palette-primary90);
+    --color-secondary: var(--palette-secondary60);
+    --color-on-secondary: white;
+    --color-secondary-container: var(--palette-secondary20);
+    --color-on-secondary-container: var(--palette-secondary90);
+    --color-surface: var(--palette-neutral10);
+    --color-on-surface: var(--palette-neutral90);
+    --color-outline: var(--palette-neutral50);
+  }
 }

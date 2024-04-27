@@ -1,25 +1,28 @@
 <script setup lang="ts">
-import type {Tweet} from "~/types/tweet";
-import {dateTimeFormatter, formatDistanceFromNow} from "~/composables/formatter";
-import {add} from "date-fns";
+import type { Tweet } from "~/types/tweet";
+import {
+  dateTimeFormatter,
+  formatDistanceFromNow,
+} from "~/composables/formatter";
+import { add } from "date-fns";
 
-const tweets: Tweet[] = Array.from({length: 6}, () => (
-    {
-      user: "imeankenshin",
-      content: "Hello world! This is my tweet you know?",
-      createdAt: add(new Date(), {minutes: -20})
-    }
-))
+const tweets: Tweet[] = Array.from({ length: 6 }, () => ({
+  user: "imeankenshin",
+  content: "Hello world! This is my tweet you know?",
+  createdAt: add(new Date(), { minutes: -20 }),
+}));
 </script>
 
 <template>
   <div class="articles v-stack">
     <article v-for="tweet in tweets" class="tweet">
-      <Avatar :name="tweet.user" src="/img/aa.jpg"/>
+      <Avatar :name="tweet.user" src="/img/aa.jpg" />
       <div class="body">
         <header class="h-stack">
           <strong>{{ tweet.user }}</strong>
-          <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{ formatDistanceFromNow(tweet.createdAt) }}</time>
+          <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{
+            formatDistanceFromNow(tweet.createdAt)
+          }}</time>
         </header>
         <p>{{ tweet.content }}</p>
       </div>
@@ -37,7 +40,7 @@ const tweets: Tweet[] = Array.from({length: 6}, () => (
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
-  border: 1px solid var(--palette-neutral70);
+  border: 1px solid var(--color-outline-variant);
   border-radius: 0.75rem;
   display: flex;
   gap: 0.75rem;

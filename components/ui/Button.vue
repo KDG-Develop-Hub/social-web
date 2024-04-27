@@ -11,7 +11,7 @@ withDefaults(
     variant: "filled",
     width: "fit",
     as: "button",
-  }
+  },
 );
 </script>
 
@@ -32,23 +32,18 @@ withDefaults(
 <style scoped>
 .container {
   border: none;
-  cursor: var(--button-ctn-cursor);
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  opacity: var(--button-opacity);
   padding: 0 1rem;
   border-radius: var(--radius-round);
   height: 2.5rem;
-  background-color: var(--button-ctn-bgcolor);
-  width: var(--button-ctn-width);
-  --button-ctn-bgcolor: var(--button-ctn-bgcolor-basic);
-  --button-ctn-cursor: pointer;
-  --button-opacity: 1;
+  background: var(--button-ctn-bgcolor-basic);
 
   &:hover {
-    --button-ctn-bgcolor: color-mix(
+    background: color-mix(
       in srgb,
       var(--button-ctn-bgcolor-basic),
       var(--button-ctn-bgcolor-to-mix) 10%
@@ -56,7 +51,7 @@ withDefaults(
   }
 
   &:active {
-    --button-ctn-bgcolor: color-mix(
+    background: color-mix(
       in srgb,
       var(--button-ctn-bgcolor-basic),
       var(--button-ctn-bgcolor-to-mix) 18%
@@ -64,46 +59,45 @@ withDefaults(
   }
 
   &:disabled {
-    --button-ctn-cursor: not-allowed;
-    --button-opacity: 0.5;
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &[data-variant="filled"] {
-    --button-ctn-bgcolor-basic: var(--palette-primary40);
+    --button-ctn-bgcolor-basic: var(--color-primary);
     --button-ctn-bgcolor-to-mix: white;
   }
 
   &[data-variant="text"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--palette-primary40);
+    --button-ctn-bgcolor-to-mix: var(--color-primary);
   }
 
   &[data-width="fit"] {
-    --button-ctn-width: fit-content;
+    width: fit-content;
   }
 
   &[data-width="full"] {
-    --button-ctn-width: 100%;
+    width: 100%;
   }
 
   &[data-variant="filled"]:disabled {
-    --button-ctn-bgcolor: var(--palette-neutral30);
+    background: var(--palette-neutral30);
   }
 
   &[data-variant="text"]:disabled {
-    --button-ctn-bgcolor: transparent;
+    background: transparent;
   }
 
   &[data-variant="outlined"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--palette-primary40);
-    border: 1px solid var(--palette-neutral50);
+    --button-ctn-bgcolor-to-mix: var(--color-primary);
+    border: 1px solid var(--color-outline);
   }
 }
 
 .label-wrapper {
   padding: 0 0.5rem;
-  color: var(--button-lb-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -114,15 +108,15 @@ withDefaults(
   line-height: 1.5;
 
   &[data-variant="filled"] {
-    --button-lb-color: white;
+    color: white;
   }
 
   &[data-variant="text"] {
-    --button-lb-color: black;
+    color: black;
   }
 
   &[data-variant="outlined"] {
-    --button-lb-color: var(--palette-primary40);
+    color: var(--color-on-primary);
   }
 }
 </style>
