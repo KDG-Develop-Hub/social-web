@@ -86,7 +86,6 @@ const bio = "This is bio";
   background: none;
   font-weight: 500;
   text-decoration: none;
-  color: black;
   height: 2.75rem;
   padding: 0 1rem;
 }

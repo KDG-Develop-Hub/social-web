@@ -1,11 +1,9 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <span>
     <button class="container square">
-      <slot/>
+      <slot />
     </button>
   </span>
 </template>
@@ -17,7 +15,7 @@
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
-  background-color: var(--palette-secondary40);
+  background-color: var(--color-secondary);
   --square-size: 3.5rem;
 }
 </style>

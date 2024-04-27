@@ -116,7 +116,7 @@ withDefaults(
   }
 
   &[data-variant="outlined"] {
-    color: var(--color-on-primary);
+    color: var(--color-primary);
   }
 }
 </style>

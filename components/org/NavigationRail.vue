@@ -21,7 +21,7 @@ const linkContents = ref([
 <template>
   <nav class="navigation-rail v-stack">
     <FloatingActionButton>
-      <Feather color="white" />
+      <Feather color="var(--color-on-secondary)" />
     </FloatingActionButton>
     <div class="v-stack link-list">
       <NuxtLink
@@ -59,7 +59,6 @@ const linkContents = ref([
 .link {
   font-size: 0.75rem;
   font-weight: 500;
-  color: black;
   text-decoration: none;
   gap: 0.25rem;
   --navr-link-icon-width: 2;

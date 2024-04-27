@@ -57,5 +57,6 @@
     --color-surface: var(--palette-neutral10);
     --color-on-surface: var(--palette-neutral90);
     --color-outline: var(--palette-neutral50);
+    --color-outline-variant: var(--palette-neutral30);
   }
 }
