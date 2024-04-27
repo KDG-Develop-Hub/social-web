@@ -46,7 +46,7 @@ withDefaults(defineProps<{
   place-items: center;
   font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
   font-weight: 500;
-  background-color: var(--pallete-color-neutral70);
+  background-color: var(--palette-neutral70);
   position: relative;
 }
 

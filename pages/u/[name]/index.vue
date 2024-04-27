@@ -37,7 +37,7 @@ const tweets: Tweet[] = Array.from({length: 6}, () => (
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
-  border: 1px solid var(--pallete-color-neutral70);
+  border: 1px solid var(--palette-neutral70);
   border-radius: 0.75rem;
   display: flex;
   gap: 0.75rem;

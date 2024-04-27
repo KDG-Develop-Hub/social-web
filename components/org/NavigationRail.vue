@@ -75,16 +75,16 @@ const linkContents = ref([
     transition: all 200ms ease;
     opacity: 0;
     border-radius: var(--radius-round);
-    background-color: var(--pallete-color-primary80);
+    background-color: var(--palette-primary80);
   }
 }
 
 .link:hover .indicator {
-  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 80%);
+  background-color: color-mix(in srgb, var(--palette-neutral60), transparent 80%);
 }
 
 .link:active .indicator {
-  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 72%);
+  background-color: color-mix(in srgb, var(--palette-neutral60), transparent 72%);
 }
 
 .link.router-link-active .indicator::before {

@@ -17,7 +17,7 @@
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
-  background-color: var(--pallete-color-secondary40);
+  background-color: var(--palette-secondary40);
   --square-size: 3.5rem;
 }
 </style>

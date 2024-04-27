@@ -58,7 +58,7 @@ const bio = "This is bio";
   width: 100%;
   position: relative;
   display: flex;
-  border-bottom: 1px solid var(--pallete-color-neutral80);
+  border-bottom: 1px solid var(--palette-neutral80);
 }
 .tabs-indicator {
   position: absolute;
@@ -71,7 +71,7 @@ const bio = "This is bio";
   height: 3px;
   border-top-left-radius: 99rem;
   border-top-right-radius: 99rem;
-  background-color: var(--pallete-color-primary50);
+  background-color: var(--palette-primary50);
 }
 .tab-wrapper {
   display: flex;
