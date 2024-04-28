@@ -27,24 +27,18 @@ const bio = "This is bio";
   <TabsRoot :model-value="$route.fullPath">
     <TabsList class="tabs-list">
       <TabsIndicator class="tabs-indicator" />
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="routePrefix">
-          <NuxtLink :to="routePrefix">つぶやき</NuxtLink>
-        </TabsTrigger>
-      </label>
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="`${routePrefix}/replies`">
-          <NuxtLink :to="`${routePrefix}/replies`">返信</NuxtLink>
-        </TabsTrigger>
-      </label>
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="`${routePrefix}/media`">
-          <NuxtLink :to="`${routePrefix}/media`">メディア</NuxtLink>
-        </TabsTrigger>
-      </label>
+      <TabsTrigger as-child class="tab" :value="routePrefix">
+        <NuxtLink :to="routePrefix">つぶやき</NuxtLink>
+      </TabsTrigger>
+      <TabsTrigger as-child class="tab" :value="`${routePrefix}/replies`">
+        <NuxtLink :to="`${routePrefix}/replies`">返信</NuxtLink>
+      </TabsTrigger>
+      <TabsTrigger as-child class="tab" :value="`${routePrefix}/media`">
+        <NuxtLink :to="`${routePrefix}/media`">メディア</NuxtLink>
+      </TabsTrigger>
     </TabsList>
+    <NuxtPage />
   </TabsRoot>
-  <NuxtPage />
 </template>
 
 <style>
@@ -56,9 +50,11 @@ const bio = "This is bio";
 }
 .tabs-list {
   width: 100%;
-  position: relative;
   display: flex;
-  border-bottom: 1px solid var(--color-outline-variant);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-surface-variant);
 }
 .tabs-indicator {
   position: absolute;
@@ -71,12 +67,7 @@ const bio = "This is bio";
   height: 3px;
   border-top-left-radius: 99rem;
   border-top-right-radius: 99rem;
-  background-color: var(--palette-primary50);
-}
-.tab-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--color-primary);
 }
 .tab {
   display: inline-flex;
@@ -86,7 +77,7 @@ const bio = "This is bio";
   background: none;
   font-weight: 500;
   text-decoration: none;
-  height: 2.75rem;
+  height: 3rem;
   padding: 0 1rem;
 }
 .profile-header {
