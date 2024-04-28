@@ -23,7 +23,7 @@ withDefaults(
     class="container"
   >
     <slot name="icon" />
-    <span :data-variant="variant" class="label-wrapper">
+    <span class="label-wrapper">
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -60,7 +60,6 @@ withDefaults(
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
   }
 
   &[data-variant="filled"] {
@@ -73,6 +72,12 @@ withDefaults(
     --button-ctn-bgcolor-to-mix: var(--color-primary);
   }
 
+  &[data-variant="outlined"] {
+    --button-ctn-bgcolor-basic: transparent;
+    --button-ctn-bgcolor-to-mix: white;
+    border: 1px solid var(--color-outline);
+  }
+
   &[data-width="fit"] {
     width: fit-content;
   }
@@ -82,17 +87,15 @@ withDefaults(
   }
 
   &[data-variant="filled"]:disabled {
-    background: var(--palette-neutral30);
+    background: color-mix(in srgb, var(--color-on-surface), transparent 88%);
   }
 
-  &[data-variant="text"]:disabled {
+  &:is([data-variant="text"], [data-variant="outlined"]):disabled {
     background: transparent;
   }
 
-  &[data-variant="outlined"] {
-    --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--color-primary);
-    border: 1px solid var(--color-outline);
+  &[data-variant="outlined"]:disabled {
+    border: 1px solid color-mix(in srgb, var(--color-outline), transparent 88%);
   }
 }
 
@@ -107,16 +110,20 @@ withDefaults(
   font-weight: 500;
   line-height: 1.5;
 
-  &[data-variant="filled"] {
+  .container[data-variant="filled"] & {
     color: white;
   }
 
-  &[data-variant="text"] {
+  .container[data-variant="text"] & {
     color: black;
   }
 
-  &[data-variant="outlined"] {
+  .container[data-variant="outlined"] & {
     color: var(--color-primary);
+  }
+
+  .container:disabled & {
+    color: color-mix(in srgb, var(--color-on-surface), transparent 62%);
   }
 }
 </style>
