@@ -53,6 +53,7 @@ const bio = "This is bio";
   display: flex;
   position: sticky;
   top: 0;
+  gap: 1rem;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-surface-variant);
 }
@@ -78,7 +79,7 @@ const bio = "This is bio";
   font-weight: 500;
   text-decoration: none;
   height: 3rem;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
 .profile-header {
   gap: 1.5rem;
