@@ -91,26 +91,25 @@ const linkContents = ref([
     border-radius: var(--radius-round);
     background-color: var(--color-primary-container);
   }
+  .link:hover & {
+    background-color: color-mix(
+        in srgb,
+        var(--palette-neutral60),
+        transparent 80%
+    );
+  }
+
+  .link:active & {
+    background-color: color-mix(
+        in srgb,
+        var(--palette-neutral60),
+        transparent 72%
+    );
+  }
+  .link.router-link-active &::before {
+    opacity: 1;
+    width: 100%;
+  }
 }
 
-.link:hover .indicator {
-  background-color: color-mix(
-    in srgb,
-    var(--palette-neutral60),
-    transparent 80%
-  );
-}
-
-.link:active .indicator {
-  background-color: color-mix(
-    in srgb,
-    var(--palette-neutral60),
-    transparent 72%
-  );
-}
-
-.link.router-link-active .indicator::before {
-  opacity: 1;
-  width: 100%;
-}
 </style>
