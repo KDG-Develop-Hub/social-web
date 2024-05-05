@@ -17,5 +17,10 @@
   cursor: pointer;
   background-color: var(--color-secondary);
   --square-size: 3.5rem;
+  color: var(--color-on-secondary);
+  :global(*) {
+    color: var(--color-on-secondary);
+  }
 }
+
 </style>
