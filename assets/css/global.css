@@ -1,5 +1,6 @@
 @import "open-props/borders.min.css";
 @import "assets/css/colors.css";
+@import "assets/css/layout.css";
 
 * {
   font-family:
@@ -24,25 +25,4 @@ pre {
 :enabled,
 a {
   cursor: pointer;
-}
-
-/* classes */
-.square {
-  width: var(--square-size);
-  height: var(--square-size);
-}
-
-.h-stack,
-.v-stack {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.h-stack {
-  flex-direction: row;
-}
-
-.v-stack {
-  flex-direction: column;
 }
