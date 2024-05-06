@@ -1,25 +1,40 @@
 <script setup lang="ts">
-import {Compass, Feather, History, Settings2, User, Users} from "lucide-vue-next";
+import {
+  Compass,
+  Feather,
+  History,
+  Settings2,
+  User,
+  Users,
+} from "lucide-vue-next";
 
-const currentUser = useCurrentUserStore()
+const currentUser = useCurrentUserStore();
 const linkContents = ref([
-  {to: "/", icon: History, text: "アプデ"},
-  {to: "/browse", icon: Compass, text: "見つける"},
-  {to: `/u/${currentUser.name}`, icon: User, text: "君とは"},
-  {to: "/friends", icon: Users, text: "知り合い"},
-  {to: "/settings", icon: Settings2, text: "せってー"}
-])
+  { to: "/", icon: History, text: "アプデ" },
+  { to: "/browse", icon: Compass, text: "見つける" },
+  { to: `/u/${currentUser.name}`, icon: User, text: "君とは" },
+  { to: "/friends", icon: Users, text: "知り合い" },
+  { to: "/settings", icon: Settings2, text: "せってー" },
+]);
 </script>
 
 <template>
-  <nav class="navigation-rail h-stack">
+  <nav class="navigation-rail v-stack">
     <FloatingActionButton>
-      <Feather color="white"/>
+      <Feather />
     </FloatingActionButton>
-    <div class="h-stack link-list">
-      <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="h-stack link">
-        <span class="indicator v-stack">
-          <component :is="linkContent.icon" class="link-icon" strokeWidth="var(--navr-link-icon-width)"/>
+    <div class="v-stack link-list">
+      <NuxtLink
+        v-for="linkContent in linkContents"
+        :to="linkContent.to"
+        class="v-stack link"
+      >
+        <span class="indicator h-stack">
+          <component
+            :is="linkContent.icon"
+            class="link-icon"
+            strokeWidth="var(--navr-link-icon-width)"
+          />
         </span>
         {{ linkContent.text }}
       </NuxtLink>
@@ -34,19 +49,18 @@ const linkContents = ref([
   flex-shrink: 0;
   width: 5.5rem;
   padding: 2rem 0;
-  --stack-gap: 2.5rem;
+  gap: 2.5rem;
 }
 
 .link-list {
-  --stack-gap: 0.75rem;
+  gap: 0.75rem;
 }
 
 .link {
   font-size: 0.75rem;
   font-weight: 500;
-  color: black;
   text-decoration: none;
-  --stack-gap: 0.25rem;
+  gap: 0.25rem;
   --navr-link-icon-width: 2;
 
   &:is(:hover, .router-link-active) {
@@ -75,20 +89,27 @@ const linkContents = ref([
     transition: all 200ms ease;
     opacity: 0;
     border-radius: var(--radius-round);
-    background-color: var(--pallete-color-primary80);
+    background-color: var(--color-primary-container);
+  }
+  .link:hover & {
+    background-color: color-mix(
+        in srgb,
+        var(--palette-neutral60),
+        transparent 80%
+    );
+  }
+
+  .link:active & {
+    background-color: color-mix(
+        in srgb,
+        var(--palette-neutral60),
+        transparent 72%
+    );
+  }
+  .link.router-link-active &::before {
+    opacity: 1;
+    width: 100%;
   }
 }
 
-.link:hover .indicator {
-  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 80%);
-}
-
-.link:active .indicator {
-  background-color: color-mix(in srgb, var(--pallete-color-neutral60), transparent 72%);
-}
-
-.link.router-link-active .indicator::before {
-  opacity: 1;
-  width: 100%;
-}
 </style>

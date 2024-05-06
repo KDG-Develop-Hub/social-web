@@ -11,7 +11,7 @@ withDefaults(
     variant: "filled",
     width: "fit",
     as: "button",
-  }
+  },
 );
 </script>
 
@@ -23,7 +23,7 @@ withDefaults(
     class="container"
   >
     <slot name="icon" />
-    <span :data-variant="variant" class="label-wrapper">
+    <span class="label-wrapper">
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -32,23 +32,18 @@ withDefaults(
 <style scoped>
 .container {
   border: none;
-  cursor: var(--button-ctn-cursor);
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  opacity: var(--button-opacity);
   padding: 0 1rem;
   border-radius: var(--radius-round);
   height: 2.5rem;
-  background-color: var(--button-ctn-bgcolor);
-  width: var(--button-ctn-width);
-  --button-ctn-bgcolor: var(--button-ctn-bgcolor-basic);
-  --button-ctn-cursor: pointer;
-  --button-opacity: 1;
+  background: var(--button-ctn-bgcolor-basic);
 
   &:hover {
-    --button-ctn-bgcolor: color-mix(
+    background: color-mix(
       in srgb,
       var(--button-ctn-bgcolor-basic),
       var(--button-ctn-bgcolor-to-mix) 10%
@@ -56,7 +51,7 @@ withDefaults(
   }
 
   &:active {
-    --button-ctn-bgcolor: color-mix(
+    background: color-mix(
       in srgb,
       var(--button-ctn-bgcolor-basic),
       var(--button-ctn-bgcolor-to-mix) 18%
@@ -64,46 +59,48 @@ withDefaults(
   }
 
   &:disabled {
-    --button-ctn-cursor: not-allowed;
-    --button-opacity: 0.5;
+    cursor: not-allowed;
   }
 
   &[data-variant="filled"] {
-    --button-ctn-bgcolor-basic: var(--pallete-color-primary40);
+    --button-ctn-bgcolor-basic: var(--color-primary);
     --button-ctn-bgcolor-to-mix: white;
   }
 
   &[data-variant="text"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--pallete-color-primary40);
-  }
-
-  &[data-width="fit"] {
-    --button-ctn-width: fit-content;
-  }
-
-  &[data-width="full"] {
-    --button-ctn-width: 100%;
-  }
-
-  &[data-variant="filled"]:disabled {
-    --button-ctn-bgcolor: var(--pallete-color-neutral30);
-  }
-
-  &[data-variant="text"]:disabled {
-    --button-ctn-bgcolor: transparent;
+    --button-ctn-bgcolor-to-mix: var(--color-primary);
   }
 
   &[data-variant="outlined"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--pallete-color-primary40);
-    border: 1px solid var(--pallete-color-neutral50);
+    --button-ctn-bgcolor-to-mix: white;
+    border: 1px solid var(--color-outline);
+  }
+
+  &[data-width="fit"] {
+    width: fit-content;
+  }
+
+  &[data-width="full"] {
+    width: 100%;
+  }
+
+  &[data-variant="filled"]:disabled {
+    background: color-mix(in srgb, var(--color-on-surface), transparent 88%);
+  }
+
+  &:is([data-variant="text"], [data-variant="outlined"]):disabled {
+    background: transparent;
+  }
+
+  &[data-variant="outlined"]:disabled {
+    border: 1px solid color-mix(in srgb, var(--color-outline), transparent 88%);
   }
 }
 
 .label-wrapper {
   padding: 0 0.5rem;
-  color: var(--button-lb-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -113,16 +110,20 @@ withDefaults(
   font-weight: 500;
   line-height: 1.5;
 
-  &[data-variant="filled"] {
-    --button-lb-color: white;
+  .container[data-variant="filled"] & {
+    color: white;
   }
 
-  &[data-variant="text"] {
-    --button-lb-color: black;
+  .container[data-variant="text"] & {
+    color: black;
   }
 
-  &[data-variant="outlined"] {
-    --button-lb-color: var(--pallete-color-primary40);
+  .container[data-variant="outlined"] & {
+    color: var(--color-primary);
+  }
+
+  .container:disabled & {
+    color: color-mix(in srgb, var(--color-on-surface), transparent 62%);
   }
 }
 </style>

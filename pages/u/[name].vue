@@ -3,11 +3,16 @@ const { name } = useRoute().params;
 const routePrefix = `/u/${name}`;
 const currentUser = useCurrentUserStore();
 const bio = "This is bio";
+const tabItems = [
+  { label: "つぶやき", value: routePrefix },
+  { label: "返信", value: `${routePrefix}/replies` },
+  { label: "メディア", value: `${routePrefix}/media` },
+];
 </script>
 
 <template>
   <div class="profile">
-    <header class="v-stack profile-header">
+    <header class="h-stack profile-header">
       <Avatar
         size="lg"
         :name="currentUser.name"
@@ -27,24 +32,12 @@ const bio = "This is bio";
   <TabsRoot :model-value="$route.fullPath">
     <TabsList class="tabs-list">
       <TabsIndicator class="tabs-indicator" />
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="routePrefix">
-          <NuxtLink :to="routePrefix">つぶやき</NuxtLink>
-        </TabsTrigger>
-      </label>
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="`${routePrefix}/replies`">
-          <NuxtLink :to="`${routePrefix}/replies`">返信</NuxtLink>
-        </TabsTrigger>
-      </label>
-      <label class="tab-wrapper">
-        <TabsTrigger as-child class="tab" :value="`${routePrefix}/media`">
-          <NuxtLink :to="`${routePrefix}/media`">メディア</NuxtLink>
-        </TabsTrigger>
-      </label>
+      <TabsTrigger v-for="i in tabItems" as-child class="tab" :value="i.value">
+        <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
+      </TabsTrigger>
     </TabsList>
+    <NuxtPage />
   </TabsRoot>
-  <NuxtPage />
 </template>
 
 <style>
@@ -56,9 +49,12 @@ const bio = "This is bio";
 }
 .tabs-list {
   width: 100%;
-  position: relative;
   display: flex;
-  border-bottom: 1px solid var(--pallete-color-neutral80);
+  position: sticky;
+  top: 0;
+  gap: 1rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-surface-variant);
 }
 .tabs-indicator {
   position: absolute;
@@ -71,12 +67,7 @@ const bio = "This is bio";
   height: 3px;
   border-top-left-radius: 99rem;
   border-top-right-radius: 99rem;
-  background-color: var(--pallete-color-primary50);
-}
-.tab-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--color-primary);
 }
 .tab {
   display: inline-flex;
@@ -86,9 +77,8 @@ const bio = "This is bio";
   background: none;
   font-weight: 500;
   text-decoration: none;
-  color: black;
-  height: 2.75rem;
-  padding: 0 1rem;
+  height: 3rem;
+  padding: 0 0.5rem;
 }
 .profile-header {
   gap: 1.5rem;
