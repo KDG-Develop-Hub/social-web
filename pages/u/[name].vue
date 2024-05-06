@@ -3,6 +3,11 @@ const { name } = useRoute().params;
 const routePrefix = `/u/${name}`;
 const currentUser = useCurrentUserStore();
 const bio = "This is bio";
+const tabItems = [
+  { label: "つぶやき", value: routePrefix },
+  { label: "返信", value: `${routePrefix}/replies` },
+  { label: "メディア", value: `${routePrefix}/media` },
+];
 </script>
 
 <template>
@@ -27,14 +32,8 @@ const bio = "This is bio";
   <TabsRoot :model-value="$route.fullPath">
     <TabsList class="tabs-list">
       <TabsIndicator class="tabs-indicator" />
-      <TabsTrigger as-child class="tab" :value="routePrefix">
-        <NuxtLink :to="routePrefix">つぶやき</NuxtLink>
-      </TabsTrigger>
-      <TabsTrigger as-child class="tab" :value="`${routePrefix}/replies`">
-        <NuxtLink :to="`${routePrefix}/replies`">返信</NuxtLink>
-      </TabsTrigger>
-      <TabsTrigger as-child class="tab" :value="`${routePrefix}/media`">
-        <NuxtLink :to="`${routePrefix}/media`">メディア</NuxtLink>
+      <TabsTrigger v-for="i in tabItems" as-child class="tab" :value="i.value">
+        <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
       </TabsTrigger>
     </TabsList>
     <NuxtPage />
