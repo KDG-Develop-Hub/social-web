@@ -31,5 +31,10 @@ export default defineNuxtConfig({
             },
         ],
     },
-    modules: ["@nuxtjs/google-fonts", "@pinia/nuxt", "radix-vue/nuxt"],
+    modules: [
+      "@nuxtjs/google-fonts",
+      "@pinia/nuxt",
+      "radix-vue/nuxt",
+      "@nuxt/test-utils",
+    ],
 });
