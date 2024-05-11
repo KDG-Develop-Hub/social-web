@@ -5,21 +5,30 @@ import {
   formatDistanceFromNow,
 } from "~/composables/formatter";
 import { add } from "date-fns";
+import type {BasicUserInfo} from "~/types/user";
 
 const tweets: Tweet[] = Array.from({ length: 6 }, () => ({
-  user: "imeankenshin",
+  userId: 1,
   content: "Hello world! This is my tweet you know?",
   createdAt: add(new Date(), { minutes: -20 }),
 }));
+const users: Record<Tweet["userId"] ,BasicUserInfo> = {
+  1: {
+    avatarUrl: "https://via.placeholder.com/32",
+    name: "imeankenshin",
+    displayName: "Kenshin",
+  }
+}
+
 </script>
 
 <template>
   <div class="articles v-stack">
     <article v-for="tweet in tweets" class="tweet">
-      <Avatar :name="tweet.user" src="/img/aa.jpg" />
+      <Avatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
       <div class="body">
         <header class="h-stack">
-          <strong>{{ tweet.user }}</strong>
+          <strong>{{ users[tweet.userId].name }}</strong>
           <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{
             formatDistanceFromNow(tweet.createdAt)
           }}</time>
