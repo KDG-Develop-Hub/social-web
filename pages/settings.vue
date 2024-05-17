@@ -7,20 +7,32 @@ const navItems = [
 </script>
 
 <template>
-  <nav>
-    <ul class="nav">
-      <li v-for="item in navItems">
-        <NuxtLink class="nav-item h-stack" :to="`/settings${item.to}`">{{ item.text }}</NuxtLink>
-      </li>
-    </ul>
-  </nav>
+  <div class="row">
+    <nav>
+      <ul class="nav">
+        <li v-for="item in navItems" class="h-stack">
+          <NuxtLink class="nav-item h-stack" :to="`/settings${item.to}`">{{ item.text }}</NuxtLink>
+        </li>
+      </ul>
+    </nav>
+    <div class="page">
+      <NuxtPage/>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.row {
+  display: flex;
+  gap: 2rem;
+}
+.page {
+  width: 100%;
+}
 .nav {
   padding: 0;
   list-style-type: none;
-  width: 12rem;
+  width: 14rem;
 }
 .nav-item {
   width: 100%;
