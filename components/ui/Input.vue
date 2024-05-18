@@ -1,29 +1,39 @@
 <script setup lang="ts">
 const props = defineProps<{
-  type?: string
+  type?: "text" | "password" | "email" | "tel" | "number" | "url" | "search" | "date" | "time" | "datetime-local" | "month" | "week" | "color"
   id?: string
   fullWidth?: boolean
   hint?: string
   prefix?: string
+  suffix?: string
+  maxLength?: number | `${number}`
+  minLength?: number | `${number}`
   label: string
 }>()
 const randomId = props.id ?? useId()
-const hintId = `hint-${randomId}`
+const hintId = props.hint ? `hint-${randomId}` : undefined
 const model = defineModel<string>()
 const prefixRef = ref<HTMLSpanElement>()
 const lengthToLeftEnd = computed(() => `${(prefixRef.value ? 16 - prefixRef.value.offsetWidth : 0) - 4}px`)
+const clickHandler = () => {
+  document.getElementById(randomId)?.focus()
+}
 </script>
 
 <template>
   <div class="wrapper" :data-full="Boolean(model)">
-    <div :class="fullWidth ? 'fullwidth' : null" class="container h-stack">
+    <div @click="clickHandler" :class="fullWidth ? 'fullwidth' : null" class="container h-stack">
       <span v-if="prefix" class="prefix" ref="prefixRef">{{ prefix }}</span>
       <div class="h-stack input-wrapper">
         <label class="h-stack label" :for="randomId">{{ label }}</label>
-        <input autocomplete="off" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <input :maxlength="maxLength" :minLength="minLength" autocomplete="off" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
-    <p class="hint" v-if="hint" :id="hintId">{{ hint }}</p>
+    <div class="supporting-text-wrapper">
+      <p class="hint" v-if="hint" :id="hintId">{{ hint }}</p>
+      <span v-if="maxLength" class="counter">{{ model?.length ?? 0 }}/{{ maxLength }}</span>
+    </div>
   </div>
 </template>
 
@@ -56,7 +66,12 @@ const lengthToLeftEnd = computed(() => `${(prefixRef.value ? 16 - prefixRef.valu
 .prefix {
   white-space: nowrap;
   user-select: none;
-  padding-right: 0.5rem;
+  padding-right: 0.25rem;
+}
+.suffix {
+  white-space: nowrap;
+  user-select: none;
+  color: var(--color-on-surface-variant);
 }
 .label {
   user-select: none;
@@ -77,6 +92,7 @@ const lengthToLeftEnd = computed(() => `${(prefixRef.value ? 16 - prefixRef.valu
 .input-wrapper {
   width: 100%;
   height: 100%;
+  gap: 0;
 }
 input {
   padding: 0;
@@ -88,9 +104,17 @@ input {
   outline: none;
   background: transparent;
 }
-.hint {
+.supporting-text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0.25rem 1rem;
+}
+.hint, .counter {
   font-size: 0.75rem;
   color: var(--color-on-surface-variant);
-  margin: 0.25rem 1rem;
+}
+.counter {
+  text-align: right;
 }
 </style>
