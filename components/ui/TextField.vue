@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   type?: "text" | "password" | "email" | "tel" | "number" | "url" | "search" | "date" | "time" | "datetime-local" | "month" | "week" | "color"
+  autocomplete?: "on" | "off" | "name" | "honorific-prefix" | "given-name" | "additional-name" | "family-name" | "honorific-suffix" | "nickname" | "email" | "username" | "new-password" | "current-password" | "organization-title" | "organization" | "street-address" | "address-line1" | "address-line2" | "address-line3" | "address-level4" | "address-level3" | "address-level2" | "address-level1" | "country" | "country-name" | "postal-code" | "cc-name" | "cc-given-name" | "cc-additional-name" | "cc-family-name" | "cc-number" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-csc" | "cc-type" | "transaction-currency" | "transaction-amount" | "language" | "bday" | "bday-day" | "bday-month" | "bday-year"
   id?: string
   fullWidth?: boolean
   hint?: string
@@ -26,7 +27,7 @@ const clickHandler = () => {
       <span v-if="prefix" class="prefix" ref="prefixRef">{{ prefix }}</span>
       <div class="h-stack input-wrapper">
         <label class="h-stack label" :for="randomId">{{ label }}</label>
-        <input :maxlength="maxLength" :minLength="minLength" autocomplete="off" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <input :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
@@ -113,8 +114,12 @@ input {
 .hint, .counter {
   font-size: 0.75rem;
   color: var(--color-on-surface-variant);
+  width: 100%;
 }
 .counter {
   text-align: right;
+  .hint + & {
+    width: min-content;
+  }
 }
 </style>
