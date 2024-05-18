@@ -31,6 +31,16 @@
   --palette-neutral90: hsl(60, 4%, 90%);
   --palette-neutral96: hsl(60, 4%, 96%);
   --palette-neutral98: hsl(60, 4%, 98%);
+  /* pallette error */
+  --palette-error10: hsl(0, 50%, 10%);
+  --palette-error20: hsl(0, 50%, 20%);
+  --palette-error30: hsl(0, 50%, 30%);
+  --palette-error40: hsl(0, 50%, 40%);
+  --palette-error50: hsl(0, 50%, 50%);
+  --palette-error60: hsl(0, 50%, 60%);
+  --palette-error70: hsl(0, 50%, 70%);
+  --palette-error80: hsl(0, 50%, 80%);
+  --palette-error90: hsl(0, 50%, 90%);
   /* colors */
   --color-primary: var(--palette-primary40);
   --color-on-primary: white;
@@ -46,6 +56,9 @@
   --color-on-surface-variant: var(--palette-neutral30);
   --color-outline: var(--palette-neutral50);
   --color-outline-variant: var(--palette-neutral80);
+  --color-error: var(--palette-error40);
+  --color-on-error: white;
+  --color-error-container: var(--palette-error10);
   /* color dark */
   @media (prefers-color-scheme: dark) {
     --color-primary: var(--palette-primary60);
@@ -62,5 +75,8 @@
     --color-on-surface-variant: var(--palette-neutral80);
     --color-outline: var(--palette-neutral50);
     --color-outline-variant: var(--palette-neutral30);
+    --color-error: var(--palette-error80);
+    --color-on-error: var(--palette-error20);
+    --color-error-container: var(--palette-error90);
   }
 }
