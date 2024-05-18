@@ -4,6 +4,8 @@ const props = defineProps<{
   id?: string
   fullWidth?: boolean
   hint?: string
+  prefix?: string
+  label: string
 }>()
 const randomId = props.id ?? useId()
 const hintId = `hint-${randomId}`
@@ -11,17 +13,23 @@ const model = defineModel<string>()
 </script>
 
 <template>
-<div :class="fullWidth ? 'fullwidth' : null" class="wrapper h-stack ">
-  <input autocomplete="off" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model" :data-full="Boolean(model)"/>
-  <span class="v-stack label-wrapper"><label :for="randomId">入力欄</label></span>
-</div>
-<p class="hint" v-if="hint" :id="hintId">{{ hint }}</p>
+  <div class="wrapper">
+    <div :class="fullWidth ? 'fullwidth' : null" class="input-wrapper h-stack ">
+      <input autocomplete="off" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"
+             :data-full="Boolean(model)"/>
+      <label class="h-stack label" :for="randomId">{{ label }}</label>
+    </div>
+    <p class="hint" v-if="hint" :id="hintId">{{ hint }}</p>
+  </div>
 </template>
 
 <style scoped>
 .wrapper {
-  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+}
+.input-wrapper {
   --this-height: 3.5rem;
+  gap: 0;
   position: relative;
   outline: var(--color-outline) solid 1px;
   height: var(--this-height);
@@ -35,21 +43,18 @@ const model = defineModel<string>()
     outline-width: 2px;
   }
 }
-.label-wrapper {
+.label {
   position: absolute;
   left: 1rem;
   padding: 0 0.25rem;
   background-color: var(--color-surface);
-  transition: translate 200ms, font-size 200ms;
+  transition: translate 200ms, font-size 200ms, color 200ms;
   translate: 0;
-  * {
-    transition: color 200ms;
-  }
   :is(input[data-full=true], input:focus) ~ & {
     translate: -0.25rem calc(var(--this-height) / -2);
     font-size: 0.75rem;
   }
-  input:focus ~ & > * {
+  input:focus ~ & {
     color: var(--color-primary);
   }
 }
@@ -65,7 +70,7 @@ input {
 }
 .hint {
   font-size: 0.75rem;
-  color: var(--color-on-surface);
+  color: var(--color-on-surface-variant);
   margin: 0.25rem 1rem;
 }
 </style>
