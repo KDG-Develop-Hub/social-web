@@ -15,25 +15,27 @@ const randomId = props.id ?? useId()
 const hintId = props.hint ? `hint-${randomId}` : undefined
 const model = defineModel<string>()
 const prefixRef = ref<HTMLSpanElement>()
-const lengthToLeftEnd = computed(() => `${(prefixRef.value ? 16 - prefixRef.value.offsetWidth : 0) - 4}px`)
+const labelPadding = 4
+const containerPadding = 16
+const lengthToLeftEnd = computed(() => `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`)
 const clickHandler = () => {
   document.getElementById(randomId)?.focus()
 }
 </script>
 
 <template>
-  <div class="wrapper" :data-full="Boolean(model)">
-    <div @click="clickHandler" :class="fullWidth ? 'fullwidth' : null" class="container h-stack">
+  <div class="wrapper" :class="{'full-width': fullWidth}" :data-full="Boolean(model)">
+    <div @click="clickHandler" class="container h-stack">
       <span v-if="prefix" class="prefix" ref="prefixRef">{{ prefix }}</span>
-      <div class="h-stack input-wrapper">
+      <div class="h-stack input-wrapper full-width full-height">
         <label class="h-stack label" :for="randomId">{{ label }}</label>
-        <input :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <input class="full-width full-height" :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p class="hint" v-if="hint" :id="hintId">{{ hint }}</p>
-      <span v-if="maxLength" class="counter">{{ model?.length ?? 0 }}/{{ maxLength }}</span>
+      <p class="hint full-width" v-if="hint" :id="hintId">{{ hint }}</p>
+      <span v-if="maxLength" class="counter full-width">{{ model?.length ?? 0 }}/{{ maxLength }}</span>
     </div>
   </div>
 </template>
@@ -58,10 +60,10 @@ const clickHandler = () => {
     outline-width: 2px;
   }
   & > :first-child {
-    padding-left: 1rem;
+    padding-left: calc(1px * v-bind(containerPadding));
   }
   & > :last-child {
-    padding-right: 1rem;
+    padding-right: calc(1px * v-bind(containerPadding));
   }
 }
 .prefix {
@@ -78,7 +80,7 @@ const clickHandler = () => {
   user-select: none;
   position: absolute;
   white-space: nowrap;
-  padding: 0 0.25rem;
+  padding: 0 calc(1px * v-bind(labelPadding));
   background-color: var(--color-surface);
   transition: translate 200ms, font-size 200ms, color 200ms;
   translate: 0;
@@ -91,15 +93,10 @@ const clickHandler = () => {
   }
 }
 .input-wrapper {
-  width: 100%;
-  height: 100%;
   gap: 0;
 }
 input {
-  padding: 0;
   cursor: text;
-  width: 100%;
-  height: 100%;
   font-size: 1rem;
   border: none;
   outline: none;
@@ -109,12 +106,11 @@ input {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
-  margin: 0.25rem 1rem;
+  margin: 0.25rem 1rem 0;
 }
 .hint, .counter {
   font-size: 0.75rem;
   color: var(--color-on-surface-variant);
-  width: 100%;
 }
 .counter {
   text-align: right;
