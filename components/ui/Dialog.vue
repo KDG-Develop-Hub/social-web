@@ -22,21 +22,24 @@ const content = ref<HTMLElement | null>(null);
   bottom: 0;
   background: rgba(0, 0, 0, 0.36);
 
-  &[data-state=open] {
+  &[data-state='open'] {
     animation: fade-in 200ms ease-out;
   }
 
-  &[data-state=closed] {
-    animation: fade-in 200ms ease-out reverse;
+  &[data-state='closed'] {
+    animation: fade-in 200ms ease-out;
   }
 }
 
 .content {
+  --dialog-height: 186px;
+  --dialog-padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  --dialog-padding: 1.5rem;
+  padding: var(--dialog-padding) 0;
+  gap: calc(var(--dialog-padding) - 0.5rem);
   box-sizing: border-box;
   position: fixed;
   top: 50%;
@@ -47,33 +50,28 @@ const content = ref<HTMLElement | null>(null);
   border-radius: 1rem;
   background: var(--color-surface);
 
-  &[data-state=open] {
+  &[data-state='open'] {
     animation:
-        move-in-top 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
         dialog-open 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
         fade-in 50ms ease-out;
-    :global(& > :not(.button-set)) {
-      animation: fade-in 400ms ease-out;
+    :global(& > *) {
+      animation: fade-in-delay 400ms ease-out;
     }
-    :global(.button-set) {
+    :global(& > .button-set) {
       animation: fade-in 200ms ease-out;
     }
   }
 
-  &[data-state=closed] {
+  &[data-state='closed'] {
     animation:
-        move-in-top 400ms cubic-bezier(0, 0.92, 0.34, 1) reverse,
-        dialog-open 400ms cubic-bezier(0, 0.92, 0.34, 1) reverse,
+        dialog-open 100ms cubic-bezier(0, 0.92, 0.34, 1) reverse,
         fade-in 400ms ease-out reverse;
   }
 
   :global(& > *) {
-    margin: var(--dialog-padding);
-    &:global(&:first-child) {
-      margin-bottom: 0;
-    }
+    margin: 0 var(--dialog-padding);
     &:global(&:last-child) {
-      margin-top: 0;
+      margin-top: 0.5rem;
     }
   }
 }
@@ -87,21 +85,26 @@ const content = ref<HTMLElement | null>(null);
   }
 }
 
-@keyframes move-in-top {
+@keyframes fade-in-delay {
   from {
-    translate: 0 -194px;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
   }
   to {
-    translate: 0 0;
+    opacity: 1;
   }
 }
 
 @keyframes dialog-open {
   from {
-    max-height: 4rem;
+    translate: 0 calc(var(--dialog-height) * -1);
+    height: 4rem;
   }
   to {
-    max-height: 194px;
+    height: var(--dialog-height);
+    translate: 0 0;
   }
 }
 </style>
