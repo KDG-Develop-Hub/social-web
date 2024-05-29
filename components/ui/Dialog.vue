@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import {DialogBackdrop, DialogContent, DialogPositioner} from "@ark-ui/vue";
-const clientHeight = ref(0);
-const contentHeight = computed(()=>`${clientHeight.value}px`);
-const contentRef = ref();
-const content = useCurrentElement<HTMLDivElement>(contentRef);
-const {width} = useElementSize(contentRef);
+
+const contentHeight = ref("0px");
+const content = ref<HTMLElement | null>(null);
 const isUpdated = ref(false)
+const {width} = useElementSize(content);
+
 const resizeHeight = async () => {
-  isUpdated.value = false;
+  if (isUpdated.value) isUpdated.value = false;
   await nextTick(() => {
-    clientHeight.value = content.value.clientHeight
+    contentHeight.value = `${content.value?.clientHeight}px`;
+    isUpdated.value = true;
   })
-  isUpdated.value = true;
 }
+
 onMounted(resizeHeight)
 watch(width, resizeHeight)
 </script>
@@ -21,8 +22,10 @@ watch(width, resizeHeight)
   <Teleport to="body">
     <DialogBackdrop class="overlay"/>
     <DialogPositioner class="positioner">
-      <DialogContent :data-updated="isUpdated" ref="contentRef" class="content">
-        <slot/>
+      <DialogContent as-child :data-updated="isUpdated" class="content">
+        <div ref="content">
+          <slot/>
+        </div>
       </DialogContent>
     </DialogPositioner>
   </Teleport>
@@ -80,9 +83,11 @@ watch(width, resizeHeight)
     opacity: 1;
     translate: 0;
     height: var(--dialog-height);
+
     &[data-updated=false] {
       height: auto;
     }
+
     transition: opacity 200ms ease-out, height 400ms cubic-bezier(0.14, 0.92, 0.34, 1), translate 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
   }
 
@@ -90,9 +95,11 @@ watch(width, resizeHeight)
     translate: 0 calc(var(--dialog-height) * -1);
     opacity: 0;
     transition: opacity 200ms ease-out, height 1000ms cubic-bezier(0.14, 0.92, 0.34, 1), translate 1000ms cubic-bezier(0.14, 0.92, 0.34, 1);
+
     &[data-updated=true] {
       height: 4rem;
     }
+
     :global(& > *) {
       transition: opacity 50ms ease-out;
       opacity: 0;
@@ -102,6 +109,7 @@ watch(width, resizeHeight)
   :global(& > *) {
     transition: opacity 200ms ease-out 150ms;
     margin: 0 var(--dialog-padding);
+
     &:global(&:last-child) {
       transition: opacity 200ms ease-out;
       margin-top: 0.5rem;
