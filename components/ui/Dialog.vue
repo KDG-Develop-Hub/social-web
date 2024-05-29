@@ -18,7 +18,7 @@ watch(width, resizeHeight)
 </script>
 
 <template>
-  <Teleport to="#dialog">
+  <Teleport to="body">
     <DialogBackdrop class="overlay"/>
     <DialogPositioner class="positioner">
       <DialogContent :data-updated="isUpdated" ref="contentRef" class="content">
