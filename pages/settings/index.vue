@@ -8,7 +8,25 @@
     <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数"/>
   </div>
   <h2>アカウントの無効</h2>
-  <Button color="danger">アカウントを無効化</Button>
+  <DialogRoot>
+    <DialogTrigger as-child>
+      <Button color="danger">アカウントを無効化</Button>
+    </DialogTrigger>
+    <Dialog>
+      <DialogTitle>
+        アカウントを無効化しますか？
+      </DialogTitle>
+      <DialogDescription>
+        アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
+      </DialogDescription>
+      <div class="button-set h-stack">
+        <DialogClose as-child>
+          <Button color="danger" variant="text">キャンセル</Button>
+        </DialogClose>
+        <Button color="danger">アカウントを無効化</Button>
+      </div>
+    </Dialog>
+  </DialogRoot>
 </template>
 
 <style scoped>
@@ -18,5 +36,8 @@
 }
 h2 {
   margin-bottom: 1rem;
+}
+.button-set {
+  justify-content: flex-end;
 }
 </style>
