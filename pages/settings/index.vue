@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {DialogRoot, DialogTitle, DialogDescription, DialogCloseTrigger, DialogTrigger} from "@ark-ui/vue";
+
 </script>
 
 <template>
@@ -7,7 +9,7 @@
     <TextField min-length="1" type="text" autocomplete="name" full-width max-length="32" label="名前"/>
     <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数"/>
   </div>
-  <h2>アカウントの無効</h2>
+  <h2 ref="title">アカウントの無効</h2>
   <DialogRoot>
     <DialogTrigger as-child>
       <Button color="danger">アカウントを無効化</Button>
@@ -20,9 +22,9 @@
         アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
       </DialogDescription>
       <div class="button-set h-stack">
-        <DialogClose as-child>
+        <DialogCloseTrigger as-child>
           <Button color="danger" variant="text">キャンセル</Button>
-        </DialogClose>
+        </DialogCloseTrigger>
         <Button color="danger">アカウントを無効化</Button>
       </div>
     </Dialog>
