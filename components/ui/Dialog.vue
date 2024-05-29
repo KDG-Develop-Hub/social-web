@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import {DialogBackdrop, DialogContent, DialogPositioner} from "@ark-ui/vue";
+import type {VNode} from "vue";
 
+const slots = defineSlots<{
+  default: () => VNode
+  icon?: () => VNode
+}>();
 const contentHeight = ref("0px");
 const content = ref<HTMLElement | null>(null);
 const isUpdated = ref(false)
@@ -14,7 +19,16 @@ const resizeHeight = async () => {
   })
 }
 
-onMounted(resizeHeight)
+onMounted(async ()=>{
+  await resizeHeight()
+  if (content.value) {
+    content.value.childNodes.forEach((el)=>{
+      if (el instanceof HTMLElement) {
+        new ResizeObserver(resizeHeight).observe(el)
+      }
+    })
+  }
+})
 watch(width, resizeHeight)
 </script>
 
@@ -24,7 +38,10 @@ watch(width, resizeHeight)
     <DialogPositioner class="positioner">
       <DialogContent as-child :data-updated="isUpdated" class="content">
         <div ref="content">
-          <slot/>
+          <div v-if="slots.icon" class="v-stack icon">
+            <slot name="icon"/>
+          </div>
+          <slot name="default"/>
         </div>
       </DialogContent>
     </DialogPositioner>
@@ -109,11 +126,18 @@ watch(width, resizeHeight)
   :global(& > *) {
     transition: opacity 200ms ease-out 150ms;
     margin: 0 var(--dialog-padding);
+    flex-shrink: 0;
 
     &:global(&:last-child) {
       transition: opacity 200ms ease-out;
       margin-top: 0.5rem;
     }
+  }
+}
+
+.icon {
+  :global(*) {
+    color: var(--color-error);
   }
 }
 
