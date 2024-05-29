@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {DialogRoot, DialogTitle, DialogDescription, DialogCloseTrigger, DialogTrigger} from "@ark-ui/vue";
 
+const dialogId = useId()
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import {DialogRoot, DialogTitle, DialogDescription, DialogCloseTrigger, DialogTr
     <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数"/>
   </div>
   <h2 ref="title">アカウントの無効</h2>
-  <DialogRoot>
+  <DialogRoot :id="dialogId">
     <DialogTrigger as-child>
       <Button color="danger">アカウントを無効化</Button>
     </DialogTrigger>
