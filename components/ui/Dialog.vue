@@ -12,7 +12,7 @@ const {state: contentHeight, isReady, execute} = useAsyncState(async () => {
   return await nextTick(() => `${content.value?.clientHeight}px`)
 }, "0px", {immediate: false});
 watch(content, (content) => {
-  if (content) for (const el of content.querySelectorAll(".resize")) {
+  if (content) for (const el of [content, ...content.querySelectorAll(".resize")]) {
     new ResizeObserver(() => execute()).observe(el)
   }
   execute()
