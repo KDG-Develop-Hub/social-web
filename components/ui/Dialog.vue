@@ -8,15 +8,18 @@ const slots = defineSlots<{
   buttons?: () => VNode
 }>();
 const content = ref<HTMLElement | null>(null);
+const { width } = useElementSize(content);
 const {state: contentHeight, isReady, execute} = useAsyncState(async () => {
+  console.log(content.value?.id, content.value?.clientHeight)
   return await nextTick(() => `${content.value?.clientHeight}px`)
 }, "0px", {immediate: false});
+const resize = () => execute()
 watch(content, (content) => {
-  if (content) for (const el of [content, ...content.querySelectorAll(".resize")]) {
-    new ResizeObserver(() => execute()).observe(el)
+  if (content) for (const el of content.querySelectorAll(".resize")) {
+    new ResizeObserver(resize).observe(el)
   }
-  execute()
-});
+})
+watch(width, resize);
 </script>
 
 <template>
