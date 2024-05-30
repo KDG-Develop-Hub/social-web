@@ -24,7 +24,7 @@ const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
 
 <template>
   <h2>プロフィール</h2>
-  <div class="row profile full-width">
+  <form class="row profile full-width">
     <div>
       <DialogRoot>
         <DialogTrigger class="avatar">
@@ -65,8 +65,11 @@ const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
       <TextField full-width label="メールアドレス" required/>
       <TextField full-width type="url" prefix="https://" label="ウェブサイト"/>
       <TextField full-width label="自己紹介" multi-line/>
+      <div class="h-stack button-set full-width">
+        <Button type="submit">変更を保存する！</Button>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped>
@@ -123,5 +126,9 @@ const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
   place-items: center;
   gap: 1rem;
   border: 1px dashed var(--color-outline-variant);
+}
+
+.button-set {
+  justify-content: flex-end;
 }
 </style>
