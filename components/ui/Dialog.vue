@@ -5,6 +5,7 @@ import type {VNode} from "vue";
 const slots = defineSlots<{
   default: () => VNode
   icon?: () => VNode
+  buttons?: () => VNode
 }>();
 const contentHeight = ref("0px");
 const content = ref<HTMLElement | null>(null);
@@ -42,6 +43,9 @@ watch(width, resizeHeight)
             <slot name="icon"/>
           </div>
           <slot name="default"/>
+          <div v-if="slots.buttons" class="h-stack button-set">
+            <slot name="buttons"/>
+          </div>
         </div>
       </DialogContent>
     </DialogPositioner>
@@ -50,9 +54,8 @@ watch(width, resizeHeight)
 
 <style scoped>
 .overlay {
-  pointer-events: none;
   position: fixed;
-  padding: 1rem;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -71,6 +74,7 @@ watch(width, resizeHeight)
 
 .positioner {
   position: fixed;
+  z-index: 1;
   padding: 1rem;
   box-sizing: border-box;
   top: 0;
@@ -139,6 +143,10 @@ watch(width, resizeHeight)
   :global(*) {
     color: var(--color-error);
   }
+}
+
+.button-set {
+  justify-content: flex-end;
 }
 
 </style>
