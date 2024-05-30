@@ -3,6 +3,17 @@
     height: var(--square-size);
 }
 
+/* Flexbox utilities */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
 .h-stack,
 .v-stack {
     display: flex;

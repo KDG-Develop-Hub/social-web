@@ -10,6 +10,7 @@ const props = defineProps<{
   maxLength?: number | `${number}`
   minLength?: number | `${number}`
   label: string
+  multiLine?: boolean
 }>()
 const randomId = props.id ?? useId()
 const hintId = props.hint ? `hint-${randomId}` : undefined
@@ -29,7 +30,8 @@ const clickHandler = () => {
       <span v-if="prefix" class="prefix" ref="prefixRef">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
         <label class="h-stack label" :for="randomId">{{ label }}</label>
-        <input class="full-width full-height" :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <textarea v-if="multiLine" class="full-width full-height input" :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
+        <input v-else class="full-width full-height input" :maxlength="maxLength" :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
@@ -42,7 +44,8 @@ const clickHandler = () => {
 
 <style scoped>
 .wrapper {
-  padding: 0.5rem 0;
+  padding: 0.5rem 2px;
+  overflow: hidden;
 }
 .container {
   --this-height: 3.5rem;
@@ -95,7 +98,9 @@ const clickHandler = () => {
 .input-wrapper {
   gap: 0;
 }
-input {
+.input {
+  padding: 0;
+  height: min-content;
   cursor: text;
   font-size: 1rem;
   border: none;

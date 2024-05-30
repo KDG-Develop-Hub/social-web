@@ -2,13 +2,18 @@
 import {DialogBackdrop, DialogContent, DialogPositioner} from "@ark-ui/vue";
 import type {VNode} from "vue";
 
+withDefaults(defineProps<{
+  width?: number | string
+}>(), {
+  width: "100%"
+})
 const slots = defineSlots<{
   default: () => VNode
   icon?: () => VNode
   buttons?: () => VNode
 }>();
 const content = ref<HTMLElement | null>(null);
-const { width } = useElementSize(content);
+const { width: contentWidth } = useElementSize(content);
 const {state: contentHeight, isReady, execute} = useAsyncState(async () => {
   console.log(content.value?.id, content.value?.clientHeight)
   return await nextTick(() => `${content.value?.clientHeight}px`)
@@ -19,7 +24,7 @@ watch(content, (content) => {
     new ResizeObserver(resize).observe(el)
   }
 })
-watch(width, resize);
+watch(contentWidth, resize);
 </script>
 
 <template>
@@ -68,6 +73,7 @@ watch(width, resize);
   box-sizing: border-box;
   top: 0;
   left: 0;
+  overflow: auto;
   width: 100%;
   height: 100%;
   display: grid;
@@ -84,7 +90,7 @@ watch(width, resize);
   padding: var(--dialog-padding) 0;
   gap: calc(var(--dialog-padding) - 0.5rem);
   box-sizing: border-box;
-  width: 100%;
+  width: v-bind(width);
   max-width: 48rem;
   border-radius: 1rem;
   background: var(--color-surface);

@@ -41,7 +41,7 @@ const navItems = [
   border-radius: 99rem;
   text-decoration: none;
   font-weight: 500;
-  &.router-link-active {
+  &.router-link-exact-active {
     background-color: var(--color-secondary-container);
     color: var(--color-on-secondary-container);
   }
