@@ -7,37 +7,23 @@ const slots = defineSlots<{
   icon?: () => VNode
   buttons?: () => VNode
 }>();
-const contentHeight = ref("0px");
 const content = ref<HTMLElement | null>(null);
-const isUpdated = ref(false)
-const {width} = useElementSize(content);
-
-const resizeHeight = async () => {
-  if (isUpdated.value) isUpdated.value = false;
-  await nextTick(() => {
-    contentHeight.value = `${content.value?.clientHeight}px`;
-    isUpdated.value = true;
-  })
-}
-
-onMounted(async ()=>{
-  await resizeHeight()
-  if (content.value) {
-    content.value.childNodes.forEach((el)=>{
-      if (el instanceof HTMLElement) {
-        new ResizeObserver(resizeHeight).observe(el)
-      }
-    })
+const {state: contentHeight, isReady, execute} = useAsyncState(async () => {
+  return await nextTick(() => `${content.value?.clientHeight}px`)
+}, "0px", {immediate: false});
+watch(content, (content) => {
+  if (content) for (const el of content.querySelectorAll(".resize")) {
+    new ResizeObserver(() => execute()).observe(el)
   }
-})
-watch(width, resizeHeight)
+  execute()
+});
 </script>
 
 <template>
   <Teleport to="body">
     <DialogBackdrop class="overlay"/>
     <DialogPositioner class="positioner">
-      <DialogContent as-child :data-updated="isUpdated" class="content">
+      <DialogContent as-child :data-updated="isReady" class="content">
         <div ref="content">
           <div v-if="slots.icon" class="v-stack icon">
             <slot name="icon"/>
