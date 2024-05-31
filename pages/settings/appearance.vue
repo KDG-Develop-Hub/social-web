@@ -34,6 +34,12 @@ const themes = [
 </template>
 
 <style scoped>
+h2{
+  margin: 1rem 0;
+}
+h3, p {
+  margin: 0.5rem 0;
+}
 .item {
   border: none;
   background: transparent;
