@@ -2,6 +2,7 @@
 const props = defineProps<{
   type?: "text" | "password" | "email" | "tel" | "number" | "url" | "search" | "date" | "time" | "datetime-local" | "month" | "week" | "color"
   autocomplete?: "on" | "off" | "name" | "honorific-prefix" | "given-name" | "additional-name" | "family-name" | "honorific-suffix" | "nickname" | "email" | "username" | "new-password" | "current-password" | "organization-title" | "organization" | "street-address" | "address-line1" | "address-line2" | "address-line3" | "address-level4" | "address-level3" | "address-level2" | "address-level1" | "country" | "country-name" | "postal-code" | "cc-name" | "cc-given-name" | "cc-additional-name" | "cc-family-name" | "cc-number" | "cc-exp" | "cc-exp-month" | "cc-exp-year" | "cc-csc" | "cc-type" | "transaction-currency" | "transaction-amount" | "language" | "bday" | "bday-day" | "bday-month" | "bday-year"
+  required?: boolean
   id?: string
   fullWidth?: boolean
   hint?: string
@@ -33,10 +34,10 @@ const clickHandler = () => {
         <span class="label-wrapper h-stack">
           <label class="h-stack label" :for="randomId">{{ label }}</label>
         </span>
-        <textarea v-if="multiLine" class="full-width full-height input" :rows="textareaRows" :maxlength="maxLength"
+        <textarea v-if="multiLine" :required class="full-width full-height input" :rows="textareaRows" :maxlength="maxLength"
                   :minLength="minLength" :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId"
                   v-model="model"/>
-        <input v-else class="full-width full-height input" :maxlength="maxLength" :minLength="minLength"
+        <input v-else class="full-width full-height input" :required :maxlength="maxLength" :minLength="minLength"
                :autocomplete="autocomplete" :id="randomId" :aria-describedby="hintId" :type="type" v-model="model"/>
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
