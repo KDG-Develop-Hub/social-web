@@ -15,11 +15,11 @@
   border-radius: 0.75rem;
   border: none;
   cursor: pointer;
-  background-color: var(--color-secondary);
+  background-color: var(--color-tertiary);
   --square-size: 3.5rem;
-  color: var(--color-on-secondary);
+  color: var(--color-on-tertiary);
   :global(*) {
-    color: var(--color-on-secondary);
+    color: var(--color-on-tertiary);
   }
 }
 

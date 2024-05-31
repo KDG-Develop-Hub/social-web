@@ -13,9 +13,8 @@ const slots = defineSlots<{
   buttons?: () => VNode
 }>();
 const content = ref<HTMLElement | null>(null);
-const { width: contentWidth } = useElementSize(content);
+const {width: contentWidth} = useElementSize(content);
 const {state: contentHeight, isReady, execute} = useAsyncState(async () => {
-  console.log(content.value?.id, content.value?.clientHeight)
   return await nextTick(() => `${content.value?.clientHeight}px`)
 }, "0px", {immediate: false});
 const resize = () => execute()
