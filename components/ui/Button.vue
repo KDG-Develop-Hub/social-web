@@ -41,7 +41,7 @@ withDefaults(
   justify-content: center;
   text-decoration: none;
   padding: 0 1rem;
-  border-radius: var(--radius-round);
+  border-radius: 99rem;
   height: 2.5rem;
   background: var(--button-ctn-bgcolor-basic);
 

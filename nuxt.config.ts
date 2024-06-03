@@ -15,14 +15,13 @@ export default defineNuxtConfig({
       pathPrefix: true
     }
   ],
-  css: ['@/assets/css/global.css'],
-  devtools: { enabled: true },
-  googleFonts: {
-    families: {
-      'Zen Maru Gothic': [400, 500, 600, 700],
-      'JetBrains Mono': [400]
+  css: ['@/assets/css/global.css', '@/assets/css/colors.css', '@/assets/css/layout.css'],
+  fonts: {
+    defaults: {
+      weights: [400, 500, 700]
     }
   },
+  devtools: { enabled: true },
   imports: {
     presets: [
       {
@@ -32,11 +31,11 @@ export default defineNuxtConfig({
     ]
   },
   modules: [
-    '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     'radix-vue/nuxt',
     '@nuxt/test-utils',
     '@vueuse/nuxt',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxt/fonts'
   ]
 })

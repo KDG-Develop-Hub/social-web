@@ -17,7 +17,12 @@ const linkContents = ref([
       <Feather />
     </FloatingActionButton>
     <div class="v-stack link-list">
-      <NuxtLink v-for="linkContent in linkContents" :key="linkContent.to" :to="linkContent.to" class="v-stack link">
+      <NuxtLink
+        v-for="linkContent in linkContents"
+        :key="linkContent.to"
+        :to="linkContent.to"
+        class="v-stack link"
+      >
         <span class="indicator h-stack">
           <component
             :is="linkContent.icon"
@@ -66,7 +71,7 @@ const linkContents = ref([
   position: relative;
   width: 3.5rem;
   justify-content: center;
-  border-radius: var(--radius-round);
+  border-radius: 99rem;
   height: 2rem;
 
   &::before {
@@ -77,7 +82,7 @@ const linkContents = ref([
     height: 100%;
     transition: all 200ms ease;
     opacity: 0;
-    border-radius: var(--radius-round);
+    border-radius: 99rem;
     background-color: var(--color-primary-container);
   }
   .link:hover & {
