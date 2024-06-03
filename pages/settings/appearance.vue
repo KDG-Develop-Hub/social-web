@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {
-  RadioGroupItemText,
-  RadioGroupRoot,
   RadioGroupItem,
   RadioGroupItemControl,
   RadioGroupItemHiddenInput,
+  RadioGroupItemText,
+  RadioGroupRoot,
 } from '@ark-ui/vue'
 
 const themes = [

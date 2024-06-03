@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { User } from '~/types/user'
 import {
+  DialogRoot,
+  DialogTrigger,
   FileUploadContext,
   FileUploadDropzone,
   FileUploadHiddenInput,
@@ -10,10 +11,11 @@ import {
   FileUploadItemPreviewImage,
   FileUploadLabel,
   FileUploadRoot,
-  FileUploadTrigger,
-  DialogRoot,
-  DialogTrigger
+  FileUploadTrigger
 } from '@ark-ui/vue'
+
+import type { User } from '~/types/user'
+
 const file = ref<File | null>(null)
 const user: User = {
   avatarUrl: 'https://via.placeholder.com/256',
@@ -35,7 +37,7 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
         <DialogTrigger class="avatar-wrapper">
           <div class="avatar-backdrop" />
           <span class="avatar-label">アバターを変更</span>
-          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" />
+          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" >
         </DialogTrigger>
         <Dialog>
           <FileUploadRoot
@@ -65,7 +67,7 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
                   <Button>ファイルを選択</Button>
                 </FileUploadTrigger>
               </FileUploadDropzone>
-              <FileUploadHiddenInput name="avatar" v-model="file" />
+              <FileUploadHiddenInput v-model="file" name="avatar" />
             </FileUploadContext>
           </FileUploadRoot>
         </Dialog>

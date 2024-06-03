@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { Tweet } from '~/types/tweet'
-import { dateTimeFormatter, formatDistanceFromNow } from '~/composables/formatter'
 import { add } from 'date-fns'
+
+import { dateTimeFormatter, formatDistanceFromNow } from '~/composables/formatter'
+import type { Tweet } from '~/types/tweet'
 import type { BasicUserInfo } from '~/types/user'
 
 const tweets: Tweet[] = Array.from({ length: 6 }, () => ({

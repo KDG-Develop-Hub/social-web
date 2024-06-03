@@ -86,41 +86,41 @@ const clickHandler = () => {
 
 <template>
   <div class="wrapper" :class="{ 'full-width': fullWidth }" :data-full="Boolean(model)">
-    <div @click="clickHandler" class="container h-stack">
-      <span v-if="prefix" class="prefix" ref="prefixRef">{{ prefix }}</span>
+    <div class="container h-stack" @click="clickHandler">
+      <span v-if="prefix" ref="prefixRef" class="prefix">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
         <span class="label-wrapper h-stack">
           <label class="h-stack label" :for="randomId">{{ label }}</label>
         </span>
         <textarea
           v-if="multiLine"
+          :id="randomId"
+          v-model="model"
           :required
           class="full-width full-height input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
           :autocomplete="autocomplete"
-          :id="randomId"
           :aria-describedby="hintId"
-          v-model="model"
         />
         <input
           v-else
+          :id="randomId"
+          v-model="model"
           class="full-width full-height input"
           :required
           :maxlength="maxLength"
           :minLength="minLength"
           :autocomplete="autocomplete"
-          :id="randomId"
           :aria-describedby="hintId"
           :type="type"
-          v-model="model"
-        />
+        >
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p class="hint full-width" v-if="hint" :id="hintId">{{ hint }}</p>
+      <p v-if="hint" :id="hintId" class="hint full-width">{{ hint }}</p>
       <span v-if="maxLength" class="counter full-width"
         >{{ model?.length ?? 0 }}/{{ maxLength }}</span
       >

@@ -17,12 +17,12 @@ const linkContents = ref([
       <Feather />
     </FloatingActionButton>
     <div class="v-stack link-list">
-      <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="v-stack link">
+      <NuxtLink v-for="linkContent in linkContents" :key="linkContent.to" :to="linkContent.to" class="v-stack link">
         <span class="indicator h-stack">
           <component
             :is="linkContent.icon"
             class="link-icon"
-            strokeWidth="var(--navr-link-icon-width)"
+            stroke-width="var(--navr-link-icon-width)"
           />
         </span>
         {{ linkContent.text }}
