@@ -40,7 +40,7 @@ const tabItems = [
   </TabsRoot>
 </template>
 
-<style>
+<style scoped>
 .profile {
   display: flex;
   flex-direction: column;

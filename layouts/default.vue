@@ -20,6 +20,6 @@ import NavigationRail from "~/components/org/NavigationRail.vue";
 main {
   overflow-y: auto;
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
 }
 </style>

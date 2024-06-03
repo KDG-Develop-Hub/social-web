@@ -36,5 +36,6 @@ export default defineNuxtConfig({
       "@pinia/nuxt",
       "radix-vue/nuxt",
       "@nuxt/test-utils",
+      "@vueuse/nuxt",
     ],
 });

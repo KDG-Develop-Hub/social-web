@@ -10,15 +10,25 @@
   --palette-primary80: hsl(104, 60%, 80%);
   --palette-primary90: hsl(104, 60%, 90%);
   /* palette secondary */
-  --palette-secondary10: hsl(233, 50%, 10%);
-  --palette-secondary20: hsl(233, 50%, 20%);
-  --palette-secondary30: hsl(233, 50%, 30%);
-  --palette-secondary40: hsl(233, 50%, 40%);
-  --palette-secondary50: hsl(233, 50%, 50%);
-  --palette-secondary60: hsl(233, 50%, 60%);
-  --palette-secondary70: hsl(233, 50%, 70%);
-  --palette-secondary80: hsl(233, 50%, 80%);
-  --palette-secondary90: hsl(233, 50%, 90%);
+  --palette-secondary10: hsl(89, 54%, 10%);
+  --palette-secondary20: hsl(89, 54%, 20%);
+  --palette-secondary30: hsl(89, 54%, 30%);
+  --palette-secondary40: hsl(89, 54%, 40%);
+  --palette-secondary54: hsl(89, 54%, 50%);
+  --palette-secondary60: hsl(89, 54%, 60%);
+  --palette-secondary70: hsl(89, 54%, 70%);
+  --palette-secondary80: hsl(89, 54%, 80%);
+  --palette-secondary90: hsl(89, 54%, 90%);
+  /* palette tertiary */
+  --palette-tertiary10: hsl(233, 50%, 10%);
+  --palette-tertiary20: hsl(233, 50%, 20%);
+  --palette-tertiary30: hsl(233, 50%, 30%);
+  --palette-tertiary40: hsl(233, 50%, 40%);
+  --palette-tertiary50: hsl(233, 50%, 50%);
+  --palette-tertiary60: hsl(233, 50%, 60%);
+  --palette-tertiary70: hsl(233, 50%, 70%);
+  --palette-tertiary80: hsl(233, 50%, 80%);
+  --palette-tertiary90: hsl(233, 50%, 90%);
   /* palette neutral */
   --palette-neutral10: hsl(60, 4%, 10%);
   --palette-neutral20: hsl(60, 4%, 20%);
@@ -31,6 +41,16 @@
   --palette-neutral90: hsl(60, 4%, 90%);
   --palette-neutral96: hsl(60, 4%, 96%);
   --palette-neutral98: hsl(60, 4%, 98%);
+  /* palette error */
+  --palette-error10: hsl(0, 50%, 10%);
+  --palette-error20: hsl(0, 50%, 20%);
+  --palette-error30: hsl(0, 50%, 30%);
+  --palette-error40: hsl(0, 50%, 40%);
+  --palette-error50: hsl(0, 50%, 50%);
+  --palette-error60: hsl(0, 50%, 60%);
+  --palette-error70: hsl(0, 50%, 70%);
+  --palette-error80: hsl(0, 50%, 80%);
+  --palette-error90: hsl(0, 50%, 90%);
   /* colors */
   --color-primary: var(--palette-primary40);
   --color-on-primary: white;
@@ -40,11 +60,19 @@
   --color-on-secondary: white;
   --color-secondary-container: var(--palette-secondary90);
   --color-on-secondary-container: var(--palette-secondary10);
+  --color-tertiary: var(--palette-tertiary40);
+  --color-on-tertiary: white;
+  --color-tertiary-container: var(--palette-tertiary90);
+  --color-on-tertiary-container: var(--palette-tertiary10);
   --color-surface: var(--palette-neutral96);
   --color-on-surface: var(--palette-neutral10);
   --color-surface-variant: var(--palette-neutral90);
+  --color-on-surface-variant: var(--palette-neutral30);
   --color-outline: var(--palette-neutral50);
   --color-outline-variant: var(--palette-neutral80);
+  --color-error: var(--palette-error40);
+  --color-on-error: white;
+  --color-error-container: var(--palette-error10);
   /* color dark */
   @media (prefers-color-scheme: dark) {
     --color-primary: var(--palette-primary60);
@@ -55,10 +83,18 @@
     --color-on-secondary: white;
     --color-secondary-container: var(--palette-secondary20);
     --color-on-secondary-container: var(--palette-secondary90);
+    --color-tertiary: var(--palette-tertiary60);
+    --color-on-tertiary: white;
+    --color-tertiary-container: var(--palette-tertiary20);
+    --color-on-tertiary-container: var(--palette-tertiary90);
     --color-surface: var(--palette-neutral10);
     --color-on-surface: var(--palette-neutral90);
     --color-surface-variant: var(--palette-neutral30);
+    --color-on-surface-variant: var(--palette-neutral80);
     --color-outline: var(--palette-neutral50);
     --color-outline-variant: var(--palette-neutral30);
+    --color-error: var(--palette-error80);
+    --color-on-error: var(--palette-error20);
+    --color-error-container: var(--palette-error90);
   }
 }

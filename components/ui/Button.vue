@@ -3,6 +3,7 @@ withDefaults(
   defineProps<
     Partial<{
       variant: "filled" | "text" | "outlined";
+      color: "primary" | "secondary" | "tertiary" | "danger";
       as: string | object;
       width: "fit" | "full";
     }>
@@ -10,6 +11,7 @@ withDefaults(
   {
     variant: "filled",
     width: "fit",
+    color: "primary",
     as: "button",
   },
 );
@@ -20,10 +22,15 @@ withDefaults(
     :is="as"
     :data-width="width"
     :data-variant="variant"
+    :data-color="color"
     class="container"
   >
     <slot name="icon" />
-    <span class="label-wrapper">
+    <span
+      class="label-wrapper"
+      :data-variant="variant"
+      :data-color="color"
+    >
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -63,19 +70,39 @@ withDefaults(
   }
 
   &[data-variant="filled"] {
-    --button-ctn-bgcolor-basic: var(--color-primary);
-    --button-ctn-bgcolor-to-mix: white;
+    &[data-color=primary]{
+      --button-ctn-bgcolor-basic: var(--color-primary);
+      --button-ctn-bgcolor-to-mix: var(--color-on-primary);
+    }
+    &[data-color=secondary] {
+      --button-ctn-bgcolor-basic: var(--color-secondary);
+      --button-ctn-bgcolor-to-mix: var(--color-on-secondary);
+    }
+    &[data-color=danger] {
+      --button-ctn-bgcolor-basic: var(--color-error);
+      --button-ctn-bgcolor-to-mix: var(--color-on-error);
+    }
   }
 
   &[data-variant="text"] {
     --button-ctn-bgcolor-basic: transparent;
-    --button-ctn-bgcolor-to-mix: var(--color-primary);
+    &[data-color=primary]{
+      --button-ctn-bgcolor-to-mix: var(--color-primary);
+    }
+    &[data-color=secondary] {
+      --button-ctn-bgcolor-to-mix: var(--color-secondary);
+    }
+    &[data-color=danger] {
+      --button-ctn-bgcolor-to-mix: var(--color-error);
+    }
   }
 
   &[data-variant="outlined"] {
-    --button-ctn-bgcolor-basic: transparent;
     --button-ctn-bgcolor-to-mix: white;
-    border: 1px solid var(--color-outline);
+    --button-ctn-bgcolor-basic: transparent;
+    &[data-color=primary]{
+      border: 1px solid var(--color-outline);
+    }
   }
 
   &[data-width="fit"] {
@@ -110,16 +137,32 @@ withDefaults(
   font-weight: 500;
   line-height: 1.5;
 
-  .container[data-variant="filled"] & {
-    color: white;
+  &[data-variant="filled"] {
+    &[data-color=primary] {
+      color: var(--color-on-primary)
+    }
+    &[data-color=secondary] {
+      color: var(--color-on-secondary)
+    }
+    &[data-color=danger] {
+      color: var(--color-on-error)
+    }
   }
 
-  .container[data-variant="text"] & {
-    color: black;
+  &[data-variant="text"] {
+    color: var(--color-on-surface);
   }
 
-  .container[data-variant="outlined"] & {
-    color: var(--color-primary);
+  &[data-variant="outlined"] {
+    &[data-color=primary] {
+      color: var(--color-primary);
+    }
+    &[data-color=secondary] {
+      color: var(--color-secondary);
+    }
+    &[data-color=danger] {
+      color: var(--color-error);
+    }
   }
 
   .container:disabled & {
