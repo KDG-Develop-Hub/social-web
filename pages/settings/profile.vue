@@ -14,8 +14,6 @@ import {
   FileUploadTrigger
 } from '@ark-ui/vue'
 
-import type { User } from '~/types/user'
-
 const file = ref<File | null>(null)
 const user: User = {
   avatarUrl: 'https://via.placeholder.com/256',

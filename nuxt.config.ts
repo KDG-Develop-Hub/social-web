@@ -23,7 +23,13 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   imports: {
-    presets: ['date-fns']
+    dirs: ['./types/**'],
+    presets: [
+      {
+        from: 'date-fns',
+        imports: [['*', 'dateFns']]
+      }
+    ]
   },
   modules: [
     '@pinia/nuxt',

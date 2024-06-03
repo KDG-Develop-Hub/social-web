@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { initialName } from '~/composables/formatter'
-
 withDefaults(
   defineProps<{
     name: string

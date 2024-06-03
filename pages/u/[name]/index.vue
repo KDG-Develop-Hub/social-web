@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { dateTimeFormatter, formatDistanceFromNow } from '~/composables/formatter'
-import type { Tweet } from '~/types/tweet'
-import type { BasicUserInfo } from '~/types/user'
-
 const tweets: Tweet[] = Array.from({ length: 6 }, () => ({
   userId: 1,
   content: 'Hello world! This is my tweet you know?',
-  createdAt: add(new Date(), { minutes: -20 })
+  createdAt: dateFns.add(new Date(), { minutes: -20 })
 }))
 const users: Record<Tweet['userId'], BasicUserInfo> = {
   1: {
