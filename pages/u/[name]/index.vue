@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { add } from 'date-fns'
-
 import { dateTimeFormatter, formatDistanceFromNow } from '~/composables/formatter'
 import type { Tweet } from '~/types/tweet'
 import type { BasicUserInfo } from '~/types/user'
@@ -21,7 +19,7 @@ const users: Record<Tweet['userId'], BasicUserInfo> = {
 
 <template>
   <div class="articles v-stack">
-    <article v-for="tweet in tweets" class="tweet">
+    <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
       <Avatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
       <div class="body">
         <header class="h-stack">

@@ -10,16 +10,13 @@ importers:
     dependencies:
       '@ark-ui/vue':
         specifier: ^3.0.3
-        version: 3.0.3(@internationalized/date@3.5.3)(vue@3.4.27(typescript@5.4.5))
+        version: 3.0.3(@internationalized/date@3.5.4)(vue@3.4.27(typescript@5.4.5))
       '@nuxt/kit':
         specifier: ^3.11.2
         version: 3.11.2(rollup@4.18.0)
       '@vueuse/core':
         specifier: ^10.10.0
         version: 10.10.0(vue@3.4.27(typescript@5.4.5))
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
       date-fns:
         specifier: ^3.6.0
         version: 3.6.0
@@ -2298,10 +2295,6 @@ packages:
   clone@2.1.2:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
-
-  clsx@2.1.1:
-    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
-    engines: {node: '>=6'}
 
   cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
@@ -5168,7 +5161,7 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
-  '@ark-ui/anatomy@3.2.0(@internationalized/date@3.5.3)':
+  '@ark-ui/anatomy@3.2.0(@internationalized/date@3.5.4)':
     dependencies:
       '@zag-js/accordion': 0.51.1
       '@zag-js/anatomy': 0.51.1
@@ -5181,7 +5174,7 @@ snapshots:
       '@zag-js/color-utils': 0.51.1
       '@zag-js/combobox': 0.51.1
       '@zag-js/date-picker': 0.51.1
-      '@zag-js/date-utils': 0.51.1(@internationalized/date@3.5.3)
+      '@zag-js/date-utils': 0.51.1(@internationalized/date@3.5.4)
       '@zag-js/dialog': 0.51.1
       '@zag-js/editable': 0.51.1
       '@zag-js/file-upload': 0.51.1
@@ -5208,9 +5201,9 @@ snapshots:
     transitivePeerDependencies:
       - '@internationalized/date'
 
-  '@ark-ui/vue@3.0.3(@internationalized/date@3.5.3)(vue@3.4.27(typescript@5.4.5))':
+  '@ark-ui/vue@3.0.3(@internationalized/date@3.5.4)(vue@3.4.27(typescript@5.4.5))':
     dependencies:
-      '@ark-ui/anatomy': 3.2.0(@internationalized/date@3.5.3)
+      '@ark-ui/anatomy': 3.2.0(@internationalized/date@3.5.4)
       '@zag-js/accordion': 0.51.2
       '@zag-js/avatar': 0.51.2
       '@zag-js/carousel': 0.51.2
@@ -7468,6 +7461,10 @@ snapshots:
     dependencies:
       '@internationalized/date': 3.5.3
 
+  '@zag-js/date-utils@0.51.1(@internationalized/date@3.5.4)':
+    dependencies:
+      '@internationalized/date': 3.5.4
+
   '@zag-js/date-utils@0.51.2(@internationalized/date@3.5.4)':
     dependencies:
       '@internationalized/date': 3.5.4
@@ -8420,8 +8417,6 @@ snapshots:
       wrap-ansi: 7.0.0
 
   clone@2.1.2: {}
-
-  clsx@2.1.1: {}
 
   cluster-key-slot@1.1.2: {}
 
