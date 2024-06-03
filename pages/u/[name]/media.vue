@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const medias = Array.from({ length: 4 * 3 }, () => ({}));
+const medias = Array.from({ length: 4 * 3 }, () => ({}))
 </script>
 
 <template>

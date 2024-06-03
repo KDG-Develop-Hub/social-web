@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { name } = useRoute().params;
-const routePrefix = `/u/${name}`;
-const currentUser = useCurrentUserStore();
-const bio = "This is bio";
+const { name } = useRoute().params
+const routePrefix = `/u/${name}`
+const currentUser = useCurrentUserStore()
+const bio = 'This is bio'
 const tabItems = [
-  { label: "つぶやき", value: routePrefix },
-  { label: "返信", value: `${routePrefix}/replies` },
-  { label: "メディア", value: `${routePrefix}/media` },
-];
+  { label: 'つぶやき', value: routePrefix },
+  { label: '返信', value: `${routePrefix}/replies` },
+  { label: 'メディア', value: `${routePrefix}/media` }
+]
 </script>
 
 <template>
@@ -22,9 +22,7 @@ const tabItems = [
         <h1>{{ name }}</h1>
         <span>{{ name }}</span>
       </div>
-      <Button v-if="name === currentUser.name" variant="outlined"
-        >プローフィールをいじる</Button
-      >
+      <Button v-if="name === currentUser.name" variant="outlined">プローフィールをいじる</Button>
       <Button v-else>この人を知っておく</Button>
     </header>
     <p>{{ bio }}</p>

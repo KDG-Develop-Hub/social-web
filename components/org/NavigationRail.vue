@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import {
-  Compass,
-  Feather,
-  History,
-  Settings2,
-  User,
-  Users,
-} from "lucide-vue-next";
+import { Compass, Feather, History, Settings2, User, Users } from 'lucide-vue-next'
 
-const currentUser = useCurrentUserStore();
+const currentUser = useCurrentUserStore()
 const linkContents = ref([
-  { to: "/", icon: History, text: "アプデ" },
-  { to: "/browse", icon: Compass, text: "見つける" },
-  { to: `/u/${currentUser.name}`, icon: User, text: "君とは" },
-  { to: "/friends", icon: Users, text: "知り合い" },
-  { to: "/settings", icon: Settings2, text: "せってー" },
-]);
+  { to: '/', icon: History, text: 'アプデ' },
+  { to: '/browse', icon: Compass, text: '見つける' },
+  { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
+  { to: '/friends', icon: Users, text: '知り合い' },
+  { to: '/settings', icon: Settings2, text: 'せってー' }
+])
 </script>
 
 <template>
@@ -24,11 +17,7 @@ const linkContents = ref([
       <Feather />
     </FloatingActionButton>
     <div class="v-stack link-list">
-      <NuxtLink
-        v-for="linkContent in linkContents"
-        :to="linkContent.to"
-        class="v-stack link"
-      >
+      <NuxtLink v-for="linkContent in linkContents" :to="linkContent.to" class="v-stack link">
         <span class="indicator h-stack">
           <component
             :is="linkContent.icon"
@@ -81,7 +70,7 @@ const linkContents = ref([
   height: 2rem;
 
   &::before {
-    content: "";
+    content: '';
     z-index: -1;
     position: absolute;
     width: 0;
@@ -92,24 +81,15 @@ const linkContents = ref([
     background-color: var(--color-primary-container);
   }
   .link:hover & {
-    background-color: color-mix(
-        in srgb,
-        var(--palette-neutral60),
-        transparent 80%
-    );
+    background-color: color-mix(in srgb, var(--palette-neutral60), transparent 80%);
   }
 
   .link:active & {
-    background-color: color-mix(
-        in srgb,
-        var(--palette-neutral60),
-        transparent 72%
-    );
+    background-color: color-mix(in srgb, var(--palette-neutral60), transparent 72%);
   }
   .link.router-link-active &::before {
     opacity: 1;
     width: 100%;
   }
 }
-
 </style>

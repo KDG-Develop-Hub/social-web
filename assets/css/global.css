@@ -1,6 +1,6 @@
-@import "open-props/borders.min.css";
-@import "assets/css/colors.css";
-@import "assets/css/layout.css";
+@import 'open-props/borders.min.css';
+@import 'assets/css/colors.css';
+@import 'assets/css/layout.css';
 
 * {
   font-family:

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavigationRail from "~/components/org/NavigationRail.vue";
+import NavigationRail from '~/components/org/NavigationRail.vue'
 </script>
 
 <template>

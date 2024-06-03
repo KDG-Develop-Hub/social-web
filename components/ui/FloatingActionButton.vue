@@ -22,5 +22,4 @@
     color: var(--color-on-tertiary);
   }
 }
-
 </style>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const navItems = [
-  { to: "", text: "アカウント" },
-  { to: "/profile", text: "プロフィール" },
-  { to: "/appearance", text: "見た目" },
-];
+  { to: '', text: 'アカウント' },
+  { to: '/profile', text: 'プロフィール' },
+  { to: '/appearance', text: '見た目' }
+]
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const navItems = [
       </ul>
     </nav>
     <div class="page">
-      <NuxtPage/>
+      <NuxtPage />
     </div>
   </div>
 </template>

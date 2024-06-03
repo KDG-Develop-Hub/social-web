@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {User} from "~/types/user";
+import type { User } from '~/types/user'
 import {
   FileUploadContext,
   FileUploadDropzone,
@@ -11,19 +11,20 @@ import {
   FileUploadLabel,
   FileUploadRoot,
   FileUploadTrigger,
-  DialogRoot, DialogTrigger,
-} from "@ark-ui/vue";
-const file = ref<File | null>(null);
+  DialogRoot,
+  DialogTrigger
+} from '@ark-ui/vue'
+const file = ref<File | null>(null)
 const user: User = {
-  avatarUrl: "https://via.placeholder.com/256",
-  bio: "",
+  avatarUrl: 'https://via.placeholder.com/256',
+  bio: '',
   birthday: new Date(),
-  displayName: "imeankenshin",
-  website: "https://example.com",
-  name: "Kenshin Ito",
-  email: "itoken@kdg.social"
+  displayName: 'imeankenshin',
+  website: 'https://example.com',
+  name: 'Kenshin Ito',
+  email: 'itoken@kdg.social'
 }
-const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
+const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
 </script>
 
 <template>
@@ -32,21 +33,21 @@ const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
     <div>
       <DialogRoot>
         <DialogTrigger class="avatar-wrapper">
-          <div class="avatar-backdrop"/>
+          <div class="avatar-backdrop" />
           <span class="avatar-label">アバターを変更</span>
-          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`"/>
+          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" />
         </DialogTrigger>
         <Dialog>
           <FileUploadRoot
-              :max-files="1"
-              :max-file-size="50 * 1024 ** 2"
-              :accept="acceptedImageTypes.map(i=>`image/${i}`).join(',')"
+            :max-files="1"
+            :max-file-size="50 * 1024 ** 2"
+            :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
           >
             <FileUploadContext v-slot="{ acceptedFiles }">
               <FileUploadItem v-if="acceptedFiles.length" as-child :file="acceptedFiles[0]">
                 <form class="avatar-change-accept">
                   <FileUploadItemPreview type="image/*">
-                    <FileUploadItemPreviewImage class="square avatar"/>
+                    <FileUploadItemPreviewImage class="square avatar" />
                   </FileUploadItemPreview>
                   このファイルをアップロードしますか？
                   <div class="h-stack">
@@ -64,17 +65,17 @@ const acceptedImageTypes = ["jpeg", "png", "gif", "webp"];
                   <Button>ファイルを選択</Button>
                 </FileUploadTrigger>
               </FileUploadDropzone>
-              <FileUploadHiddenInput name="avatar" v-model="file"/>
+              <FileUploadHiddenInput name="avatar" v-model="file" />
             </FileUploadContext>
           </FileUploadRoot>
         </Dialog>
       </DialogRoot>
     </div>
     <form class="fields v-stack full-width">
-      <TextField full-width label="表示名" required/>
-      <TextField full-width label="メールアドレス" required/>
-      <TextField full-width prefix="https://" label="ウェブサイト"/>
-      <TextField full-width label="自己紹介" multi-line/>
+      <TextField full-width label="表示名" required />
+      <TextField full-width label="メールアドレス" required />
+      <TextField full-width prefix="https://" label="ウェブサイト" />
+      <TextField full-width label="自己紹介" multi-line />
       <div class="h-stack button-set full-width">
         <Button type="submit">変更を保存する！</Button>
       </div>
@@ -112,7 +113,8 @@ h2 {
   border: none;
 }
 
-.avatar-label, .avatar-backdrop {
+.avatar-label,
+.avatar-backdrop {
   transition: opacity 200ms ease-out;
 
   .avatar-wrapper:hover & {
@@ -145,7 +147,6 @@ h2 {
   background: rgba(0, 0, 0, 0.5);
   display: block;
   opacity: 0;
-
 }
 
 .avatar-drop-zone {
@@ -157,11 +158,13 @@ h2 {
   border: 1px dashed var(--color-outline-variant);
 }
 
-.avatar-accept-enter-active, .avatar-accept-leave-active {
+.avatar-accept-enter-active,
+.avatar-accept-leave-active {
   transition: opacity 200ms ease-out;
 }
 
-.avatar-accept-enter, .avatar-accept-leave-to {
+.avatar-accept-enter,
+.avatar-accept-leave-to {
   position: absolute;
   opacity: 0;
 }

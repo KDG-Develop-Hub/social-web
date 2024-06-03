@@ -2,19 +2,19 @@
 withDefaults(
   defineProps<
     Partial<{
-      variant: "filled" | "text" | "outlined";
-      color: "primary" | "secondary" | "tertiary" | "danger";
-      as: string | object;
-      width: "fit" | "full";
+      variant: 'filled' | 'text' | 'outlined'
+      color: 'primary' | 'secondary' | 'tertiary' | 'danger'
+      as: string | object
+      width: 'fit' | 'full'
     }>
   >(),
   {
-    variant: "filled",
-    width: "fit",
-    color: "primary",
-    as: "button",
-  },
-);
+    variant: 'filled',
+    width: 'fit',
+    color: 'primary',
+    as: 'button'
+  }
+)
 </script>
 
 <template>
@@ -26,11 +26,7 @@ withDefaults(
     class="container"
   >
     <slot name="icon" />
-    <span
-      class="label-wrapper"
-      :data-variant="variant"
-      :data-color="color"
-    >
+    <span class="label-wrapper" :data-variant="variant" :data-color="color">
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -69,59 +65,59 @@ withDefaults(
     cursor: not-allowed;
   }
 
-  &[data-variant="filled"] {
-    &[data-color=primary]{
+  &[data-variant='filled'] {
+    &[data-color='primary'] {
       --button-ctn-bgcolor-basic: var(--color-primary);
       --button-ctn-bgcolor-to-mix: var(--color-on-primary);
     }
-    &[data-color=secondary] {
+    &[data-color='secondary'] {
       --button-ctn-bgcolor-basic: var(--color-secondary);
       --button-ctn-bgcolor-to-mix: var(--color-on-secondary);
     }
-    &[data-color=danger] {
+    &[data-color='danger'] {
       --button-ctn-bgcolor-basic: var(--color-error);
       --button-ctn-bgcolor-to-mix: var(--color-on-error);
     }
   }
 
-  &[data-variant="text"] {
+  &[data-variant='text'] {
     --button-ctn-bgcolor-basic: transparent;
-    &[data-color=primary]{
+    &[data-color='primary'] {
       --button-ctn-bgcolor-to-mix: var(--color-primary);
     }
-    &[data-color=secondary] {
+    &[data-color='secondary'] {
       --button-ctn-bgcolor-to-mix: var(--color-secondary);
     }
-    &[data-color=danger] {
+    &[data-color='danger'] {
       --button-ctn-bgcolor-to-mix: var(--color-error);
     }
   }
 
-  &[data-variant="outlined"] {
+  &[data-variant='outlined'] {
     --button-ctn-bgcolor-to-mix: white;
     --button-ctn-bgcolor-basic: transparent;
-    &[data-color=primary]{
+    &[data-color='primary'] {
       border: 1px solid var(--color-outline);
     }
   }
 
-  &[data-width="fit"] {
+  &[data-width='fit'] {
     width: fit-content;
   }
 
-  &[data-width="full"] {
+  &[data-width='full'] {
     width: 100%;
   }
 
-  &[data-variant="filled"]:disabled {
+  &[data-variant='filled']:disabled {
     background: color-mix(in srgb, var(--color-on-surface), transparent 88%);
   }
 
-  &:is([data-variant="text"], [data-variant="outlined"]):disabled {
+  &:is([data-variant='text'], [data-variant='outlined']):disabled {
     background: transparent;
   }
 
-  &[data-variant="outlined"]:disabled {
+  &[data-variant='outlined']:disabled {
     border: 1px solid color-mix(in srgb, var(--color-outline), transparent 88%);
   }
 }
@@ -137,30 +133,30 @@ withDefaults(
   font-weight: 500;
   line-height: 1.5;
 
-  &[data-variant="filled"] {
-    &[data-color=primary] {
-      color: var(--color-on-primary)
+  &[data-variant='filled'] {
+    &[data-color='primary'] {
+      color: var(--color-on-primary);
     }
-    &[data-color=secondary] {
-      color: var(--color-on-secondary)
+    &[data-color='secondary'] {
+      color: var(--color-on-secondary);
     }
-    &[data-color=danger] {
-      color: var(--color-on-error)
+    &[data-color='danger'] {
+      color: var(--color-on-error);
     }
   }
 
-  &[data-variant="text"] {
+  &[data-variant='text'] {
     color: var(--color-on-surface);
   }
 
-  &[data-variant="outlined"] {
-    &[data-color=primary] {
+  &[data-variant='outlined'] {
+    &[data-color='primary'] {
       color: var(--color-primary);
     }
-    &[data-color=secondary] {
+    &[data-color='secondary'] {
       color: var(--color-secondary);
     }
-    &[data-color=danger] {
+    &[data-color='danger'] {
       color: var(--color-error);
     }
   }
