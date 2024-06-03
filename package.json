@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ark-ui/vue": "^3.0.2",
@@ -35,6 +36,8 @@
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/nuxt": "^10.10.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
     "prettier": "^3.3.0",
     "radix-vue": "^1.6.2"
   },
@@ -46,5 +49,9 @@
     "printWidth": 100,
     "tabWidth": 2,
     "endOfLine": "lf"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --fix .",
+    "*.{js,ts,vue,css}": "prettier --write ."
   }
 }
