@@ -15,7 +15,7 @@ const tabItems = [
 <template>
   <div class="profile">
     <header class="h-stack profile-header">
-      <Avatar
+      <MaterialAvatar
         size="lg"
         :name="currentUser.name"
         src="https://avatars.githubusercontent.com/u/103516503?s=60&v="
@@ -24,8 +24,10 @@ const tabItems = [
         <h1>{{ name }}</h1>
         <span>{{ name }}</span>
       </div>
-      <Button v-if="name === currentUser.name" variant="outlined">プローフィールをいじる</Button>
-      <Button v-else>この人を知っておく</Button>
+      <MaterialButton v-if="name === currentUser.name" variant="outlined"
+        >プローフィールをいじる</MaterialButton
+      >
+      <MaterialButton v-else>この人を知っておく</MaterialButton>
     </header>
     <p>{{ bio }}</p>
   </div>

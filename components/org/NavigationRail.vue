@@ -13,9 +13,9 @@ const linkContents = ref([
 
 <template>
   <nav class="navigation-rail v-stack">
-    <FloatingActionButton>
+    <MaterialFAB>
       <Feather />
-    </FloatingActionButton>
+    </MaterialFAB>
     <div class="v-stack link-list">
       <NuxtLink
         v-for="linkContent in linkContents"

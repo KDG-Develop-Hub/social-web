@@ -37,7 +37,7 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
           <span class="avatar-label">アバターを変更</span>
           <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" >
         </DialogTrigger>
-        <Dialog>
+        <MaterialDialog>
           <FileUploadRoot
             :max-files="1"
             :max-file-size="50 * 1024 ** 2"
@@ -52,9 +52,9 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
                   このファイルをアップロードしますか？
                   <div class="h-stack">
                     <FileUploadItemDeleteTrigger as-child>
-                      <Button variant="text">んーこれじゃないな</Button>
+                      <MaterialButton variant="text">んーこれじゃないな</MaterialButton>
                     </FileUploadItemDeleteTrigger>
-                    <Button type="submit">アップロードする！</Button>
+                    <MaterialButton type="submit">アップロードする！</MaterialButton>
                   </div>
                 </form>
               </FileUploadItem>
@@ -62,22 +62,22 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
                 <FileUploadLabel>枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel>
                 <span>もしくは...</span>
                 <FileUploadTrigger as-child>
-                  <Button>ファイルを選択</Button>
+                  <MaterialButton>ファイルを選択</MaterialButton>
                 </FileUploadTrigger>
               </FileUploadDropzone>
               <FileUploadHiddenInput v-model="file" name="avatar" />
             </FileUploadContext>
           </FileUploadRoot>
-        </Dialog>
+        </MaterialDialog>
       </DialogRoot>
     </div>
     <form class="fields v-stack full-width">
-      <TextField full-width label="表示名" required />
-      <TextField full-width label="メールアドレス" required />
-      <TextField full-width prefix="https://" label="ウェブサイト" />
-      <TextField full-width label="自己紹介" multi-line />
+      <MaterialTextField full-width label="表示名" required />
+      <MaterialTextField full-width label="メールアドレス" required />
+      <MaterialTextField full-width prefix="https://" label="ウェブサイト" />
+      <MaterialTextField full-width label="自己紹介" multi-line />
       <div class="h-stack button-set full-width">
-        <Button type="submit">変更を保存する！</Button>
+        <MaterialButton type="submit">変更を保存する！</MaterialButton>
       </div>
     </form>
   </div>

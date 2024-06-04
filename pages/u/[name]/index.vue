@@ -16,7 +16,7 @@ const users: Record<Tweet['userId'], BasicUserInfo> = {
 <template>
   <div class="articles v-stack">
     <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
-      <Avatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
+      <MaterialAvatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
       <div class="body">
         <header class="h-stack">
           <strong>{{ users[tweet.userId].name }}</strong>

@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <NavigationRail />
+    <OrgNavigationRail />
     <main>
       <slot />
     </main>
