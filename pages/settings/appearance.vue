@@ -4,7 +4,7 @@ import {
   RadioGroupItemControl,
   RadioGroupItemHiddenInput,
   RadioGroupItemText,
-  RadioGroupRoot,
+  RadioGroupRoot
 } from '@ark-ui/vue'
 
 const themes = [

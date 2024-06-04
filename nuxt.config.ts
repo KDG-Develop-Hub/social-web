@@ -5,16 +5,6 @@ export default defineNuxtConfig({
       title: 'kdg.social'
     }
   },
-  components: [
-    {
-      path: '~/components/ui',
-      pathPrefix: true
-    },
-    {
-      path: '~/components/org',
-      pathPrefix: true
-    }
-  ],
   css: ['@/assets/css/global.css', '@/assets/css/colors.css', '@/assets/css/layout.css'],
   fonts: {
     defaults: {
