@@ -1,30 +1,21 @@
 <script setup lang="ts">
-import type { Tweet } from "~/types/tweet";
-import {
-  dateTimeFormatter,
-  formatDistanceFromNow,
-} from "~/composables/formatter";
-import { add } from "date-fns";
-import type {BasicUserInfo} from "~/types/user";
-
 const tweets: Tweet[] = Array.from({ length: 6 }, () => ({
   userId: 1,
-  content: "Hello world! This is my tweet you know?",
-  createdAt: add(new Date(), { minutes: -20 }),
-}));
-const users: Record<Tweet["userId"] ,BasicUserInfo> = {
+  content: 'Hello world! This is my tweet you know?',
+  createdAt: dateFns.add(new Date(), { minutes: -20 })
+}))
+const users: Record<Tweet['userId'], BasicUserInfo> = {
   1: {
-    avatarUrl: "https://via.placeholder.com/32",
-    name: "imeankenshin",
-    displayName: "Kenshin",
+    avatarUrl: 'https://via.placeholder.com/32',
+    name: 'imeankenshin',
+    displayName: 'Kenshin'
   }
 }
-
 </script>
 
 <template>
   <div class="articles v-stack">
-    <article v-for="tweet in tweets" class="tweet">
+    <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
       <Avatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
       <div class="body">
         <header class="h-stack">

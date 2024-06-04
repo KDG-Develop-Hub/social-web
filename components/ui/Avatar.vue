@@ -1,41 +1,40 @@
 <script setup lang="ts">
-import { initialName } from "~/composables/formatter";
+import { Avatar } from '@ark-ui/vue'
 
 withDefaults(
   defineProps<{
-    name: string;
-    src: string;
-    size?: "sm" | "md" | "lg";
+    name: string
+    src: string
+    size?: 'sm' | 'md' | 'lg'
   }>(),
   {
-    size: "md",
-  },
-);
+    size: 'md'
+  }
+)
+const id = useId()
 </script>
 
 <template>
-  <AvatarRoot :data-size="size" class="square root">
-    <AvatarImage
+  <Avatar.Root :id="id" :data-size="size" class="square root">
+    <Avatar.Image
       src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
       :alt="`${name}のプロフィールの写真`"
     />
-    <AvatarFallback class="square fallback">{{
-      initialName(name)
-    }}</AvatarFallback>
-  </AvatarRoot>
+    <Avatar.Fallback class="square fallback">{{ initialName(name) }}</Avatar.Fallback>
+  </Avatar.Root>
 </template>
 
 <style scoped>
 .square {
-  &[data-size="sm"] {
+  &[data-size='sm'] {
     --square-size: 2rem;
   }
 
-  &[data-size="md"] {
+  &[data-size='md'] {
     --square-size: 3rem;
   }
 
-  &[data-size="lg"] {
+  &[data-size='lg'] {
     --square-size: 4rem;
   }
 }

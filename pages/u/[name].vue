@@ -1,13 +1,15 @@
 <script setup lang="ts">
-const { name } = useRoute().params;
-const routePrefix = `/u/${name}`;
-const currentUser = useCurrentUserStore();
-const bio = "This is bio";
+import { Tabs } from '@ark-ui/vue'
+
+const { name } = useRoute().params
+const routePrefix = `/u/${name}`
+const currentUser = useCurrentUserStore()
+const bio = 'This is bio'
 const tabItems = [
-  { label: "つぶやき", value: routePrefix },
-  { label: "返信", value: `${routePrefix}/replies` },
-  { label: "メディア", value: `${routePrefix}/media` },
-];
+  { label: 'つぶやき', value: routePrefix },
+  { label: '返信', value: `${routePrefix}/replies` },
+  { label: 'メディア', value: `${routePrefix}/media` }
+]
 </script>
 
 <template>
@@ -22,22 +24,20 @@ const tabItems = [
         <h1>{{ name }}</h1>
         <span>{{ name }}</span>
       </div>
-      <Button v-if="name === currentUser.name" variant="outlined"
-        >プローフィールをいじる</Button
-      >
+      <Button v-if="name === currentUser.name" variant="outlined">プローフィールをいじる</Button>
       <Button v-else>この人を知っておく</Button>
     </header>
     <p>{{ bio }}</p>
   </div>
-  <TabsRoot :model-value="$route.fullPath">
-    <TabsList class="tabs-list">
-      <TabsIndicator class="tabs-indicator" />
-      <TabsTrigger v-for="i in tabItems" as-child class="tab" :value="i.value">
+  <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath">
+    <Tabs.List class="tabs-list">
+      <Tabs.Trigger v-for="i in tabItems" :key="i.value" as-child class="tab" :value="i.value">
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
-      </TabsTrigger>
-    </TabsList>
+      </Tabs.Trigger>
+      <Tabs.Indicator class="tabs-indicator" />
+    </Tabs.List>
     <NuxtPage />
-  </TabsRoot>
+  </Tabs.Root>
 </template>
 
 <style scoped>
@@ -58,11 +58,11 @@ const tabItems = [
 }
 .tabs-indicator {
   position: absolute;
-  width: var(--radix-tabs-indicator-size);
+  width: var(--width);
   transition:
-    translate 200ms ease,
-    width 200ms ease;
-  translate: var(--radix-tabs-indicator-position) 0;
+    left 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
+    width 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
+  left: var(--left);
   bottom: 0;
   height: 3px;
   border-top-left-radius: 99rem;

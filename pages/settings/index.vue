@@ -1,33 +1,40 @@
 <script setup lang="ts">
-import {DialogRoot, DialogTitle, DialogDescription, DialogCloseTrigger, DialogTrigger} from "@ark-ui/vue";
+import { Dialog as ArkDialog } from '@ark-ui/vue'
 </script>
 
 <template>
-  <h2>アカウント情報</h2>
-  <div class="text-fields v-stack">
-    <TextField min-length="1" type="text" autocomplete="name" full-width max-length="32" label="名前"/>
-    <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数"/>
-  </div>
-  <h2 ref="title">アカウントの無効</h2>
-  <DialogRoot>
-    <DialogTrigger as-child>
-      <Button color="danger">アカウントを無効化</Button>
-    </DialogTrigger>
-    <Dialog>
-      <DialogTitle>
-        アカウントを無効化しますか？
-      </DialogTitle>
-      <DialogDescription>
-        アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
-      </DialogDescription>
-      <template v-slot:buttons >
-        <DialogCloseTrigger as-child>
-          <Button color="danger" variant="text">キャンセル</Button>
-        </DialogCloseTrigger>
+  <div>
+    <h2>アカウント情報</h2>
+    <div class="text-fields v-stack">
+      <TextField
+        min-length="1"
+        type="text"
+        autocomplete="name"
+        full-width
+        max-length="32"
+        label="名前"
+      />
+      <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数" />
+    </div>
+    <h2 ref="title">アカウントの無効</h2>
+    <ArkDialog.Root>
+      <ArkDialog.Trigger as-child>
         <Button color="danger">アカウントを無効化</Button>
-      </template>
-    </Dialog>
-  </DialogRoot>
+      </ArkDialog.Trigger>
+      <Dialog>
+        <ArkDialog.Title> アカウントを無効化しますか？</ArkDialog.Title>
+        <ArkDialog.Description>
+          アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
+        </ArkDialog.Description>
+        <template #buttons>
+          <ArkDialog.CloseTrigger as-child>
+            <Button color="danger" variant="text">キャンセル</Button>
+          </ArkDialog.CloseTrigger>
+          <Button color="danger">アカウントを無効化</Button>
+        </template>
+      </Dialog>
+    </ArkDialog.Root>
+  </div>
 </template>
 
 <style scoped>
@@ -35,6 +42,7 @@ import {DialogRoot, DialogTitle, DialogDescription, DialogCloseTrigger, DialogTr
   width: 100%;
   max-width: 32rem;
 }
+
 h2 {
   margin-bottom: 1rem;
 }
