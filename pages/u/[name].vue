@@ -29,7 +29,7 @@ const tabItems = [
     </header>
     <p>{{ bio }}</p>
   </div>
-  <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath" @focus-change="console.log">
+  <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath">
     <Tabs.List class="tabs-list">
       <Tabs.Trigger v-for="i in tabItems" :key="i.value" as-child class="tab" :value="i.value">
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>

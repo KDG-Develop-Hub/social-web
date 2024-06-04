@@ -11,10 +11,11 @@ withDefaults(
     size: 'md'
   }
 )
+const id = useId()
 </script>
 
 <template>
-  <Avatar.Root :data-size="size" class="square root">
+  <Avatar.Root :id="id" :data-size="size" class="square root">
     <Avatar.Image
       src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
       :alt="`${name}のプロフィールの写真`"
