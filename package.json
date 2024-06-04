@@ -49,8 +49,8 @@
     "endOfLine": "lf"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint --fix",
-    "*.{js,ts,vue,css}": "prettier --write"
+    "*.{json,mjs,yaml,js,ts,vue}": "eslint --fix",
+    "*.{json,mjs,yaml,js,ts,vue,css}": "prettier --write"
   },
   "packageManager": "pnpm@9.1.4"
 }
