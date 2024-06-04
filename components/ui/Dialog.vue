@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DialogBackdrop, DialogContent, DialogPositioner } from '@ark-ui/vue'
+import { Dialog } from '@ark-ui/vue'
 import type { VNode } from 'vue'
 
 withDefaults(
@@ -29,7 +29,7 @@ const {
   { immediate: false }
 )
 const resize = () => execute()
-watch(content, content => {
+watchOnce(content, content => {
   if (content)
     for (const el of content.querySelectorAll('.resize')) {
       new ResizeObserver(resize).observe(el)
@@ -40,9 +40,9 @@ watch(contentWidth, resize)
 
 <template>
   <Teleport to="body">
-    <DialogBackdrop class="overlay" />
-    <DialogPositioner class="positioner">
-      <DialogContent as-child :data-updated="isReady" class="content">
+    <Dialog.Backdrop class="overlay" />
+    <Dialog.Positioner class="positioner">
+      <Dialog.Content as-child :data-updated="isReady" class="content">
         <div ref="content">
           <div v-if="slots.icon" class="v-stack icon">
             <slot name="icon" />
@@ -52,8 +52,8 @@ watch(contentWidth, resize)
             <slot name="buttons" />
           </div>
         </div>
-      </DialogContent>
-    </DialogPositioner>
+      </Dialog.Content>
+    </Dialog.Positioner>
   </Teleport>
 </template>
 

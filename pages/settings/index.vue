@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import {
-  DialogCloseTrigger,
-  DialogDescription,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger
-} from '@ark-ui/vue'
+import { Dialog as ArkDialog } from '@ark-ui/vue'
 </script>
 
 <template>
@@ -23,23 +17,23 @@ import {
       <TextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数" />
     </div>
     <h2 ref="title">アカウントの無効</h2>
-    <DialogRoot>
-      <DialogTrigger as-child>
+    <ArkDialog.Root>
+      <ArkDialog.Trigger as-child>
         <Button color="danger">アカウントを無効化</Button>
-      </DialogTrigger>
+      </ArkDialog.Trigger>
       <Dialog>
-        <DialogTitle> アカウントを無効化しますか？</DialogTitle>
-        <DialogDescription>
+        <ArkDialog.Title> アカウントを無効化しますか？</ArkDialog.Title>
+        <ArkDialog.Description>
           アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
-        </DialogDescription>
+        </ArkDialog.Description>
         <template #buttons>
-          <DialogCloseTrigger as-child>
+          <ArkDialog.CloseTrigger as-child>
             <Button color="danger" variant="text">キャンセル</Button>
-          </DialogCloseTrigger>
+          </ArkDialog.CloseTrigger>
           <Button color="danger">アカウントを無効化</Button>
         </template>
       </Dialog>
-    </DialogRoot>
+    </ArkDialog.Root>
   </div>
 </template>
 

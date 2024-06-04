@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Avatar } from '@ark-ui/vue'
+
 withDefaults(
   defineProps<{
     name: string
@@ -12,13 +14,13 @@ withDefaults(
 </script>
 
 <template>
-  <AvatarRoot :data-size="size" class="square root">
-    <AvatarImage
+  <Avatar.Root :data-size="size" class="square root">
+    <Avatar.Image
       src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
       :alt="`${name}のプロフィールの写真`"
     />
-    <AvatarFallback class="square fallback">{{ initialName(name) }}</AvatarFallback>
-  </AvatarRoot>
+    <Avatar.Fallback class="square fallback">{{ initialName(name) }}</Avatar.Fallback>
+  </Avatar.Root>
 </template>
 
 <style scoped>

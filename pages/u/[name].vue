@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Tabs } from '@ark-ui/vue'
+
 const { name } = useRoute().params
 const routePrefix = `/u/${name}`
 const currentUser = useCurrentUserStore()
@@ -27,15 +29,15 @@ const tabItems = [
     </header>
     <p>{{ bio }}</p>
   </div>
-  <TabsRoot :model-value="$route.fullPath">
-    <TabsList class="tabs-list">
-      <TabsIndicator class="tabs-indicator" />
-      <TabsTrigger v-for="i in tabItems" as-child class="tab" :value="i.value">
+  <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath" @focus-change="console.log">
+    <Tabs.List class="tabs-list">
+      <Tabs.Trigger v-for="i in tabItems" :key="i.value" as-child class="tab" :value="i.value">
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
-      </TabsTrigger>
-    </TabsList>
+      </Tabs.Trigger>
+      <Tabs.Indicator class="tabs-indicator" />
+    </Tabs.List>
     <NuxtPage />
-  </TabsRoot>
+  </Tabs.Root>
 </template>
 
 <style scoped>
@@ -56,11 +58,11 @@ const tabItems = [
 }
 .tabs-indicator {
   position: absolute;
-  width: var(--radix-tabs-indicator-size);
+  width: var(--width);
   transition:
-    translate 200ms ease,
-    width 200ms ease;
-  translate: var(--radix-tabs-indicator-position) 0;
+    left 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
+    width 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
+  left: var(--left);
   bottom: 0;
   height: 3px;
   border-top-left-radius: 99rem;

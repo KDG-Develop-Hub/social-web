@@ -31,12 +31,5 @@ export default defineNuxtConfig({
       }
     ]
   },
-  modules: [
-    '@pinia/nuxt',
-    'radix-vue/nuxt',
-    '@nuxt/test-utils',
-    '@vueuse/nuxt',
-    '@nuxt/eslint',
-    '@nuxt/fonts'
-  ]
+  modules: ['@pinia/nuxt', '@nuxt/test-utils', '@vueuse/nuxt', '@nuxt/eslint', '@nuxt/fonts']
 })
