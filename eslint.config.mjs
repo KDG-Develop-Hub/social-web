@@ -11,6 +11,8 @@ export default withNuxt({
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'vue/multi-word-component-names': 'off',
-    'vue/no-multiple-template-root': 'off'
+    'vue/no-multiple-template-root': 'off',
+    'no-console': 'error',
+    'no-debugger': 'error',
   }
 })

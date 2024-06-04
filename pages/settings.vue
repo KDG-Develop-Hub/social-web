@@ -10,7 +10,7 @@ const navItems = [
   <div class="row">
     <nav>
       <ul class="nav">
-        <li v-for="item in navItems" class="h-stack">
+        <li v-for="item in navItems" :key="item.to" class="h-stack">
           <NuxtLink class="nav-item h-stack" :to="`/settings${item.to}`">{{ item.text }}</NuxtLink>
         </li>
       </ul>
