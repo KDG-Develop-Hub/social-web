@@ -22,16 +22,16 @@ import { Dialog as ArkDialog } from '@ark-ui/vue'
         <MaterialButton color="danger">アカウントを無効化</MaterialButton>
       </ArkDialog.Trigger>
       <MaterialDialog>
-        <ArkDialog.Title> アカウントを無効化しますか？</ArkDialog.Title>
-        <ArkDialog.Description>
+        <ArkDialog.Title v-once> アカウントを無効化しますか？</ArkDialog.Title>
+        <ArkDialog.Description v-once>
           アカウントを無効化すると、アカウントに関連する全てのデータが削除されます。
         </ArkDialog.Description>
-        <template #buttons>
+        <MaterialDialogButtonList>
           <ArkDialog.CloseTrigger as-child>
             <MaterialButton color="danger" variant="text">キャンセル</MaterialButton>
           </ArkDialog.CloseTrigger>
           <MaterialButton color="danger">アカウントを無効化</MaterialButton>
-        </template>
+        </MaterialDialogButtonList>
       </MaterialDialog>
     </ArkDialog.Root>
   </div>
