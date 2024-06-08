@@ -60,6 +60,7 @@ const props = defineProps<{
     | 'bday-year'
   required?: boolean
   id?: string
+  name?: string
   fullWidth?: boolean
   hint?: string
   prefix?: string
@@ -96,6 +97,7 @@ const clickHandler = () => {
           v-if="multiLine"
           :id="randomId"
           v-model="model"
+          :name="name"
           :required
           class="full-width full-height input"
           :rows="textareaRows"
@@ -108,6 +110,7 @@ const clickHandler = () => {
           v-else
           :id="randomId"
           v-model="model"
+          :name="name"
           class="full-width full-height input"
           :required
           :maxlength="maxLength"

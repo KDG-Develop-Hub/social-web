@@ -2,6 +2,14 @@
 import { Dialog } from '@ark-ui/vue'
 import type { VNode } from 'vue'
 
+withDefaults(
+  defineProps<{
+    contentTag?: string | object
+  }>(),
+  {
+    contentTag: 'div'
+  }
+)
 const slots = defineSlots<{
   default: () => VNode
   icon?: () => VNode
@@ -33,7 +41,7 @@ watch(width, resize)
     <Dialog.Positioner class="positioner">
       <Dialog.Content as-child :data-updated="isReady" class="column content-wrapper">
         <div ref="content">
-          <div class="column content" :data-updated="isReady">
+          <component :is="contentTag" class="column content" :data-updated="isReady">
             <div v-if="slots.icon" class="v-stack icon">
               <slot name="icon" />
             </div>
@@ -41,7 +49,7 @@ watch(width, resize)
             <div v-if="slots.buttons" class="h-stack button-set">
               <slot name="buttons" />
             </div>
-          </div>
+          </component>
         </div>
       </Dialog.Content>
     </Dialog.Positioner>

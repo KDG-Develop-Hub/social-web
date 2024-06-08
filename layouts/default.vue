@@ -22,7 +22,7 @@ const linkContents = ref([
               <Feather />
             </MaterialFAB>
           </ArkDialog.Trigger>
-          <MaterialDialog>
+          <MaterialDialog content-tag="form">
             <template #icon>
               <Feather />
             </template>
@@ -32,13 +32,13 @@ const linkContents = ref([
             </ArkDialog.Description>
             <MaterialDivider />
             <div class="resize">
-              <MaterialTextField label="内容" multi-line max-length="256" />
+              <MaterialTextField name="content" label="内容" multi-line max-length="256" />
             </div>
             <template #buttons>
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton>広めちゃう</MaterialButton>
+              <MaterialButton type="submit">広めちゃう</MaterialButton>
             </template>
           </MaterialDialog>
         </ArkDialog.Root>
