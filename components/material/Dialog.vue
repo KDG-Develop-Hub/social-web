@@ -2,21 +2,13 @@
 import { Dialog } from '@ark-ui/vue'
 import type { VNode } from 'vue'
 
-withDefaults(
-  defineProps<{
-    width?: number | string
-  }>(),
-  {
-    width: '100%'
-  }
-)
 const slots = defineSlots<{
   default: () => VNode
   icon?: () => VNode
   buttons?: () => VNode
 }>()
 const content = ref<HTMLElement | null>(null)
-const { width: contentWidth } = useElementSize(content)
+const { width } = useElementSize(content)
 const {
   state: contentHeight,
   isReady,
@@ -35,7 +27,7 @@ watchOnce(content, content => {
       new ResizeObserver(resize).observe(el)
     }
 })
-watch(contentWidth, resize)
+watch(width, resize)
 </script>
 
 <template>
@@ -98,11 +90,11 @@ watch(contentWidth, resize)
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  padding: var(--dialog-padding) 0;
+  padding: var(--dialog-padding);
   gap: calc(var(--dialog-padding) - 0.5rem);
   box-sizing: border-box;
-  width: v-bind(width);
-  max-width: 48rem;
+  width: 100%;
+  max-width: 36rem;
   border-radius: 1rem;
   background: var(--color-surface);
 
@@ -141,7 +133,6 @@ watch(contentWidth, resize)
 
   :global(& > *) {
     transition: opacity 200ms ease-out 150ms;
-    margin: 0 var(--dialog-padding);
     flex-shrink: 0;
 
     &:global(&:last-child) {

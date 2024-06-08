@@ -72,7 +72,7 @@ const props = defineProps<{
 const randomId = props.id ?? useId()
 const hintId = props.hint ? `hint-${randomId}` : undefined
 const model = defineModel<string>()
-const textareaRows = computed(() => Math.max(model.value ? model.value.split('\n').length : 1, 2))
+const textareaRows = computed(() => Math.max(model.value ? model.value.split('\n').length : 1, 1))
 const prefixRef = ref<HTMLSpanElement>()
 const labelPadding = 4
 const containerPadding = 16
