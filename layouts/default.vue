@@ -16,26 +16,29 @@ const linkContents = ref([
   <div class="layout">
     <MaterialNavigationRail>
       <template #fab>
-        <ArkDialog.Root>
+        <ArkDialog.Root id="compose">
           <ArkDialog.Trigger as-child>
             <MaterialFAB>
               <Feather />
             </MaterialFAB>
           </ArkDialog.Trigger>
-          <MaterialDialog as-child>
-            <ArkDialog.Title> 今回は何を綴るのかな？</ArkDialog.Title>
-            <ArkDialog.Description as-child>
-              <p class="description">
-                自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
-              </p>
-              <div class="border-bottom"/>
+          <MaterialDialog>
+            <template #icon>
+              <Feather />
+            </template>
+            <ArkDialog.Title class="title"> 今回は何を綴るのかな？</ArkDialog.Title>
+            <ArkDialog.Description>
+              自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
             </ArkDialog.Description>
-            <MaterialTextField label="内容" type="text" max-length="256" helper-text="0/256" />
+            <MaterialDivider />
+            <div class="resize">
+              <MaterialTextField label="内容" multi-line max-length="256" />
+            </div>
             <template #buttons>
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton color="primary">広めちゃう</MaterialButton>
+              <MaterialButton>広めちゃう</MaterialButton>
             </template>
           </MaterialDialog>
         </ArkDialog.Root>
@@ -62,13 +65,8 @@ const linkContents = ref([
   height: 100vh;
 }
 
-.dialog {
-  width: 35px;
-  overflow: visible;
-}
-
-.border-bottom {
-  border-bottom: solid 1px #fff;
+.title {
+  text-align: center;
 }
 
 main {
