@@ -22,10 +22,7 @@ const {
 )
 const resize = () => execute()
 watchOnce(content, content => {
-  if (content)
-    for (const el of content.querySelectorAll('.resize')) {
-      new ResizeObserver(resize).observe(el)
-    }
+  if (content) new ResizeObserver(resize).observe(content.firstChild as HTMLElement)
 })
 watch(width, resize)
 </script>
@@ -34,14 +31,16 @@ watch(width, resize)
   <Teleport to="body">
     <Dialog.Backdrop class="overlay" />
     <Dialog.Positioner class="positioner">
-      <Dialog.Content as-child :data-updated="isReady" class="content">
+      <Dialog.Content as-child :data-updated="isReady" class="column content-wrapper">
         <div ref="content">
-          <div v-if="slots.icon" class="v-stack icon">
-            <slot name="icon" />
-          </div>
-          <slot name="default" />
-          <div v-if="slots.buttons" class="h-stack button-set">
-            <slot name="buttons" />
+          <div class="column content" :data-updated="isReady">
+            <div v-if="slots.icon" class="v-stack icon">
+              <slot name="icon" />
+            </div>
+            <slot name="default" />
+            <div v-if="slots.buttons" class="h-stack button-set">
+              <slot name="buttons" />
+            </div>
           </div>
         </div>
       </Dialog.Content>
@@ -83,15 +82,12 @@ watch(width, resize)
   place-items: center;
 }
 
-.content {
+.content-wrapper {
   --dialog-height: v-bind(contentHeight);
   --dialog-padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
   padding: var(--dialog-padding);
-  gap: calc(var(--dialog-padding) - 0.5rem);
   box-sizing: border-box;
   width: 100%;
   max-width: 36rem;
@@ -125,27 +121,29 @@ watch(width, resize)
       height: 4rem;
     }
 
-    :global(& > *) {
+    .content > :deep(*) {
       transition: opacity 50ms ease-out;
       opacity: 0;
     }
   }
 
-  :global(& > *) {
+  .content > :deep(*) {
     transition: opacity 200ms ease-out 150ms;
     flex-shrink: 0;
+  }
 
-    &:global(&:last-child) {
-      transition: opacity 200ms ease-out;
-      margin-top: 0.5rem;
-    }
+  .content .button-set {
+    transition: opacity 200ms ease-out;
+    margin-top: 0.5rem;
   }
 }
 
-.icon {
-  :global(*) {
-    color: var(--color-error);
-  }
+.content {
+  gap: calc(var(--dialog-padding) - 0.5rem);
+}
+
+.icon :deep(*) {
+  color: var(--color-secondary);
 }
 
 .button-set {
