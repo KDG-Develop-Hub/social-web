@@ -1,19 +1,8 @@
 <script setup lang="ts">
-import { Dialog } from '@ark-ui/vue'
-import type { VNode } from 'vue'
+import { ark, Dialog } from '@ark-ui/vue'
 
-withDefaults(
-  defineProps<{
-    contentTag?: string | object
-  }>(),
-  {
-    contentTag: 'div'
-  }
-)
-const slots = defineSlots<{
-  default: () => VNode
-  icon?: () => VNode
-  buttons?: () => VNode
+defineProps<{
+  asChild?: boolean
 }>()
 const content = ref<HTMLElement | null>(null)
 const { width } = useElementSize(content)
@@ -41,15 +30,9 @@ watch(width, resize)
     <Dialog.Positioner class="positioner">
       <Dialog.Content as-child :data-updated="isReady" class="column content-wrapper">
         <div ref="content">
-          <component :is="contentTag" class="column content" :data-updated="isReady">
-            <div v-if="slots.icon" class="v-stack icon">
-              <slot name="icon" />
-            </div>
+          <ark.div :as-child="asChild" class="column content" :data-updated="isReady">
             <slot name="default" />
-            <div v-if="slots.buttons" class="h-stack button-set">
-              <slot name="buttons" />
-            </div>
-          </component>
+          </ark.div>
         </div>
       </Dialog.Content>
     </Dialog.Positioner>
@@ -134,27 +117,19 @@ watch(width, resize)
       opacity: 0;
     }
   }
-
-  .content > :deep(*) {
-    transition: opacity 200ms ease-out 150ms;
-    flex-shrink: 0;
-  }
-
-  .content .button-set {
-    transition: opacity 200ms ease-out;
-    margin-top: 0.5rem;
-  }
 }
 
 .content {
   gap: calc(var(--dialog-padding) - 0.5rem);
-}
 
-.icon :deep(*) {
-  color: var(--color-secondary);
-}
+  & > :deep(*) {
+    transition: opacity 200ms ease-out 150ms;
+    flex-shrink: 0;
+  }
 
-.button-set {
-  justify-content: flex-end;
+  & > :last-child {
+    transition: opacity 200ms ease-out;
+    margin-top: 0.5rem;
+  }
 }
 </style>

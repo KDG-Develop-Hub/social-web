@@ -10,6 +10,26 @@ const linkContents = ref([
   { to: '/friends', icon: Users, text: '知り合い' },
   { to: '/settings', icon: Settings2, text: 'せってー' }
 ])
+
+const compose = async (event: Event, setOpen: (value: boolean) => void) => {
+  event.preventDefault()
+  const form = event.target as HTMLFormElement
+  const formData = new FormData(form)
+  const content = formData.get('content') as string
+  if (content.length === 0 && content.length > 256) {
+    return
+  }
+  form.reset()
+  setOpen(false)
+}
+const handleKeydown = (event: KeyboardEvent) => {
+  const isMacOS = navigator.userAgent.includes('Mac OS X')
+  const isSubmit = event.key === 'Enter' && (isMacOS ? event.metaKey : event.ctrlKey)
+  if (isSubmit) {
+    event.preventDefault()
+    document.getElementById('compose-submit')?.click()
+  }
+}
 </script>
 
 <template>
@@ -17,30 +37,34 @@ const linkContents = ref([
     <MaterialNavigationRail>
       <template #fab>
         <ArkDialog.Root id="compose">
-          <ArkDialog.Trigger as-child>
-            <MaterialFAB>
-              <Feather />
-            </MaterialFAB>
-          </ArkDialog.Trigger>
-          <MaterialDialog content-tag="form">
-            <template #icon>
-              <Feather />
-            </template>
-            <ArkDialog.Title class="title"> 今回は何を綴るのかな？</ArkDialog.Title>
-            <ArkDialog.Description>
-              自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
-            </ArkDialog.Description>
-            <MaterialDivider />
-            <div class="resize">
-              <MaterialTextField name="content" label="内容" multi-line max-length="256" />
-            </div>
-            <template #buttons>
-              <ArkDialog.CloseTrigger as-child>
-                <MaterialButton variant="text">やっぱやめる</MaterialButton>
-              </ArkDialog.CloseTrigger>
-              <MaterialButton type="submit">広めちゃう</MaterialButton>
-            </template>
-          </MaterialDialog>
+          <ArkDialog.Context v-slot="{ setOpen }">
+            <ArkDialog.Trigger as-child>
+              <MaterialFAB>
+                <Feather />
+              </MaterialFAB>
+            </ArkDialog.Trigger>
+            <MaterialDialog as-child content-tag="form">
+              <form @keydown="handleKeydown" @submit="e => compose(e, setOpen)">
+                <MaterialDialogIconWrapper>
+                  <Feather />
+                </MaterialDialogIconWrapper>
+                <ArkDialog.Title class="title"> 今回は何を綴るのかな？</ArkDialog.Title>
+                <ArkDialog.Description>
+                  自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
+                </ArkDialog.Description>
+                <MaterialDivider />
+                <div class="resize">
+                  <MaterialTextField name="content" label="内容" multi-line max-length="256" />
+                </div>
+                <MaterialDialogButtonList>
+                  <ArkDialog.CloseTrigger as-child>
+                    <MaterialButton variant="text">やっぱやめる</MaterialButton>
+                  </ArkDialog.CloseTrigger>
+                  <MaterialButton id="compose-submit" type="submit">広めちゃう</MaterialButton>
+                </MaterialDialogButtonList>
+              </form>
+            </MaterialDialog>
+          </ArkDialog.Context>
         </ArkDialog.Root>
       </template>
       <template #link-list>

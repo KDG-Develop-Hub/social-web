@@ -6,6 +6,7 @@ withDefaults(
       color: 'primary' | 'secondary' | 'tertiary' | 'danger'
       as: string | object
       width: 'fit' | 'full'
+      id: string
     }>
   >(),
   {
@@ -20,6 +21,7 @@ withDefaults(
 <template>
   <component
     :is="as"
+    :id="id"
     :data-width="width"
     :data-variant="variant"
     :data-color="color"
@@ -70,10 +72,12 @@ withDefaults(
       --button-ctn-bgcolor-basic: var(--color-primary);
       --button-ctn-bgcolor-to-mix: var(--color-on-primary);
     }
+
     &[data-color='secondary'] {
       --button-ctn-bgcolor-basic: var(--color-secondary);
       --button-ctn-bgcolor-to-mix: var(--color-on-secondary);
     }
+
     &[data-color='danger'] {
       --button-ctn-bgcolor-basic: var(--color-error);
       --button-ctn-bgcolor-to-mix: var(--color-on-error);
@@ -82,12 +86,15 @@ withDefaults(
 
   &[data-variant='text'] {
     --button-ctn-bgcolor-basic: transparent;
+
     &[data-color='primary'] {
       --button-ctn-bgcolor-to-mix: var(--color-primary);
     }
+
     &[data-color='secondary'] {
       --button-ctn-bgcolor-to-mix: var(--color-secondary);
     }
+
     &[data-color='danger'] {
       --button-ctn-bgcolor-to-mix: var(--color-error);
     }
@@ -96,6 +103,7 @@ withDefaults(
   &[data-variant='outlined'] {
     --button-ctn-bgcolor-to-mix: white;
     --button-ctn-bgcolor-basic: transparent;
+
     &[data-color='primary'] {
       border: 1px solid var(--color-outline);
     }
@@ -137,9 +145,11 @@ withDefaults(
     &[data-color='primary'] {
       color: var(--color-on-primary);
     }
+
     &[data-color='secondary'] {
       color: var(--color-on-secondary);
     }
+
     &[data-color='danger'] {
       color: var(--color-on-error);
     }
@@ -153,9 +163,11 @@ withDefaults(
     &[data-color='primary'] {
       color: var(--color-primary);
     }
+
     &[data-color='secondary'] {
       color: var(--color-secondary);
     }
+
     &[data-color='danger'] {
       color: var(--color-error);
     }
