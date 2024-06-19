@@ -218,6 +218,7 @@ const clickHandler = () => {
   border: none;
   outline: none;
   background: transparent;
+  height: 20px;
 }
 
 .supporting-text-wrapper {

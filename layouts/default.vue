@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Dialog as ArkDialog } from '@ark-ui/vue'
-import { Compass, Feather, History, Settings2, User, Users } from 'lucide-vue-next'
+import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
 
 const currentUser = useCurrentUserStore()
 const linkContents = ref([
@@ -10,6 +10,9 @@ const linkContents = ref([
   { to: '/friends', icon: Users, text: '知り合い' },
   { to: '/settings', icon: Settings2, text: 'せってー' }
 ])
+
+const inputText = ref('')
+const buttonDisabled = computed(() => inputText.value.trim().length === 0)
 </script>
 
 <template>
@@ -22,20 +25,40 @@ const linkContents = ref([
               <Feather />
             </MaterialFAB>
           </ArkDialog.Trigger>
-          <MaterialDialog as-child>
+          <MaterialDialog width="560px">
+            <div class="icon">
+              <Feather stroke="#678C40" />
+            </div>
             <ArkDialog.Title> 今回は何を綴るのかな？</ArkDialog.Title>
             <ArkDialog.Description as-child>
               <p class="description">
                 自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
               </p>
-              <div class="border-bottom"/>
+              <div class="border-bottom" />
             </ArkDialog.Description>
-            <MaterialTextField label="内容" type="text" max-length="256" helper-text="0/256" />
+            <MaterialTextField
+              v-model="inputText"
+              label="内容"
+              type="text"
+              max-length="256"
+              helper-text="0/256"
+              :multi-line="true"
+            />
+            <div class="icons">
+              <span>
+                <ImagePlus />
+              </span>
+              <span>
+                <Menu />
+              </span>
+            </div>
             <template #buttons>
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton color="primary">広めちゃう</MaterialButton>
+              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled"
+                >広めちゃう</MaterialButton
+              >
             </template>
           </MaterialDialog>
         </ArkDialog.Root>
@@ -62,18 +85,27 @@ const linkContents = ref([
   height: 100vh;
 }
 
-.dialog {
-  width: 35px;
-  overflow: visible;
-}
-
-.border-bottom {
-  border-bottom: solid 1px #fff;
-}
-
 main {
   overflow-y: auto;
   width: 100%;
   padding: 2rem 1.5rem;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+}
+
+.border-bottom {
+  border-bottom: solid 1px var(--palette-secondary90);
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
+}
+
+[data-scope='dialog'][data-part='title'] {
+  text-align: center;
 }
 </style>
