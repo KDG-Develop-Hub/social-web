@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Dialog as ArkDialog } from '@ark-ui/vue'
-import { Compass, Feather, History, ImagePlus, Menu,Settings2, User, Users } from 'lucide-vue-next'
+import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
 
 const currentUser = useCurrentUserStore()
 const linkContents = ref([
@@ -10,6 +10,9 @@ const linkContents = ref([
   { to: '/friends', icon: Users, text: '知り合い' },
   { to: '/settings', icon: Settings2, text: 'せってー' }
 ])
+
+const inputText = ref('')
+const buttonDisabled = computed(() => inputText.value.trim().length === 0)
 </script>
 
 <template>
@@ -34,6 +37,7 @@ const linkContents = ref([
               <div class="border-bottom" />
             </ArkDialog.Description>
             <MaterialTextField
+              v-model="inputText"
               label="内容"
               type="text"
               max-length="256"
@@ -52,7 +56,9 @@ const linkContents = ref([
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton color="primary">広めちゃう</MaterialButton>
+              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled"
+                >広めちゃう</MaterialButton
+              >
             </template>
           </MaterialDialog>
         </ArkDialog.Root>
@@ -91,7 +97,7 @@ main {
 }
 
 .border-bottom {
-  border-bottom: solid 1px #fff;
+  border-bottom: solid 1px var(--palette-secondary90);
 }
 
 .icons {
@@ -99,7 +105,7 @@ main {
   gap: 20px;
 }
 
-/* [data-scope='dialog'][data-part='title'] {
-  border-bottom: 1px solid #fff;
-} */
+[data-scope='dialog'][data-part='title'] {
+  text-align: center;
+}
 </style>

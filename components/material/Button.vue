@@ -3,7 +3,7 @@ withDefaults(
   defineProps<
     Partial<{
       variant: 'filled' | 'text' | 'outlined'
-      color: 'primary' | 'secondary' | 'tertiary' | 'danger'
+      color: 'primary' | 'secondary' | 'tertiary' | 'danger' | ''
       as: string | object
       width: 'fit' | 'full'
     }>
