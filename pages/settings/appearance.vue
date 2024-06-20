@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import {
-  RadioGroupItem,
-  RadioGroupItemControl,
-  RadioGroupItemHiddenInput,
-  RadioGroupItemText,
-  RadioGroupRoot
-} from '@ark-ui/vue'
+  import {
+    RadioGroupItem,
+    RadioGroupItemControl,
+    RadioGroupItemHiddenInput,
+    RadioGroupItemText,
+    RadioGroupRoot
+  } from '@ark-ui/vue'
 
-const themes = [
-  { id: 'system', name: 'システム' },
-  { id: 'light', name: 'ライト' },
-  { id: 'dark', name: 'ダーク' }
-]
+  const themes = [
+    { id: 'system', name: 'システム' },
+    { id: 'light', name: 'ライト' },
+    { id: 'dark', name: 'ダーク' }
+  ]
 </script>
 
 <template>
@@ -44,58 +44,58 @@ const themes = [
 </template>
 
 <style scoped>
-h2 {
-  margin: 1rem 0;
-}
-h3,
-p {
-  margin: 0.5rem 0;
-}
-.item {
-  border: none;
-  background: transparent;
-}
+  h2 {
+    margin: 1rem 0;
+  }
+  h3,
+  p {
+    margin: 0.5rem 0;
+  }
+  .item {
+    border: none;
+    background: transparent;
+  }
 
-.indicator {
-  --square-size: 6rem;
-  display: inline-flex;
-  border-radius: 99rem;
-  overflow: hidden;
-  border: 3px solid var(--md-sys-color-outline-variant);
+  .indicator {
+    --square-size: 6rem;
+    display: inline-flex;
+    border-radius: 99rem;
+    overflow: hidden;
+    border: 3px solid var(--md-sys-color-outline-variant);
 
-  &[data-state='checked'] {
-    border-color: var(--md-sys-color-primary);
+    &[data-state='checked'] {
+      border-color: var(--md-sys-color-primary);
+      &:after {
+        scale: 0.75;
+      }
+    }
+
     &:after {
-      scale: 0.75;
+      display: block;
+      border-radius: 99rem;
+      content: ' ';
+      scale: 0.5;
+      width: 100%;
+      height: 100%;
+      transition: scale 200ms cubic-bezier(0.14, 0.92, 0.34, 1);
+    }
+
+    &[data-color='system']:after {
+      background: linear-gradient(
+        to right,
+        rgb(217 219 209),
+        rgb(217 219 209) 50%,
+        rgb(17 20 14) 50%,
+        rgb(17 20 14)
+      );
+    }
+
+    &[data-color='light']:after {
+      background: rgb(217 219 209);
+    }
+
+    &[data-color='dark']:after {
+      background: rgb(17 20 14);
     }
   }
-
-  &:after {
-    display: block;
-    border-radius: 99rem;
-    content: ' ';
-    scale: 0.5;
-    width: 100%;
-    height: 100%;
-    transition: scale 200ms cubic-bezier(0.14, 0.92, 0.34, 1);
-  }
-
-  &[data-color='system']:after {
-    background: linear-gradient(
-      to right,
-      rgb(217 219 209),
-      rgb(217 219 209) 50%,
-      rgb(17 20 14) 50%,
-      rgb(17 20 14)
-    );
-  }
-
-  &[data-color='light']:after {
-    background: rgb(217 219 209);
-  }
-
-  &[data-color='dark']:after {
-    background: rgb(17 20 14);
-  }
-}
 </style>

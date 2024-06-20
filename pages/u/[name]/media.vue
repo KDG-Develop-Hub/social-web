@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const medias = Array.from({ length: 4 * 3 }, () => ({}))
+  const medias = Array.from({ length: 4 * 3 }, () => ({}))
 </script>
 
 <template>
@@ -12,20 +12,20 @@ const medias = Array.from({ length: 4 * 3 }, () => ({}))
 </template>
 
 <style scoped>
-article {
-  border-radius: 1.5rem;
-  background-color: #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-}
-.article-list {
-  --square-size: 20rem;
-  padding: 1.5rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+  article {
+    border-radius: 1.5rem;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .article-list {
+    --square-size: 20rem;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 </style>

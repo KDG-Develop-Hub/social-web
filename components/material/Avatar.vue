@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { Avatar } from '@ark-ui/vue'
+  import { Avatar } from '@ark-ui/vue'
 
-withDefaults(
-  defineProps<{
-    name: string
-    src: string
-    size?: 'sm' | 'md' | 'lg'
-  }>(),
-  {
-    size: 'md'
-  }
-)
-const id = useId()
+  withDefaults(
+    defineProps<{
+      name: string
+      src: string
+      size?: 'sm' | 'md' | 'lg'
+    }>(),
+    {
+      size: 'md'
+    }
+  )
+  const id = useId()
 </script>
 
 <template>
@@ -27,34 +27,34 @@ const id = useId()
 </template>
 
 <style scoped>
-.square {
-  &[data-size='sm'] {
-    --square-size: 2rem;
+  .square {
+    &[data-size='sm'] {
+      --square-size: 2rem;
+    }
+
+    &[data-size='md'] {
+      --square-size: 3rem;
+    }
+
+    &[data-size='lg'] {
+      --square-size: 4rem;
+    }
   }
 
-  &[data-size='md'] {
-    --square-size: 3rem;
+  .root {
+    flex-shrink: 0;
+    display: inline-flex;
+    border-radius: calc(var(--square-size) / 4);
+    overflow: hidden;
   }
 
-  &[data-size='lg'] {
-    --square-size: 4rem;
+  .fallback {
+    display: grid;
+    place-items: center;
+    font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
+    font-weight: 500;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    position: relative;
   }
-}
-
-.root {
-  flex-shrink: 0;
-  display: inline-flex;
-  border-radius: calc(var(--square-size) / 4);
-  overflow: hidden;
-}
-
-.fallback {
-  display: grid;
-  place-items: center;
-  font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
-  font-weight: 500;
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  position: relative;
-}
 </style>

@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import {
-  DialogRoot,
-  DialogTrigger,
-  FileUploadContext,
-  FileUploadDropzone,
-  FileUploadHiddenInput,
-  FileUploadItem,
-  FileUploadItemDeleteTrigger,
-  FileUploadItemPreview,
-  FileUploadItemPreviewImage,
-  FileUploadLabel,
-  FileUploadRoot,
-  FileUploadTrigger
-} from '@ark-ui/vue'
+  import {
+    DialogRoot,
+    DialogTrigger,
+    FileUploadContext,
+    FileUploadDropzone,
+    FileUploadHiddenInput,
+    FileUploadItem,
+    FileUploadItemDeleteTrigger,
+    FileUploadItemPreview,
+    FileUploadItemPreviewImage,
+    FileUploadLabel,
+    FileUploadRoot,
+    FileUploadTrigger
+  } from '@ark-ui/vue'
 
-const file = ref<File | null>(null)
-const user: User = {
-  avatarUrl: 'https://via.placeholder.com/256',
-  bio: '',
-  birthday: new Date(),
-  displayName: 'imeankenshin',
-  website: 'https://example.com',
-  name: 'Kenshin Ito',
-  email: 'itoken@kdg.social'
-}
-const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
+  const file = ref<File | null>(null)
+  const user: User = {
+    avatarUrl: 'https://via.placeholder.com/256',
+    bio: '',
+    birthday: new Date(),
+    displayName: 'imeankenshin',
+    website: 'https://example.com',
+    name: 'Kenshin Ito',
+    email: 'itoken@kdg.social'
+  }
+  const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
 </script>
 
 <template>
@@ -98,92 +98,92 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
 </template>
 
 <style scoped>
-h2 {
-  margin-bottom: 1rem;
-}
-
-.profile {
-  gap: 4rem;
-}
-
-.fields {
-  max-width: 32rem;
-}
-
-.avatar {
-  border-radius: 8rem;
-  --square-size: 16rem;
-  object-fit: cover;
-}
-
-.avatar-wrapper {
-  position: relative;
-  border-radius: 99rem;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  background: none;
-  border: none;
-}
-
-.avatar-label,
-.avatar-backdrop {
-  transition: opacity 200ms ease-out;
-
-  .avatar-wrapper:hover & {
-    opacity: 1;
+  h2 {
+    margin-bottom: 1rem;
   }
-}
 
-.avatar-label {
-  font-size: 0.875rem;
-  text-align: center;
-  display: block;
-  color: white;
-  position: absolute;
-  opacity: 0;
-}
+  .profile {
+    gap: 4rem;
+  }
 
-.avatar-change-accept {
-  display: grid;
-  gap: 1rem;
-  place-items: center;
-  place-content: center;
-}
+  .fields {
+    max-width: 32rem;
+  }
 
-.avatar-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: block;
-  opacity: 0;
-}
+  .avatar {
+    border-radius: 8rem;
+    --square-size: 16rem;
+    object-fit: cover;
+  }
 
-.avatar-drop-zone {
-  height: 24rem;
-  display: grid;
-  place-content: center;
-  place-items: center;
-  gap: 1rem;
-  border: 1px dashed var(--md-sys-color-outline-variant);
-}
+  .avatar-wrapper {
+    position: relative;
+    border-radius: 99rem;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    background: none;
+    border: none;
+  }
 
-.avatar-accept-enter-active,
-.avatar-accept-leave-active {
-  transition: opacity 200ms ease-out;
-}
+  .avatar-label,
+  .avatar-backdrop {
+    transition: opacity 200ms ease-out;
 
-.avatar-accept-enter,
-.avatar-accept-leave-to {
-  position: absolute;
-  opacity: 0;
-}
+    .avatar-wrapper:hover & {
+      opacity: 1;
+    }
+  }
 
-.button-set {
-  justify-content: flex-end;
-}
+  .avatar-label {
+    font-size: 0.875rem;
+    text-align: center;
+    display: block;
+    color: white;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .avatar-change-accept {
+    display: grid;
+    gap: 1rem;
+    place-items: center;
+    place-content: center;
+  }
+
+  .avatar-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+    opacity: 0;
+  }
+
+  .avatar-drop-zone {
+    height: 24rem;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    gap: 1rem;
+    border: 1px dashed var(--md-sys-color-outline-variant);
+  }
+
+  .avatar-accept-enter-active,
+  .avatar-accept-leave-active {
+    transition: opacity 200ms ease-out;
+  }
+
+  .avatar-accept-enter,
+  .avatar-accept-leave-to {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .button-set {
+    justify-content: flex-end;
+  }
 </style>
