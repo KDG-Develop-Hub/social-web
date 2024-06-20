@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { Dialog as ArkDialog } from '@ark-ui/vue'
-import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
+import {
+  Compass,
+  Feather,
+  History,
+  ImagePlus,
+  Menu,
+  Settings2,
+  User,
+  Users
+} from 'lucide-vue-next'
 
 const currentUser = useCurrentUserStore()
 const linkContents = ref([
@@ -56,7 +65,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled"
+              <MaterialButton color="primary" :disabled="buttonDisabled"
                 >広めちゃう</MaterialButton
               >
             </template>

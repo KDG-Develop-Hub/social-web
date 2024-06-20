@@ -16,7 +16,10 @@ const users: Record<Tweet['userId'], BasicUserInfo> = {
 <template>
   <div class="articles v-stack">
     <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
-      <MaterialAvatar :name="users[tweet.userId].name" :src="users[tweet.userId].avatarUrl" />
+      <MaterialAvatar
+        :name="users[tweet.userId].name"
+        :src="users[tweet.userId].avatarUrl"
+      />
       <div class="body">
         <header class="h-stack">
           <strong>{{ users[tweet.userId].name }}</strong>
@@ -40,7 +43,7 @@ const users: Record<Tweet['userId'], BasicUserInfo> = {
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
-  border: 1px solid var(--color-outline-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: 0.75rem;
   display: flex;
   gap: 0.75rem;

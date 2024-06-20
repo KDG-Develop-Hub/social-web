@@ -33,7 +33,13 @@ const tabItems = [
   </div>
   <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath">
     <Tabs.List class="tabs-list">
-      <Tabs.Trigger v-for="i in tabItems" :key="i.value" as-child class="tab" :value="i.value">
+      <Tabs.Trigger
+        v-for="i in tabItems"
+        :key="i.value"
+        as-child
+        class="tab"
+        :value="i.value"
+      >
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
       </Tabs.Trigger>
       <Tabs.Indicator class="tabs-indicator" />
@@ -55,8 +61,8 @@ const tabItems = [
   position: sticky;
   top: 0;
   gap: 1rem;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-surface-variant);
+  background-color: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-surface-variant);
 }
 .tabs-indicator {
   position: absolute;
@@ -69,7 +75,7 @@ const tabItems = [
   height: 3px;
   border-top-left-radius: 99rem;
   border-top-right-radius: 99rem;
-  background-color: var(--color-primary);
+  background-color: var(--md-sys-color-primary);
 }
 .tab {
   display: inline-flex;

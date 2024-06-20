@@ -6,13 +6,15 @@ withDefaults(
       color: 'primary' | 'secondary' | 'tertiary' | 'danger' | ''
       as: string | object
       width: 'fit' | 'full'
+      disabled: boolean
     }>
   >(),
   {
     variant: 'filled',
     width: 'fit',
     color: 'primary',
-    as: 'button'
+    as: 'button',
+    disabled: false
   }
 )
 </script>
@@ -24,9 +26,15 @@ withDefaults(
     :data-variant="variant"
     :data-color="color"
     class="container"
+    :disabled="disabled"
   >
     <slot name="icon" />
-    <span class="label-wrapper" :data-variant="variant" :data-color="color">
+    <span
+      class="label-wrapper"
+      :aria-disabled="disabled"
+      :data-variant="variant"
+      :data-color="color"
+    >
       <slot>ここを押してね</slot>
     </span>
   </component>
@@ -67,29 +75,29 @@ withDefaults(
 
   &[data-variant='filled'] {
     &[data-color='primary'] {
-      --button-ctn-bgcolor-basic: var(--color-primary);
-      --button-ctn-bgcolor-to-mix: var(--color-on-primary);
+      --button-ctn-bgcolor-basic: var(--md-sys-color-primary);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-on-primary);
     }
     &[data-color='secondary'] {
-      --button-ctn-bgcolor-basic: var(--color-secondary);
-      --button-ctn-bgcolor-to-mix: var(--color-on-secondary);
+      --button-ctn-bgcolor-basic: var(--md-sys-color-secondary);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-on-secondary);
     }
     &[data-color='danger'] {
-      --button-ctn-bgcolor-basic: var(--color-error);
-      --button-ctn-bgcolor-to-mix: var(--color-on-error);
+      --button-ctn-bgcolor-basic: var(--md-sys-color-error);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-on-error);
     }
   }
 
   &[data-variant='text'] {
     --button-ctn-bgcolor-basic: transparent;
     &[data-color='primary'] {
-      --button-ctn-bgcolor-to-mix: var(--color-primary);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-primary);
     }
     &[data-color='secondary'] {
-      --button-ctn-bgcolor-to-mix: var(--color-secondary);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-secondary);
     }
     &[data-color='danger'] {
-      --button-ctn-bgcolor-to-mix: var(--color-error);
+      --button-ctn-bgcolor-to-mix: var(--md-sys-color-error);
     }
   }
 
@@ -97,7 +105,7 @@ withDefaults(
     --button-ctn-bgcolor-to-mix: white;
     --button-ctn-bgcolor-basic: transparent;
     &[data-color='primary'] {
-      border: 1px solid var(--color-outline);
+      border: 1px solid var(--md-sys-color-outline);
     }
   }
 
@@ -110,7 +118,11 @@ withDefaults(
   }
 
   &[data-variant='filled']:disabled {
-    background: color-mix(in srgb, var(--color-on-surface), transparent 88%);
+    background: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface) 12%,
+      transparent
+    );
   }
 
   &:is([data-variant='text'], [data-variant='outlined']):disabled {
@@ -118,7 +130,8 @@ withDefaults(
   }
 
   &[data-variant='outlined']:disabled {
-    border: 1px solid color-mix(in srgb, var(--color-outline), transparent 88%);
+    border: 1px solid
+      color-mix(in srgb, var(--md-sys-color-outline) 12%, transparent);
   }
 }
 
@@ -132,37 +145,38 @@ withDefaults(
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5;
+  color: var(--label-color);
 
   &[data-variant='filled'] {
     &[data-color='primary'] {
-      color: var(--color-on-primary);
+      --label-color: var(--md-sys-color-on-primary);
     }
     &[data-color='secondary'] {
-      color: var(--color-on-secondary);
+      --label-color: var(--md-sys-color-on-secondary);
     }
     &[data-color='danger'] {
-      color: var(--color-on-error);
+      --label-color: var(--md-sys-color-on-error);
     }
   }
 
   &[data-variant='text'] {
-    color: var(--color-on-surface);
+    --label-color: var(--md-sys-color-on-surface);
   }
 
   &[data-variant='outlined'] {
     &[data-color='primary'] {
-      color: var(--color-primary);
+      --label-color: var(--md-sys-color-primary);
     }
     &[data-color='secondary'] {
-      color: var(--color-secondary);
+      --label-color: var(--md-sys-color-secondary);
     }
     &[data-color='danger'] {
-      color: var(--color-error);
+      --label-color: var(--md-sys-color-error);
     }
   }
 
-  .container:disabled & {
-    color: color-mix(in srgb, var(--color-on-surface), transparent 62%);
+  &[aria-disabled='true'] {
+    color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
   }
 }
 </style>

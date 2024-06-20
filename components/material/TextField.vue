@@ -72,12 +72,15 @@ const props = defineProps<{
 const randomId = props.id ?? useId()
 const hintId = props.hint ? `hint-${randomId}` : undefined
 const model = defineModel<string>()
-const textareaRows = computed(() => Math.max(model.value ? model.value.split('\n').length : 1, 2))
+const textareaRows = computed(() =>
+  Math.max(model.value ? model.value.split('\n').length : 1, 2)
+)
 const prefixRef = ref<HTMLSpanElement>()
 const labelPadding = 4
 const containerPadding = 16
 const lengthToLeftEnd = computed(
-  () => `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`
+  () =>
+    `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`
 )
 const clickHandler = () => {
   document.getElementById(randomId)?.focus()
@@ -85,7 +88,11 @@ const clickHandler = () => {
 </script>
 
 <template>
-  <div class="wrapper" :class="{ 'full-width': fullWidth }" :data-full="Boolean(model)">
+  <div
+    class="wrapper"
+    :class="{ 'full-width': fullWidth }"
+    :data-full="Boolean(model)"
+  >
     <div class="container h-stack" @click="clickHandler">
       <span v-if="prefix" ref="prefixRef" class="prefix">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
@@ -115,7 +122,7 @@ const clickHandler = () => {
           :autocomplete="autocomplete"
           :aria-describedby="hintId"
           :type="type"
-        >
+        />
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
@@ -138,7 +145,7 @@ const clickHandler = () => {
   --this-height: 3.5rem;
   gap: 0;
   position: relative;
-  outline: var(--color-outline) solid 1px;
+  outline: var(--md-sys-color-outline) solid 1px;
   box-sizing: border-box;
   min-height: var(--this-height);
   border-radius: 0.25rem;
@@ -148,11 +155,11 @@ const clickHandler = () => {
     outline-width 50ms;
 
   &:hover {
-    outline-color: var(--color-on-surface);
+    outline-color: var(--md-sys-color-on-surface);
   }
 
   &:focus-within {
-    outline-color: var(--color-primary);
+    outline-color: var(--md-sys-color-primary);
     outline-width: 2px;
   }
 
@@ -174,7 +181,7 @@ const clickHandler = () => {
 .suffix {
   white-space: nowrap;
   user-select: none;
-  color: var(--color-on-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
 }
 
 .label-wrapper {
@@ -187,7 +194,7 @@ const clickHandler = () => {
   user-select: none;
   white-space: nowrap;
   padding: 0 calc(1px * v-bind(labelPadding));
-  background-color: var(--color-surface);
+  background-color: var(--md-sys-color-surface);
   transition:
     translate 200ms,
     font-size 200ms,
@@ -200,7 +207,7 @@ const clickHandler = () => {
   }
 
   .wrapper:focus-within & {
-    color: var(--color-primary);
+    color: var(--md-sys-color-primary);
   }
 }
 
@@ -231,7 +238,7 @@ const clickHandler = () => {
 .hint,
 .counter {
   font-size: 0.75rem;
-  color: var(--color-on-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
 }
 
 .counter {

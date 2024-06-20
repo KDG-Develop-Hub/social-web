@@ -104,7 +104,7 @@ watch(contentWidth, resize)
   width: v-bind(width);
   max-width: 48rem;
   border-radius: 1rem;
-  background: var(--color-surface);
+  background: var(--md-sys-color-surface);
 
   &[data-state='open'] {
     opacity: 1;
@@ -153,7 +153,7 @@ watch(contentWidth, resize)
 
 .icon {
   :global(*) {
-    color: var(--color-error);
+    color: var(--md-sys-color-error);
   }
 }
 

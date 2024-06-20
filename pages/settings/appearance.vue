@@ -18,15 +18,24 @@ const themes = [
   <h2>見た目</h2>
   <div>
     <h3 id="theme">テーマ</h3>
-    <p id="theme-describe">テーマを選択すると、アプリケーションの見た目が変わります。</p>
-    <RadioGroupRoot aria-labelledby="theme" aria-describedby="theme-describe" class="h-stack">
+    <p id="theme-describe">
+      テーマを選択すると、アプリケーションの見た目が変わります。
+    </p>
+    <RadioGroupRoot
+      aria-labelledby="theme"
+      aria-describedby="theme-describe"
+      class="h-stack"
+    >
       <RadioGroupItem
         v-for="theme in themes"
         :key="theme.id"
         class="item v-stack"
         :value="theme.id"
       >
-        <RadioGroupItemControl class="indicator square" :data-color="theme.id" />
+        <RadioGroupItemControl
+          class="indicator square"
+          :data-color="theme.id"
+        />
         <RadioGroupItemText>{{ theme.name }}</RadioGroupItemText>
         <RadioGroupItemHiddenInput />
       </RadioGroupItem>
@@ -52,10 +61,10 @@ p {
   display: inline-flex;
   border-radius: 99rem;
   overflow: hidden;
-  border: 3px solid var(--color-outline-variant);
+  border: 3px solid var(--md-sys-color-outline-variant);
 
   &[data-state='checked'] {
-    border-color: var(--color-primary);
+    border-color: var(--md-sys-color-primary);
     &:after {
       scale: 0.75;
     }
@@ -74,19 +83,19 @@ p {
   &[data-color='system']:after {
     background: linear-gradient(
       to right,
-      var(--palette-neutral10),
-      var(--palette-neutral10) 50%,
-      var(--palette-neutral90) 50%,
-      var(--palette-neutral90)
+      rgb(217 219 209),
+      rgb(217 219 209) 50%,
+      rgb(17 20 14) 50%,
+      rgb(17 20 14)
     );
   }
 
   &[data-color='light']:after {
-    background: var(--palette-neutral90);
+    background: rgb(217 219 209);
   }
 
   &[data-color='dark']:after {
-    background: var(--palette-neutral10);
+    background: rgb(17 20 14);
   }
 }
 </style>

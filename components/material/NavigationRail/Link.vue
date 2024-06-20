@@ -11,7 +11,11 @@ defineProps<{
 <template>
   <NuxtLink :to="to" class="v-stack link">
     <span class="indicator h-stack">
-      <component :is="icon" class="link-icon" stroke-width="var(--navr-link-icon-width)" />
+      <component
+        :is="icon"
+        class="link-icon"
+        stroke-width="var(--navr-link-icon-width)"
+      />
     </span>
     {{ label }}
   </NuxtLink>
@@ -51,15 +55,23 @@ defineProps<{
     transition: all 200ms ease;
     opacity: 0;
     border-radius: 99rem;
-    background-color: var(--color-primary-container);
+    background-color: var(--md-sys-color-primary-container);
   }
 
   .link:hover & {
-    background-color: color-mix(in srgb, var(--palette-neutral60), transparent 80%);
+    background-color: color-mix(
+      in srgb,
+      var(--palette-neutral60),
+      transparent 80%
+    );
   }
 
   .link:active & {
-    background-color: color-mix(in srgb, var(--palette-neutral60), transparent 72%);
+    background-color: color-mix(
+      in srgb,
+      var(--palette-neutral60),
+      transparent 72%
+    );
   }
 
   .link.router-link-active &::before {

@@ -35,7 +35,11 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
         <DialogTrigger class="avatar-wrapper">
           <div class="avatar-backdrop" />
           <span class="avatar-label">アバターを変更</span>
-          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" >
+          <img
+            :src="user.avatarUrl"
+            class="square avatar"
+            :alt="`${user.displayName}のアバター`"
+          />
         </DialogTrigger>
         <MaterialDialog>
           <FileUploadRoot
@@ -44,7 +48,11 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
             :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
           >
             <FileUploadContext v-slot="{ acceptedFiles }">
-              <FileUploadItem v-if="acceptedFiles.length" as-child :file="acceptedFiles[0]">
+              <FileUploadItem
+                v-if="acceptedFiles.length"
+                as-child
+                :file="acceptedFiles[0]"
+              >
                 <form class="avatar-change-accept">
                   <FileUploadItemPreview type="image/*">
                     <FileUploadItemPreviewImage class="square avatar" />
@@ -52,14 +60,20 @@ const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
                   このファイルをアップロードしますか？
                   <div class="h-stack">
                     <FileUploadItemDeleteTrigger as-child>
-                      <MaterialButton variant="text">んーこれじゃないな</MaterialButton>
+                      <MaterialButton variant="text"
+                        >んーこれじゃないな</MaterialButton
+                      >
                     </FileUploadItemDeleteTrigger>
-                    <MaterialButton type="submit">アップロードする！</MaterialButton>
+                    <MaterialButton type="submit"
+                      >アップロードする！</MaterialButton
+                    >
                   </div>
                 </form>
               </FileUploadItem>
               <FileUploadDropzone v-else class="avatar-drop-zone">
-                <FileUploadLabel>枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel>
+                <FileUploadLabel
+                  >枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel
+                >
                 <span>もしくは...</span>
                 <FileUploadTrigger as-child>
                   <MaterialButton>ファイルを選択</MaterialButton>
@@ -155,7 +169,7 @@ h2 {
   place-content: center;
   place-items: center;
   gap: 1rem;
-  border: 1px dashed var(--color-outline-variant);
+  border: 1px dashed var(--md-sys-color-outline-variant);
 }
 
 .avatar-accept-enter-active,

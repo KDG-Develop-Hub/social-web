@@ -20,7 +20,9 @@ const id = useId()
       src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
       :alt="`${name}のプロフィールの写真`"
     />
-    <Avatar.Fallback class="square fallback">{{ initialName(name) }}</Avatar.Fallback>
+    <Avatar.Fallback class="square fallback">{{
+      initialName(name)
+    }}</Avatar.Fallback>
   </Avatar.Root>
 </template>
 
@@ -51,8 +53,8 @@ const id = useId()
   place-items: center;
   font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
   font-weight: 500;
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
   position: relative;
 }
 </style>
