@@ -23,9 +23,11 @@
       <div class="body">
         <header class="h-stack">
           <strong>{{ users[tweet.userId].name }}</strong>
-          <time :datetime="dateTimeFormatter.format(tweet.createdAt)">{{
-            formatDistanceFromNow(tweet.createdAt)
-          }}</time>
+          <time
+            class="md-sys-typescale-body-small"
+            :datetime="dateTimeFormatter.format(tweet.createdAt)"
+            >{{ formatDistanceFromNow(tweet.createdAt) }}</time
+          >
         </header>
         <p>{{ tweet.content }}</p>
       </div>
@@ -53,10 +55,6 @@
 
     header {
       height: 1.5rem;
-
-      time {
-        font-size: 0.875rem;
-      }
     }
   }
 </style>

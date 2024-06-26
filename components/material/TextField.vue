@@ -97,14 +97,23 @@
       <span v-if="prefix" ref="prefixRef" class="prefix">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
         <span class="label-wrapper h-stack">
-          <label class="h-stack label" :for="randomId">{{ label }}</label>
+          <label
+            class="h-stack label"
+            :class="
+              Boolean(model)
+                ? 'md-sys-typescale-body-small'
+                : 'md-sys-typescale-body-large'
+            "
+            :for="randomId"
+            >{{ label }}</label
+          >
         </span>
         <textarea
           v-if="multiLine"
           :id="randomId"
           v-model="model"
           :required
-          class="full-width full-height input"
+          class="full-width full-height md-sys-typescale-body-large input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
@@ -127,8 +136,16 @@
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p v-if="hint" :id="hintId" class="hint full-width">{{ hint }}</p>
-      <span v-if="maxLength" class="counter full-width"
+      <p
+        v-if="hint"
+        :id="hintId"
+        class="hint md-sys-typescale-body-small full-width"
+      >
+        {{ hint }}
+      </p>
+      <span
+        v-if="maxLength"
+        class="counter md-sys-typescale-body-small full-width"
         >{{ model?.length ?? 0 }}/{{ maxLength }}</span
       >
     </div>
@@ -203,7 +220,6 @@
 
     :is(.wrapper[data-full='true'], .wrapper:focus-within) & {
       translate: v-bind(lengthToLeftEnd) calc(var(--this-height) / -2);
-      font-size: 0.75rem;
     }
 
     .wrapper:focus-within & {
@@ -219,7 +235,6 @@
     padding: 0;
     height: min-content;
     cursor: text;
-    font-size: 1rem;
     min-height: 1.5rem;
     resize: none;
     border: none;
@@ -237,7 +252,6 @@
 
   .hint,
   .counter {
-    font-size: 0.75rem;
     color: var(--md-sys-color-on-surface-variant);
   }
 

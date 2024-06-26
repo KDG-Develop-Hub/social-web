@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   css: [
     '@/assets/css/global.css',
     '@/assets/css/layout.css',
+    '@/assets/css/typography.css',
     '@/assets/css/colors/light.css',
     '@/assets/css/colors/light-mc.css',
     '@/assets/css/colors/light-hc.css',

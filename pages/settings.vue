@@ -11,9 +11,11 @@
     <nav>
       <ul class="nav">
         <li v-for="item in navItems" :key="item.to" class="h-stack">
-          <NuxtLink class="nav-item h-stack" :to="`/settings${item.to}`">{{
-            item.text
-          }}</NuxtLink>
+          <NuxtLink
+            class="nav-item md-sys-typescale-title-small h-stack"
+            :to="`/settings${item.to}`"
+            >{{ item.text }}</NuxtLink
+          >
         </li>
       </ul>
     </nav>
@@ -42,7 +44,6 @@
     padding: 0 1rem;
     border-radius: 99rem;
     text-decoration: none;
-    font-weight: 500;
     &.router-link-exact-active {
       background-color: var(--md-sys-color-secondary-container);
       color: var(--md-sys-color-on-secondary-container);

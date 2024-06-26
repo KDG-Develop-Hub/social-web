@@ -9,7 +9,11 @@
 </script>
 
 <template>
-  <NuxtLink :to="to" class="v-stack link">
+  <NuxtLink
+    :to="to"
+    active-class="md-sys-typescale-label-medium-promient router-link-active"
+    class="v-stack link md-sys-typescale-label-medium"
+  >
     <span class="indicator h-stack">
       <component
         :is="icon"
@@ -23,20 +27,23 @@
 
 <style scoped>
   .link {
-    font-size: 0.75rem;
-    font-weight: 500;
     text-decoration: none;
     gap: 0.25rem;
     --navr-link-icon-width: 2;
 
     &:is(:hover, .router-link-active) {
-      font-weight: 600;
       --navr-link-icon-width: 2.25;
     }
   }
 
   .link-icon {
     transition: stroke-width 200ms ease;
+    :is(.link:hover &, .link.router-link-active &) {
+      stroke-width: 2.5;
+    }
+    .link:active & {
+      stroke-width: 1.5;
+    }
   }
 
   .indicator {
@@ -55,22 +62,22 @@
       transition: all 200ms ease;
       opacity: 0;
       border-radius: 99rem;
-      background-color: var(--md-sys-color-primary-container);
+      background-color: var(--md-sys-color-secondary-container);
     }
 
     .link:hover & {
       background-color: color-mix(
         in srgb,
-        var(--palette-neutral60),
-        transparent 80%
+        var(--md-sys-color-on-surface) 8%,
+        transparent
       );
     }
 
     .link:active & {
       background-color: color-mix(
         in srgb,
-        var(--palette-neutral60),
-        transparent 72%
+        var(--md-sys-color-on-surface) 10%,
+        transparent
       );
     }
 

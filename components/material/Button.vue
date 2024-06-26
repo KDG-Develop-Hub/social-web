@@ -30,7 +30,7 @@
   >
     <slot name="icon" />
     <span
-      class="label-wrapper"
+      class="label-wrapper md-sys-typescale-label-medium"
       :aria-disabled="disabled"
       :data-variant="variant"
       :data-color="color"
@@ -142,8 +142,6 @@
     text-overflow: ellipsis;
     text-align: center;
     pointer-events: none;
-    font-size: 0.875rem;
-    font-weight: 500;
     line-height: 1.5;
     color: var(--label-color);
 

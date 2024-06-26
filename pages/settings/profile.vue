@@ -34,7 +34,9 @@
       <DialogRoot>
         <DialogTrigger class="avatar-wrapper">
           <div class="avatar-backdrop" />
-          <span class="avatar-label">アバターを変更</span>
+          <span class="avatar-label md-sys-typescale-label-medium"
+            >アバターを変更</span
+          >
           <img
             :src="user.avatarUrl"
             class="square avatar"
@@ -137,7 +139,6 @@
   }
 
   .avatar-label {
-    font-size: 0.875rem;
     text-align: center;
     display: block;
     color: white;

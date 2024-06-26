@@ -37,7 +37,7 @@
         v-for="i in tabItems"
         :key="i.value"
         as-child
-        class="tab"
+        class="tab md-sys-typescale-title-small"
         :value="i.value"
       >
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
@@ -83,7 +83,6 @@
     justify-content: center;
     border: none;
     background: none;
-    font-weight: 500;
     text-decoration: none;
     height: 3rem;
     padding: 0 0.5rem;
