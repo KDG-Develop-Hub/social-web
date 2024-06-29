@@ -99,9 +99,7 @@
         <span class="label-wrapper h-stack">
           <label
             class="h-stack label"
-            :class="
-              Boolean(model) ? 'typescale-body-small' : 'typescale-body-large'
-            "
+            :class="Boolean(model) ? 'typescale-body-sm' : 'typescale-body-lg'"
             :for="randomId"
             >{{ label }}</label
           >
@@ -111,7 +109,7 @@
           :id="randomId"
           v-model="model"
           :required
-          class="full-width full-height typescale-body-large input"
+          class="full-width full-height typescale-body-lg input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"

@@ -24,7 +24,7 @@
         <header class="h-stack">
           <strong>{{ users[tweet.userId].name }}</strong>
           <time
-            class="md-sys-typescale-body-small"
+            class="md-sys-typescale-body-sm"
             :datetime="dateTimeFormatter.format(tweet.createdAt)"
             >{{ formatDistanceFromNow(tweet.createdAt) }}</time
           >
