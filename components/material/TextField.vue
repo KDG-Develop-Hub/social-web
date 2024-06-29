@@ -109,7 +109,7 @@
           :id="randomId"
           v-model="model"
           :required
-          class="full-width full-height typescale-body-lg input"
+          class="full-width full-height body-lg input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
@@ -120,7 +120,7 @@
           v-else
           :id="randomId"
           v-model="model"
-          class="full-width full-height typescale-body-lg input"
+          class="full-width full-height body-lg input"
           :required
           :maxlength="maxLength"
           :minLength="minLength"
@@ -132,10 +132,10 @@
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p v-if="hint" :id="hintId" class="hint typescale-body-sm full-width">
+      <p v-if="hint" :id="hintId" class="hint body-sm full-width">
         {{ hint }}
       </p>
-      <span v-if="maxLength" class="counter typescale-body-sm full-width"
+      <span v-if="maxLength" class="counter body-sm full-width"
         >{{ model?.length ?? 0 }}/{{ maxLength }}</span
       >
     </div>

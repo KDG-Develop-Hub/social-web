@@ -37,7 +37,7 @@
         v-for="i in tabItems"
         :key="i.value"
         as-child
-        class="tab md-sys-typescale-title-sm"
+        class="tab title-sm"
         :value="i.value"
       >
         <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>

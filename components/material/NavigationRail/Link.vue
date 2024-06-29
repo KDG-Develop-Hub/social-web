@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <NuxtLink :to="to" class="v-stack link typescale-label-md">
+  <NuxtLink :to="to" class="v-stack link label-md">
     <span class="indicator h-stack">
       <component :is="icon" class="link-icon" />
     </span>

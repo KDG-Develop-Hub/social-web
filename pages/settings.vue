@@ -12,7 +12,7 @@
       <ul class="nav">
         <li v-for="item in navItems" :key="item.to" class="h-stack">
           <NuxtLink
-            class="nav-item typescale-title-sm h-stack"
+            class="nav-item title-sm h-stack"
             :to="`/settings${item.to}`"
             >{{ item.text }}</NuxtLink
           >
