@@ -30,7 +30,7 @@
   >
     <slot name="icon" />
     <span
-      class="label-wrapper md-sys-typescale-label-medium"
+      class="label-wrapper typescale-label-md"
       :aria-disabled="disabled"
       :data-variant="variant"
       :data-color="color"

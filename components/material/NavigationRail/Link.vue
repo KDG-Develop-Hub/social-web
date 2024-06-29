@@ -11,8 +11,8 @@
 <template>
   <NuxtLink
     :to="to"
-    active-class="md-sys-typescale-label-medium-promient router-link-active"
-    class="v-stack link md-sys-typescale-label-medium"
+    active-class="typescale-label-md-prominent router-link-active"
+    class="v-stack link typescale-label-md"
   >
     <span class="indicator h-stack">
       <component

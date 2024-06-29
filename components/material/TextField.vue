@@ -100,9 +100,7 @@
           <label
             class="h-stack label"
             :class="
-              Boolean(model)
-                ? 'md-sys-typescale-body-small'
-                : 'md-sys-typescale-body-large'
+              Boolean(model) ? 'typescale-body-small' : 'typescale-body-large'
             "
             :for="randomId"
             >{{ label }}</label
@@ -113,7 +111,7 @@
           :id="randomId"
           v-model="model"
           :required
-          class="full-width full-height md-sys-typescale-body-large input"
+          class="full-width full-height typescale-body-large input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
@@ -136,16 +134,10 @@
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p
-        v-if="hint"
-        :id="hintId"
-        class="hint md-sys-typescale-body-small full-width"
-      >
+      <p v-if="hint" :id="hintId" class="hint typescale-body-sm full-width">
         {{ hint }}
       </p>
-      <span
-        v-if="maxLength"
-        class="counter md-sys-typescale-body-small full-width"
+      <span v-if="maxLength" class="counter typescale-body-sm full-width"
         >{{ model?.length ?? 0 }}/{{ maxLength }}</span
       >
     </div>
