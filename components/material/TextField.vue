@@ -89,7 +89,7 @@
 
 <template>
   <div
-    class="wrapper"
+    class="root"
     :class="{ 'full-width': fullWidth }"
     :data-full="Boolean(model)"
   >
@@ -99,7 +99,7 @@
         <span class="label-wrapper h-stack">
           <label
             class="h-stack label"
-            :class="Boolean(model) ? 'typescale-body-sm' : 'typescale-body-lg'"
+            :data-full="Boolean(model)"
             :for="randomId"
             >{{ label }}</label
           >
@@ -120,7 +120,7 @@
           v-else
           :id="randomId"
           v-model="model"
-          class="full-width full-height input"
+          class="full-width full-height typescale-body-lg input"
           :required
           :maxlength="maxLength"
           :minLength="minLength"
@@ -143,7 +143,7 @@
 </template>
 
 <style scoped>
-  .wrapper {
+  .root {
     padding: 0.5rem 2px;
     overflow: hidden;
   }
@@ -160,6 +160,10 @@
     transition:
       outline-color 200ms,
       outline-width 50ms;
+
+    * {
+      cursor: text;
+    }
 
     &:hover {
       outline-color: var(--md-sys-color-on-surface);
@@ -200,19 +204,26 @@
   .label {
     user-select: none;
     white-space: nowrap;
+    color: var(--md-sys-color-on-surface-variant);
     padding: 0 calc(1px * v-bind(labelPadding));
     background-color: var(--md-sys-color-surface);
+    font-size: var(--md-sys-typescale-body-lg-size);
+    font-weight: var(--md-sys-typescale-body-lg-weight);
+    word-spacing: var(--md-sys-typescale-body-lg-tracking);
     transition:
       translate 200ms,
       font-size 200ms,
       color 200ms;
     translate: 0;
 
-    :is(.wrapper[data-full='true'], .wrapper:focus-within) & {
+    :is([data-full='true'], .root:focus-within) & {
+      font-size: var(--md-sys-typescale-body-sm-size);
+      font-weight: var(--md-sys-typescale-body-sm-weight);
+      word-spacing: var(--md-sys-typescale-body-sm-tracking);
       translate: v-bind(lengthToLeftEnd) calc(var(--this-height) / -2);
     }
 
-    .wrapper:focus-within & {
+    .root:focus-within & {
       color: var(--md-sys-color-primary);
     }
   }

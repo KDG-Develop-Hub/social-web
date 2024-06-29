@@ -9,17 +9,9 @@
 </script>
 
 <template>
-  <NuxtLink
-    :to="to"
-    active-class="typescale-label-md-prominent router-link-active"
-    class="v-stack link typescale-label-md"
-  >
+  <NuxtLink :to="to" class="v-stack link typescale-label-md">
     <span class="indicator h-stack">
-      <component
-        :is="icon"
-        class="link-icon"
-        stroke-width="var(--navr-link-icon-width)"
-      />
+      <component :is="icon" class="link-icon" />
     </span>
     {{ label }}
   </NuxtLink>
@@ -32,18 +24,18 @@
     --navr-link-icon-width: 2;
 
     &:is(:hover, .router-link-active) {
-      --navr-link-icon-width: 2.25;
+      font-weight: var(--md-sys-typescale-label-md-weight-prominent);
+      --navr-link-icon-width: 2.5;
+    }
+
+    &:active {
+      --navr-link-icon-width: 1.5;
     }
   }
 
   .link-icon {
     transition: stroke-width 200ms ease;
-    :is(.link:hover &, .link.router-link-active &) {
-      stroke-width: 2.5;
-    }
-    .link:active & {
-      stroke-width: 1.5;
-    }
+    stroke-width: var(--navr-link-icon-width);
   }
 
   .indicator {

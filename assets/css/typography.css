@@ -1,83 +1,111 @@
+* {
+  --md-sys-typescale-headline-lg-size: 2rem;
+  --md-sys-typescale-headline-lg-weight: 400;
+  --md-sys-typescale-headline-lg-tracking: 0;
+  --md-sys-typescale-headline-md-size: 1.75rem;
+  --md-sys-typescale-headline-md-weight: 400;
+  --md-sys-typescale-headline-md-tracking: 0;
+  --md-sys-typescale-headline-sm-size: 1.5rem;
+  --md-sys-typescale-headline-sm-weight: 400;
+  --md-sys-typescale-headline-sm-tracking: 0;
+  --md-sys-typescale-title-lg-size: 1.375rem;
+  --md-sys-typescale-title-lg-weight: 400;
+  --md-sys-typescale-title-lg-tracking: 0;
+  --md-sys-typescale-title-md-size: 1rem;
+  --md-sys-typescale-title-md-weight: 500;
+  --md-sys-typescale-title-md-tracking: 0.15pt;
+  --md-sys-typescale-title-sm-size: 0.875rem;
+  --md-sys-typescale-title-sm-weight: 500;
+  --md-sys-typescale-title-sm-tracking: 0.1pt;
+  --md-sys-typescale-body-lg-size: 1rem;
+  --md-sys-typescale-body-lg-weight: 400;
+  --md-sys-typescale-body-lg-tracking: 0.5pt;
+  --md-sys-typescale-body-md-size: 0.875rem;
+  --md-sys-typescale-body-md-weight: 400;
+  --md-sys-typescale-body-md-tracking: 0.25pt;
+  --md-sys-typescale-body-sm-size: 0.75rem;
+  --md-sys-typescale-body-sm-weight: 400;
+  --md-sys-typescale-body-sm-tracking: 0.4pt;
+  --md-sys-typescale-label-lg-size: 0.875rem;
+  --md-sys-typescale-label-lg-weight: 500;
+  --md-sys-typescale-label-lg-weight-prominent: 700;
+  --md-sys-typescale-label-lg-tracking: 0.1pt;
+  --md-sys-typescale-label-md-size: 0.75rem;
+  --md-sys-typescale-label-md-weight: 500;
+  --md-sys-typescale-label-md-weight-prominent: 700;
+  --md-sys-typescale-label-md-tracking: 0.5pt;
+  --md-sys-typescale-label-sm-size: 0.6875rem;
+  --md-sys-typescale-label-sm-weight: 500;
+}
+
 .typescale-headline-lg {
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-size: var(--md-sys-typescale-headline-lg-size);
+  font-weight: var(--md-sys-typescale-headline-lg-weight);
+  letter-spacing: var(--md-sys-typescale-headline-lg-tracking);
 }
 
 .typescale-headline-md {
-  font-size: 1.75rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-size: var(--md-sys-typescale-headline-md-size);
+  font-weight: var(--md-sys-typescale-headline-md-weight);
+  letter-spacing: var(--md-sys-typescale-headline-md-tracking);
 }
 
 .typescale-headline-sm {
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-size: var(--md-sys-typescale-headline-sm-size);
+  font-weight: var(--md-sys-typescale-headline-sm-weight);
+  letter-spacing: var(--md-sys-typescale-headline-sm-tracking);
 }
 
 .typescale-title-lg {
-  font-size: 1.375rem;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-size: var(--md-sys-typescale-title-lg-size);
+  font-weight: var(--md-sys-typescale-title-lg-weight);
+  letter-spacing: var(--md-sys-typescale-title-lg-tracking);
 }
 
 .typescale-title-md {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.15pt;
+  font-size: var(--md-sys-typescale-title-md-size);
+  font-weight: var(--md-sys-typescale-title-md-weight);
+  letter-spacing: var(--md-sys-typescale-title-md-tracking);
 }
 
 .typescale-title-sm {
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.1pt;
+  font-size: var(--md-sys-typescale-title-sm-size);
+  font-weight: var(--md-sys-typescale-title-sm-weight);
+  letter-spacing: var(--md-sys-typescale-title-sm-tracking);
 }
 
 .typescale-body-lg {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.5pt;
+  font-size: var(--md-sys-typescale-body-lg-size);
+  font-weight: var(--md-sys-typescale-body-lg-weight);
+  letter-spacing: var(--md-sys-typescale-body-lg-tracking);
 }
 
 .typescale-body-md {
-  font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 0.25pt;
+  font-size: var(--md-sys-typescale-body-md-size);
+  font-weight: var(--md-sys-typescale-body-md-weight);
+  letter-spacing: var(--md-sys-typescale-body-md-tracking);
 }
 
 .typescale-body-sm {
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.4pt;
+  font-size: var(--md-sys-typescale-body-sm-size);
+  font-weight: var(--md-sys-typescale-body-sm-weight);
+  letter-spacing: var(--md-sys-typescale-body-sm-tracking);
 }
 
 .my-sys-typescale-label-lg {
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.1pt;
+  font-size: var(--md-sys-typescale-label-lg-size);
+  font-weight: var(--md-sys-typescale-label-lg-weight);
+  letter-spacing: var(--md-sys-typescale-label-lg-tracking);
 }
 
 .typescale-label-md {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.5pt;
+  font-size: var(--md-sys-typescale-label-md-size);
+  font-weight: var(--md-sys-typescale-label-md-weight);
+  letter-spacing: var(--md-sys-typescale-label-md-tracking);
 }
 
 .typescale-label-sm {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.5pt;
-}
-
-.my-sys-typescale-label-lg-prom {
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.5pt;
-}
-
-.typescale-label-md-prom {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.5pt;
+  font-size: var(--md-sys-typescale-label-sm-size);
+  font-weight: var(--md-sys-typescale-label-sm-weight);
+  letter-spacing: var(--md-sys-typescale-label-sm-tracking);
 }
