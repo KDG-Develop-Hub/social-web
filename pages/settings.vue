@@ -42,7 +42,7 @@
     width: 100%;
     height: 2.5rem;
     padding: 0 1rem;
-    border-radius: 99rem;
+    border-radius: var(--md-sys-shape-corner-full);
     text-decoration: none;
     &.router-link-exact-active {
       background-color: var(--md-sys-color-secondary-container);

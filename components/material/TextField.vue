@@ -155,7 +155,7 @@
     outline: var(--md-sys-color-outline) solid 1px;
     box-sizing: border-box;
     min-height: var(--this-height);
-    border-radius: 0.25rem;
+    border-radius: var(--md-sys-shape-corner-xs);
     padding: 1rem 0;
     transition:
       outline-color 200ms,

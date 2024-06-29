@@ -42,7 +42,7 @@
     position: relative;
     width: 3.5rem;
     justify-content: center;
-    border-radius: 99rem;
+    border-radius: var(--md-sys-shape-corner-full);
     height: 2rem;
 
     &::before {
@@ -53,7 +53,7 @@
       height: 100%;
       transition: all 200ms ease;
       opacity: 0;
-      border-radius: 99rem;
+      border-radius: var(--md-sys-shape-corner-full);
       background-color: var(--md-sys-color-secondary-container);
     }
 

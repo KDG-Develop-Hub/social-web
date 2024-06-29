@@ -103,7 +103,7 @@
     box-sizing: border-box;
     width: v-bind(width);
     max-width: 48rem;
-    border-radius: 1rem;
+    border-radius: var(--md-sys-shape-corner-lg);
     background: var(--md-sys-color-surface);
 
     &[data-state='open'] {

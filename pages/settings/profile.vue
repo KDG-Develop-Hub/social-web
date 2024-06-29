@@ -111,14 +111,14 @@
   }
 
   .avatar {
-    border-radius: 8rem;
+    border-radius: var(--md-sys-shape-corner-full);
     --square-size: 16rem;
     object-fit: cover;
   }
 
   .avatar-wrapper {
     position: relative;
-    border-radius: 99rem;
+    border-radius: var(--md-sys-shape-corner-full);
     overflow: hidden;
     display: grid;
     place-items: center;

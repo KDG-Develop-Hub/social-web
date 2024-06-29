@@ -59,7 +59,7 @@
   .indicator {
     --square-size: 6rem;
     display: inline-flex;
-    border-radius: 99rem;
+    border-radius: var(--md-sys-shape-corner-full);
     overflow: hidden;
     border: 3px solid var(--md-sys-color-outline-variant);
 
@@ -72,7 +72,7 @@
 
     &:after {
       display: block;
-      border-radius: 99rem;
+      border-radius: var(--md-sys-shape-corner-full);
       content: ' ';
       scale: 0.5;
       width: 100%;

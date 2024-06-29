@@ -12,7 +12,7 @@
   .container {
     display: grid;
     place-items: center;
-    border-radius: 0.75rem;
+    border-radius: var(--md-sys-shape-corner-md);
     border: none;
     cursor: pointer;
     background-color: var(--md-sys-color-tertiary);

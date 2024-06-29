@@ -30,7 +30,7 @@
   >
     <slot name="icon" />
     <span
-      class="label-wrapper typescale-label-md"
+      class="label-wrapper label-md"
       :aria-disabled="disabled"
       :data-variant="variant"
       :data-color="color"
@@ -49,7 +49,7 @@
     justify-content: center;
     text-decoration: none;
     padding: 0 1rem;
-    border-radius: 99rem;
+    border-radius: var(--md-sys-shape-corner-full);
     height: 2.5rem;
     background: var(--button-ctn-bgcolor-basic);
 

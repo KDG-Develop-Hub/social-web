@@ -30,21 +30,23 @@
   .square {
     &[data-size='sm'] {
       --square-size: 2rem;
+      border-radius: var(--md-sys-shape-corner-sm);
     }
 
     &[data-size='md'] {
       --square-size: 3rem;
+      border-radius: var(--md-sys-shape-corner-md);
     }
 
     &[data-size='lg'] {
       --square-size: 4rem;
+      border-radius: var(--md-sys-shape-corner-lg);
     }
   }
 
   .root {
     flex-shrink: 0;
     display: inline-flex;
-    border-radius: calc(var(--square-size) / 4);
     overflow: hidden;
   }
 
