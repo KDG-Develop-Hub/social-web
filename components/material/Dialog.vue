@@ -109,7 +109,7 @@ watch(contentWidth, resize)
   &[data-state='open'] {
     opacity: 1;
     translate: 0;
-    height: var(--dialog-height);
+    /* height: var(--dialog-height); */
 
     &[data-updated='false'] {
       height: auto;
@@ -151,7 +151,7 @@ watch(contentWidth, resize)
   }
 }
 
-.icon {
+.feather-icon {
   :global(*) {
     color: var(--color-error);
   }

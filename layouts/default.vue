@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Dialog as ArkDialog } from '@ark-ui/vue'
+import { Dialog as ArkDialog, FileUpload } from '@ark-ui/vue'
 import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
 
 const currentUser = useCurrentUserStore()
@@ -26,13 +26,13 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
             </MaterialFAB>
           </ArkDialog.Trigger>
           <MaterialDialog width="560px">
-            <div class="icon">
+            <div class="feather-icon">
               <Feather stroke="#678C40" />
             </div>
-            <ArkDialog.Title> 今回は何を綴るのかな？</ArkDialog.Title>
+            <ArkDialog.Title class="ark-dialog-title"> 今回は何を綴るのかな？</ArkDialog.Title>
             <ArkDialog.Description as-child>
               <p class="description">
-                自分の考えや出来事を気楽に書こう！コミュニティーガイドラインの確認も忘れないでねッ！
+                自分の考えや出来事を気楽に書こう！ミュニティーガイドラインの確認も忘れないでねッ！
               </p>
               <div class="border-bottom" />
             </ArkDialog.Description>
@@ -44,14 +44,34 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               helper-text="0/256"
               :multi-line="true"
             />
-            <div class="icons">
-              <span>
-                <ImagePlus />
-              </span>
-              <span>
-                <Menu />
-              </span>
-            </div>
+            <FileUpload.Root :max-files="3" accept="image/*">
+              <FileUpload.ItemGroup class="ark-file-upload-item-group image-list">
+                <FileUpload.Context v-slot="{ acceptedFiles }">
+                  <div v-for="file in acceptedFiles" :key="file.name" class="file-item">
+                    <FileUpload.Item :file="file">
+                      <FileUpload.ItemPreview type="image/*" class="image-list">
+                        <FileUpload.ItemPreviewImage
+                          :style="{ width: '64px', height: '64px' }"
+                          class="image"
+                        />
+                        <FileUpload.ItemDeleteTrigger class="delete-trigger"
+                          >X</FileUpload.ItemDeleteTrigger
+                        >
+                      </FileUpload.ItemPreview>
+                    </FileUpload.Item>
+                  </div>
+                </FileUpload.Context>
+              </FileUpload.ItemGroup>
+              <FileUpload.HiddenInput />
+              <div class="icons">
+                <FileUpload.Label>
+                  <ImagePlus />
+                </FileUpload.Label>
+                <span>
+                  <Menu />
+                </span>
+              </div>
+            </FileUpload.Root>
             <template #buttons>
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
@@ -91,8 +111,9 @@ main {
   padding: 2rem 1.5rem;
 }
 
-.icon {
+.feather-icon {
   display: flex;
+  gap: 10px;
   justify-content: center;
 }
 
@@ -105,7 +126,46 @@ main {
   gap: 20px;
 }
 
-[data-scope='dialog'][data-part='title'] {
+.ark-content {
+  height: auto;
+}
+
+.ark-dialog-title {
   text-align: center;
+}
+
+.ark-file-upload-item-group {
+  list-style: none;
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+
+.image-list {
+  display: flex;
+  gap: 10px;
+}
+
+.image {
+  border-radius: 4px;
+}
+
+/* 追加のスタイル */
+.file-item {
+  position: relative;
+}
+
+.delete-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  color: var(--palette-secondary90);
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.file-item:hover .delete-trigger {
+  display: block;
 }
 </style>
