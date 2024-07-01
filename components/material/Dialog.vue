@@ -95,6 +95,7 @@
     --dialog-height: v-bind(contentHeight);
     --dialog-padding: 1.5rem;
     display: flex;
+    box-shadow: var(--md-sys-elevation-3);
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
