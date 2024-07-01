@@ -43,6 +43,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               max-length="256"
               helper-text="0/256"
               multi-line
+              max-rows="16"
             />
             <FileUpload.Root :max-files="3" accept="image/*">
               <FileUpload.ItemGroup class="ark-file-upload-item-group image-list">

@@ -59,6 +59,7 @@ const props = defineProps<{
     | 'bday-month'
     | 'bday-year'
   required?: boolean
+  maxRows?: number | `${number}`
   id?: string
   fullWidth?: boolean
   hint?: string
@@ -69,10 +70,12 @@ const props = defineProps<{
   label: string
   multiLine?: boolean
 }>()
-const randomId = props.id ?? useId()
-const hintId = props.hint ? `hint-${randomId}` : undefined
+const id = props.id ?? useId()
+const hintId = props.hint ? `hint-${id}` : undefined
 const model = defineModel<string>()
-const textareaRows = computed(() => Math.max(model.value ? model.value.split('\n').length : 1, 2))
+const textareaRows = computed(() =>
+  Math.min(model.value?.split('\n').length ?? 1, Number(props.maxRows) || 1)
+)
 const prefixRef = ref<HTMLSpanElement>()
 const labelPadding = 4
 const containerPadding = 16
@@ -80,7 +83,7 @@ const lengthToLeftEnd = computed(
   () => `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`
 )
 const clickHandler = () => {
-  document.getElementById(randomId)?.focus()
+  document.getElementById(id)?.focus()
 }
 </script>
 
@@ -90,14 +93,14 @@ const clickHandler = () => {
       <span v-if="prefix" ref="prefixRef" class="prefix">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
         <span class="label-wrapper h-stack">
-          <label class="h-stack label" :for="randomId">{{ label }}</label>
+          <label class="h-stack label" :for="id">{{ label }}</label>
         </span>
         <textarea
           v-if="multiLine"
-          :id="randomId"
+          :id="id"
           v-model="model"
           :required
-          class="full-width full-height input"
+          class="full-width input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
@@ -106,7 +109,7 @@ const clickHandler = () => {
         />
         <input
           v-else
-          :id="randomId"
+          :id="id"
           v-model="model"
           class="full-width full-height input"
           :required
@@ -218,7 +221,6 @@ const clickHandler = () => {
   border: none;
   outline: none;
   background: transparent;
-  height: 20px;
 }
 
 .supporting-text-wrapper {
