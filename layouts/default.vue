@@ -25,11 +25,11 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               <Feather />
             </MaterialFAB>
           </ArkDialog.Trigger>
-          <MaterialDialog width="560px">
-            <div class="feather-icon">
-              <Feather stroke="#678C40" />
-            </div>
-            <ArkDialog.Title class="ark-dialog-title"> 今回は何を綴るのかな？</ArkDialog.Title>
+          <MaterialDialog>
+            <template #icon>
+              <Feather stroke="var(--color-primary)" />
+            </template>
+            <ArkDialog.Title class="ark-dialog-title">今回は何を綴るのかな？</ArkDialog.Title>
             <ArkDialog.Description as-child>
               <p class="description">
                 自分の考えや出来事を気楽に書こう！ミュニティーガイドラインの確認も忘れないでねッ！
@@ -42,7 +42,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               type="text"
               max-length="256"
               helper-text="0/256"
-              :multi-line="true"
+              multi-line
             />
             <FileUpload.Root :max-files="3" accept="image/*">
               <FileUpload.ItemGroup class="ark-file-upload-item-group image-list">

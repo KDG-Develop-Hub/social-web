@@ -2,14 +2,6 @@
 import { Dialog } from '@ark-ui/vue'
 import type { VNode } from 'vue'
 
-withDefaults(
-  defineProps<{
-    width?: number | string
-  }>(),
-  {
-    width: '100%'
-  }
-)
 const slots = defineSlots<{
   default: () => VNode
   icon?: () => VNode
@@ -31,7 +23,7 @@ const {
 const resize = () => execute()
 watchOnce(content, content => {
   if (content)
-    for (const el of content.querySelectorAll('.resize')) {
+    for (const el of content.children) {
       new ResizeObserver(resize).observe(el)
     }
 })
@@ -42,14 +34,16 @@ watch(contentWidth, resize)
   <Teleport to="body">
     <Dialog.Backdrop class="overlay" />
     <Dialog.Positioner class="positioner">
-      <Dialog.Content as-child :data-updated="isReady" class="content">
+      <Dialog.Content as-child :data-updated="isReady" class="content-wrapper">
         <div ref="content">
-          <div v-if="slots.icon" class="v-stack icon">
-            <slot name="icon" />
-          </div>
-          <slot name="default" />
-          <div v-if="slots.buttons" class="h-stack button-set">
-            <slot name="buttons" />
+          <div class="content">
+            <div v-if="slots.icon" class="v-stack icon">
+              <slot name="icon" />
+            </div>
+            <slot name="default" />
+            <div v-if="slots.buttons" class="h-stack button-set">
+              <slot name="buttons" />
+            </div>
           </div>
         </div>
       </Dialog.Content>
@@ -91,7 +85,7 @@ watch(contentWidth, resize)
   place-items: center;
 }
 
-.content {
+.content-wrapper {
   --dialog-height: v-bind(contentHeight);
   --dialog-padding: 1.5rem;
   display: flex;
@@ -101,7 +95,6 @@ watch(contentWidth, resize)
   padding: var(--dialog-padding) 0;
   gap: calc(var(--dialog-padding) - 0.5rem);
   box-sizing: border-box;
-  width: v-bind(width);
   max-width: 48rem;
   border-radius: 1rem;
   background: var(--color-surface);
@@ -109,7 +102,7 @@ watch(contentWidth, resize)
   &[data-state='open'] {
     opacity: 1;
     translate: 0;
-    /* height: var(--dialog-height); */
+    height: var(--dialog-height);
 
     &[data-updated='false'] {
       height: auto;
@@ -151,10 +144,11 @@ watch(contentWidth, resize)
   }
 }
 
-.feather-icon {
-  :global(*) {
-    color: var(--color-error);
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-surface);
 }
 
 .button-set {
