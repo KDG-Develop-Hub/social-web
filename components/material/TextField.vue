@@ -1,103 +1,115 @@
 <script setup lang="ts">
-const props = defineProps<{
-  type?:
-    | 'text'
-    | 'password'
-    | 'email'
-    | 'tel'
-    | 'number'
-    | 'url'
-    | 'search'
-    | 'date'
-    | 'time'
-    | 'datetime-local'
-    | 'month'
-    | 'week'
-    | 'color'
-  autocomplete?:
-    | 'on'
-    | 'off'
-    | 'name'
-    | 'honorific-prefix'
-    | 'given-name'
-    | 'additional-name'
-    | 'family-name'
-    | 'honorific-suffix'
-    | 'nickname'
-    | 'email'
-    | 'username'
-    | 'new-password'
-    | 'current-password'
-    | 'organization-title'
-    | 'organization'
-    | 'street-address'
-    | 'address-line1'
-    | 'address-line2'
-    | 'address-line3'
-    | 'address-level4'
-    | 'address-level3'
-    | 'address-level2'
-    | 'address-level1'
-    | 'country'
-    | 'country-name'
-    | 'postal-code'
-    | 'cc-name'
-    | 'cc-given-name'
-    | 'cc-additional-name'
-    | 'cc-family-name'
-    | 'cc-number'
-    | 'cc-exp'
-    | 'cc-exp-month'
-    | 'cc-exp-year'
-    | 'cc-csc'
-    | 'cc-type'
-    | 'transaction-currency'
-    | 'transaction-amount'
-    | 'language'
-    | 'bday'
-    | 'bday-day'
-    | 'bday-month'
-    | 'bday-year'
-  required?: boolean
-  id?: string
-  fullWidth?: boolean
-  hint?: string
-  prefix?: string
-  suffix?: string
-  maxLength?: number | `${number}`
-  minLength?: number | `${number}`
-  label: string
-  multiLine?: boolean
-}>()
-const randomId = props.id ?? useId()
-const hintId = props.hint ? `hint-${randomId}` : undefined
-const model = defineModel<string>()
-const textareaRows = computed(() => Math.max(model.value ? model.value.split('\n').length : 1, 2))
-const prefixRef = ref<HTMLSpanElement>()
-const labelPadding = 4
-const containerPadding = 16
-const lengthToLeftEnd = computed(
-  () => `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`
-)
-const clickHandler = () => {
-  document.getElementById(randomId)?.focus()
-}
+  const props = defineProps<{
+    type?:
+      | 'text'
+      | 'password'
+      | 'email'
+      | 'tel'
+      | 'number'
+      | 'url'
+      | 'search'
+      | 'date'
+      | 'time'
+      | 'datetime-local'
+      | 'month'
+      | 'week'
+      | 'color'
+    autocomplete?:
+      | 'on'
+      | 'off'
+      | 'name'
+      | 'honorific-prefix'
+      | 'given-name'
+      | 'additional-name'
+      | 'family-name'
+      | 'honorific-suffix'
+      | 'nickname'
+      | 'email'
+      | 'username'
+      | 'new-password'
+      | 'current-password'
+      | 'organization-title'
+      | 'organization'
+      | 'street-address'
+      | 'address-line1'
+      | 'address-line2'
+      | 'address-line3'
+      | 'address-level4'
+      | 'address-level3'
+      | 'address-level2'
+      | 'address-level1'
+      | 'country'
+      | 'country-name'
+      | 'postal-code'
+      | 'cc-name'
+      | 'cc-given-name'
+      | 'cc-additional-name'
+      | 'cc-family-name'
+      | 'cc-number'
+      | 'cc-exp'
+      | 'cc-exp-month'
+      | 'cc-exp-year'
+      | 'cc-csc'
+      | 'cc-type'
+      | 'transaction-currency'
+      | 'transaction-amount'
+      | 'language'
+      | 'bday'
+      | 'bday-day'
+      | 'bday-month'
+      | 'bday-year'
+    required?: boolean
+    id?: string
+    fullWidth?: boolean
+    hint?: string
+    prefix?: string
+    suffix?: string
+    maxLength?: number | `${number}`
+    minLength?: number | `${number}`
+    label: string
+    multiLine?: boolean
+  }>()
+  const randomId = props.id ?? useId()
+  const hintId = props.hint ? `hint-${randomId}` : undefined
+  const model = defineModel<string>()
+  const textareaRows = computed(() =>
+    Math.max(model.value ? model.value.split('\n').length : 1, 2)
+  )
+  const prefixRef = ref<HTMLSpanElement>()
+  const labelPadding = 4
+  const containerPadding = 16
+  const lengthToLeftEnd = computed(
+    () =>
+      `${(prefixRef.value ? containerPadding - prefixRef.value.offsetWidth : 0) - labelPadding}px`
+  )
+  const clickHandler = () => {
+    document.getElementById(randomId)?.focus()
+  }
 </script>
 
 <template>
-  <div class="wrapper" :class="{ 'full-width': fullWidth }" :data-full="Boolean(model)">
+  <div
+    class="root"
+    :class="{ 'full-width': fullWidth }"
+    :data-full="Boolean(model)"
+  >
     <div class="container h-stack" @click="clickHandler">
       <span v-if="prefix" ref="prefixRef" class="prefix">{{ prefix }}</span>
       <div class="h-stack input-wrapper full-width full-height">
         <span class="label-wrapper h-stack">
-          <label class="h-stack label" :for="randomId">{{ label }}</label>
+          <label
+            class="h-stack label"
+            :data-full="Boolean(model)"
+            :for="randomId"
+            >{{ label }}</label
+          >
         </span>
         <textarea
           v-if="multiLine"
           :id="randomId"
           v-model="model"
           :required
-          class="full-width full-height input"
+          class="full-width full-height body-lg input"
           :rows="textareaRows"
           :maxlength="maxLength"
           :minLength="minLength"
@@ -108,20 +120,22 @@ const clickHandler = () => {
           v-else
           :id="randomId"
           v-model="model"
-          class="full-width full-height input"
+          class="full-width full-height body-lg input"
           :required
           :maxlength="maxLength"
           :minLength="minLength"
           :autocomplete="autocomplete"
           :aria-describedby="hintId"
           :type="type"
-        >
+        />
         <span v-if="suffix" class="suffix">{{ suffix }}</span>
       </div>
     </div>
     <div class="supporting-text-wrapper">
-      <p v-if="hint" :id="hintId" class="hint full-width">{{ hint }}</p>
-      <span v-if="maxLength" class="counter full-width"
+      <p v-if="hint" :id="hintId" class="hint body-sm full-width">
+        {{ hint }}
+      </p>
+      <span v-if="maxLength" class="counter body-sm full-width"
         >{{ model?.length ?? 0 }}/{{ maxLength }}</span
       >
     </div>
@@ -129,116 +143,125 @@ const clickHandler = () => {
 </template>
 
 <style scoped>
-.wrapper {
-  padding: 0.5rem 2px;
-  overflow: hidden;
-}
-
-.container {
-  --this-height: 3.5rem;
-  gap: 0;
-  position: relative;
-  outline: var(--color-outline) solid 1px;
-  box-sizing: border-box;
-  min-height: var(--this-height);
-  border-radius: 0.25rem;
-  padding: 1rem 0;
-  transition:
-    outline-color 200ms,
-    outline-width 50ms;
-
-  &:hover {
-    outline-color: var(--color-on-surface);
+  .root {
+    padding: 0.5rem 2px;
+    overflow: hidden;
   }
 
-  &:focus-within {
-    outline-color: var(--color-primary);
-    outline-width: 2px;
+  .container {
+    --this-height: 3.5rem;
+    gap: 0;
+    position: relative;
+    outline: var(--md-sys-color-outline) solid 1px;
+    box-sizing: border-box;
+    min-height: var(--this-height);
+    border-radius: var(--md-sys-shape-corner-xs);
+    padding: 1rem 0;
+    transition:
+      outline-color var(--md-sys-motion-duration-short4),
+      outline-width var(--md-sys-motion-duration-short2);
+
+    * {
+      cursor: text;
+    }
+
+    &:hover {
+      outline-color: var(--md-sys-color-on-surface);
+    }
+
+    &:focus-within {
+      outline-color: var(--md-sys-color-primary);
+      outline-width: 2px;
+    }
+
+    & > :first-child {
+      padding-left: calc(1px * v-bind(containerPadding));
+    }
+
+    & > :last-child {
+      padding-right: calc(1px * v-bind(containerPadding));
+    }
   }
 
-  & > :first-child {
-    padding-left: calc(1px * v-bind(containerPadding));
+  .prefix {
+    white-space: nowrap;
+    user-select: none;
+    padding-right: 0.25rem;
   }
 
-  & > :last-child {
-    padding-right: calc(1px * v-bind(containerPadding));
-  }
-}
-
-.prefix {
-  white-space: nowrap;
-  user-select: none;
-  padding-right: 0.25rem;
-}
-
-.suffix {
-  white-space: nowrap;
-  user-select: none;
-  color: var(--color-on-surface-variant);
-}
-
-.label-wrapper {
-  position: absolute;
-  height: var(--this-height);
-  top: 0;
-}
-
-.label {
-  user-select: none;
-  white-space: nowrap;
-  padding: 0 calc(1px * v-bind(labelPadding));
-  background-color: var(--color-surface);
-  transition:
-    translate 200ms,
-    font-size 200ms,
-    color 200ms;
-  translate: 0;
-
-  :is(.wrapper[data-full='true'], .wrapper:focus-within) & {
-    translate: v-bind(lengthToLeftEnd) calc(var(--this-height) / -2);
-    font-size: 0.75rem;
+  .suffix {
+    white-space: nowrap;
+    user-select: none;
+    color: var(--md-sys-color-on-surface-variant);
   }
 
-  .wrapper:focus-within & {
-    color: var(--color-primary);
+  .label-wrapper {
+    position: absolute;
+    height: var(--this-height);
+    top: 0;
   }
-}
 
-.input-wrapper {
-  gap: 0;
-}
+  .label {
+    user-select: none;
+    white-space: nowrap;
+    color: var(--md-sys-color-on-surface-variant);
+    padding: 0 calc(1px * v-bind(labelPadding));
+    background-color: var(--md-sys-color-surface);
+    font-size: var(--md-sys-typescale-body-lg-size);
+    font-weight: var(--md-sys-typescale-body-lg-weight);
+    word-spacing: var(--md-sys-typescale-body-lg-tracking);
+    transition:
+      translate var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized),
+      font-size var(--md-sys-motion-duration-short4),
+      color var(--md-sys-motion-duration-short4);
+    translate: 0;
 
-.input {
-  padding: 0;
-  height: min-content;
-  cursor: text;
-  font-size: 1rem;
-  min-height: 1.5rem;
-  resize: none;
-  border: none;
-  outline: none;
-  background: transparent;
-  height: 20px;
-}
+    :is([data-full='true'], .root:focus-within) & {
+      font-size: var(--md-sys-typescale-body-sm-size);
+      font-weight: var(--md-sys-typescale-body-sm-weight);
+      word-spacing: var(--md-sys-typescale-body-sm-tracking);
+      translate: v-bind(lengthToLeftEnd) calc(var(--this-height) / -2);
+    }
 
-.supporting-text-wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin: 0.25rem 1rem 0;
-}
-
-.hint,
-.counter {
-  font-size: 0.75rem;
-  color: var(--color-on-surface-variant);
-}
-
-.counter {
-  text-align: right;
-
-  .hint + & {
-    width: min-content;
+    .root:focus-within & {
+      color: var(--md-sys-color-primary);
+    }
   }
-}
+
+  .input-wrapper {
+    gap: 0;
+  }
+
+  .input {
+    padding: 0;
+    height: min-content;
+    cursor: text;
+    min-height: 1.5rem;
+    resize: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 20px;
+  }
+
+  .supporting-text-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0.25rem 1rem 0;
+  }
+
+  .hint,
+  .counter {
+    color: var(--md-sys-color-on-surface-variant);
+  }
+
+  .counter {
+    text-align: right;
+
+    .hint + & {
+      width: min-content;
+    }
+  }
 </style>

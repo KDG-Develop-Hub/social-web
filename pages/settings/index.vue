@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Dialog as ArkDialog } from '@ark-ui/vue'
+  import { Dialog as ArkDialog } from '@ark-ui/vue'
 </script>
 
 <template>
@@ -14,7 +14,13 @@ import { Dialog as ArkDialog } from '@ark-ui/vue'
         max-length="32"
         label="名前"
       />
-      <MaterialTextField min-length="1" full-width max-length="32" label="表示名" hint="半角英数" />
+      <MaterialTextField
+        min-length="1"
+        full-width
+        max-length="32"
+        label="表示名"
+        hint="半角英数"
+      />
     </div>
     <h2 ref="title">アカウントの無効</h2>
     <ArkDialog.Root>
@@ -28,7 +34,9 @@ import { Dialog as ArkDialog } from '@ark-ui/vue'
         </ArkDialog.Description>
         <template #buttons>
           <ArkDialog.CloseTrigger as-child>
-            <MaterialButton color="danger" variant="text">キャンセル</MaterialButton>
+            <MaterialButton color="danger" variant="text"
+              >キャンセル</MaterialButton
+            >
           </ArkDialog.CloseTrigger>
           <MaterialButton color="danger">アカウントを無効化</MaterialButton>
         </template>
@@ -38,12 +46,12 @@ import { Dialog as ArkDialog } from '@ark-ui/vue'
 </template>
 
 <style scoped>
-.text-fields {
-  width: 100%;
-  max-width: 32rem;
-}
+  .text-fields {
+    width: 100%;
+    max-width: 32rem;
+  }
 
-h2 {
-  margin-bottom: 1rem;
-}
+  h2 {
+    margin-bottom: 1rem;
+  }
 </style>
