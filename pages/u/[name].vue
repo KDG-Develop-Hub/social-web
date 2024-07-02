@@ -68,8 +68,10 @@
     position: absolute;
     width: var(--width);
     transition:
-      left 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
-      width 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
+      left var(--md-sys-motion-duration-medium4)
+        var(--md-sys-motion-easing-emphasized),
+      width var(--md-sys-motion-duration-medium4)
+        var(--md-sys-motion-easing-emphasized);
     left: var(--left);
     bottom: 0;
     height: 3px;

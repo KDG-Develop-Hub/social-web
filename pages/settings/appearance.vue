@@ -77,7 +77,8 @@
       scale: 0.5;
       width: 100%;
       height: 100%;
-      transition: scale 200ms cubic-bezier(0.14, 0.92, 0.34, 1);
+      transition: scale var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized);
     }
 
     &[data-color='system']:after {

@@ -1,7 +1,7 @@
 {
   "eslint.format.enable": true,
   "eslint.useFlatConfig": true,
-  "html-css-class-completion.includeGlobPattern": "./assets/css/*.css",
+  "html-css-class-completion.includeGlobPattern": "**/*.css",
   "explorer.fileNesting.enabled": true,
   "material-icon-theme.activeIconPack": "vue",
   "explorer.fileNesting.patterns": {

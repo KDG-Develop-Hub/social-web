@@ -34,7 +34,8 @@
   }
 
   .link-icon {
-    transition: stroke-width 200ms ease;
+    transition: stroke-width var(--md-sys-motion-duration-short4)
+      var(--md-sys-motion-easing-emphasized);
     stroke-width: var(--navr-link-icon-width);
   }
 
@@ -51,7 +52,8 @@
       position: absolute;
       width: 0;
       height: 100%;
-      transition: all 200ms ease;
+      transition: all var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized);
       opacity: 0;
       border-radius: var(--md-sys-shape-corner-full);
       background-color: var(--md-sys-color-secondary-container);

@@ -66,7 +66,8 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.36);
-    transition: opacity 200ms ease-out;
+    transition: opacity var(--md-sys-motion-duration-short4)
+      var(--md-sys-motion-easing-emphasized);
 
     &[data-state='open'] {
       opacity: 1;
@@ -106,6 +107,13 @@
     max-width: 48rem;
     border-radius: var(--md-sys-shape-corner-lg);
     background: var(--md-sys-color-surface);
+    transition:
+      opacity var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized),
+      height var(--md-sys-motion-duration-medium4)
+        var(--md-sys-motion-easing-emphasized),
+      translate var(--md-sys-motion-duration-medium4)
+        var(--md-sys-motion-easing-emphasized);
 
     &[data-state='open'] {
       opacity: 1;
@@ -115,38 +123,33 @@
       &[data-updated='false'] {
         height: auto;
       }
-
-      transition:
-        opacity 200ms ease-out,
-        height 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
-        translate 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
     }
 
     &[data-state='closed'] {
       translate: 0 calc(var(--dialog-height) * -1);
       opacity: 0;
-      transition:
-        opacity 200ms ease-out,
-        height 1000ms cubic-bezier(0.14, 0.92, 0.34, 1),
-        translate 1000ms cubic-bezier(0.14, 0.92, 0.34, 1);
 
       &[data-updated='true'] {
         height: 4rem;
       }
 
       :global(& > *) {
-        transition: opacity 50ms ease-out;
+        transition: opacity var(--md-sys-motion-duration-short1)
+          var(--md-sys-motion-easing-emphasized);
         opacity: 0;
       }
     }
 
     :global(& > *) {
-      transition: opacity 200ms ease-out 150ms;
+      transition: opacity var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized)
+        var(--md-sys-motion-duration-short3);
       margin: 0 var(--dialog-padding);
       flex-shrink: 0;
 
       &:global(&:last-child) {
-        transition: opacity 200ms ease-out;
+        transition: opacity var(--md-sys-motion-duration-short4)
+          var(--md-sys-motion-easing-emphasized);
         margin-top: 0.5rem;
       }
     }

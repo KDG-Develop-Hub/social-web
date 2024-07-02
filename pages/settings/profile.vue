@@ -129,7 +129,8 @@
 
   .avatar-label,
   .avatar-backdrop {
-    transition: opacity 200ms ease-out;
+    transition: opacity var(--md-sys-motion-duration-short4)
+      var(--md-sys-motion-easing-emphasized);
 
     .avatar-wrapper:hover & {
       opacity: 1;
@@ -173,7 +174,8 @@
 
   .avatar-accept-enter-active,
   .avatar-accept-leave-active {
-    transition: opacity 200ms ease-out;
+    transition: opacity var(--md-sys-motion-duration-short4)
+      var(--md-sys-motion-easing-emphasized);
   }
 
   .avatar-accept-enter,

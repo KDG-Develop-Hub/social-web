@@ -158,8 +158,8 @@
     border-radius: var(--md-sys-shape-corner-xs);
     padding: 1rem 0;
     transition:
-      outline-color 200ms,
-      outline-width 50ms;
+      outline-color var(--md-sys-motion-duration-short4),
+      outline-width var(--md-sys-motion-duration-short2);
 
     * {
       cursor: text;
@@ -211,9 +211,10 @@
     font-weight: var(--md-sys-typescale-body-lg-weight);
     word-spacing: var(--md-sys-typescale-body-lg-tracking);
     transition:
-      translate 200ms,
-      font-size 200ms,
-      color 200ms;
+      translate var(--md-sys-motion-duration-short4)
+        var(--md-sys-motion-easing-emphasized),
+      font-size var(--md-sys-motion-duration-short4),
+      color var(--md-sys-motion-duration-short4);
     translate: 0;
 
     :is([data-full='true'], .root:focus-within) & {
