@@ -1,18 +1,27 @@
 <script setup lang="ts">
-import { Dialog as ArkDialog } from '@ark-ui/vue'
-import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
+  import { Dialog as ArkDialog } from '@ark-ui/vue'
+  import {
+    Compass,
+    Feather,
+    History,
+    ImagePlus,
+    Menu,
+    Settings2,
+    User,
+    Users
+  } from 'lucide-vue-next'
 
-const currentUser = useCurrentUserStore()
-const linkContents = ref([
-  { to: '/', icon: History, text: 'アプデ' },
-  { to: '/browse', icon: Compass, text: '見つける' },
-  { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
-  { to: '/friends', icon: Users, text: '知り合い' },
-  { to: '/settings', icon: Settings2, text: 'せってー' }
-])
+  const currentUser = useCurrentUserStore()
+  const linkContents = ref([
+    { to: '/', icon: History, text: 'アプデ' },
+    { to: '/browse', icon: Compass, text: '見つける' },
+    { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
+    { to: '/friends', icon: Users, text: '知り合い' },
+    { to: '/settings', icon: Settings2, text: 'せってー' }
+  ])
 
-const inputText = ref('')
-const buttonDisabled = computed(() => inputText.value.trim().length === 0)
+  const inputText = ref('')
+  const buttonDisabled = computed(() => inputText.value.trim().length === 0)
 </script>
 
 <template>
@@ -56,7 +65,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled"
+              <MaterialButton color="primary" :disabled="buttonDisabled"
                 >広めちゃう</MaterialButton
               >
             </template>
@@ -80,32 +89,32 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
 </template>
 
 <style scoped>
-.layout {
-  display: flex;
-  height: 100vh;
-}
+  .layout {
+    display: flex;
+    height: 100vh;
+  }
 
-main {
-  overflow-y: auto;
-  width: 100%;
-  padding: 2rem 1.5rem;
-}
+  main {
+    overflow-y: auto;
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
 
-.icon {
-  display: flex;
-  justify-content: center;
-}
+  .icon {
+    display: flex;
+    justify-content: center;
+  }
 
-.border-bottom {
-  border-bottom: solid 1px var(--palette-secondary90);
-}
+  .border-bottom {
+    border-bottom: solid 1px var(--palette-secondary90);
+  }
 
-.icons {
-  display: flex;
-  gap: 20px;
-}
+  .icons {
+    display: flex;
+    gap: 20px;
+  }
 
-[data-scope='dialog'][data-part='title'] {
-  text-align: center;
-}
+  [data-scope='dialog'][data-part='title'] {
+    text-align: center;
+  }
 </style>
