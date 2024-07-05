@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { Dialog as ArkDialog, FileUpload } from '@ark-ui/vue'
-import { Compass, Feather, History, ImagePlus, Menu, Settings2, User, Users } from 'lucide-vue-next'
+import {
+  Compass,
+  Feather,
+  History,
+  ImagePlus,
+  Menu,
+  Settings2,
+  User,
+  Users,
+  X
+} from 'lucide-vue-next'
 
 const currentUser = useCurrentUserStore()
 const linkContents = ref([
@@ -51,13 +61,10 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
                   <div v-for="file in acceptedFiles" :key="file.name" class="file-item">
                     <FileUpload.Item :file="file">
                       <FileUpload.ItemPreview type="image/*" class="image-list">
-                        <FileUpload.ItemPreviewImage
-                          :style="{ width: '64px', height: '64px' }"
-                          class="image"
-                        />
-                        <FileUpload.ItemDeleteTrigger class="delete-trigger"
-                          >X</FileUpload.ItemDeleteTrigger
-                        >
+                        <FileUpload.ItemPreviewImage class="image" />
+                        <FileUpload.ItemDeleteTrigger class="delete-trigger">
+                          <X style="height: 20px" />
+                        </FileUpload.ItemDeleteTrigger>
                       </FileUpload.ItemPreview>
                     </FileUpload.Item>
                   </div>
@@ -77,9 +84,9 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
               </ArkDialog.CloseTrigger>
-              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled"
-                >広めちゃう</MaterialButton
-              >
+              <MaterialButton :color="buttonDisabled ? '' : 'primary'" :disabled="buttonDisabled">
+                広めちゃう
+              </MaterialButton>
             </template>
           </MaterialDialog>
         </ArkDialog.Root>
@@ -112,12 +119,6 @@ main {
   padding: 2rem 1.5rem;
 }
 
-.feather-icon {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
 .border-bottom {
   border-bottom: solid 1px var(--palette-secondary90);
 }
@@ -127,17 +128,12 @@ main {
   gap: 20px;
 }
 
-.ark-content {
-  height: auto;
-}
-
 .ark-dialog-title {
   text-align: center;
 }
 
 .ark-file-upload-item-group {
   list-style: none;
-  margin-bottom: 20px;
   padding-left: 5px;
 }
 
@@ -148,17 +144,19 @@ main {
 
 .image {
   border-radius: 4px;
+  width: 64px;
+  height: 64px;
 }
 
-/* 追加のスタイル */
 .file-item {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .delete-trigger {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -7px;
   background: transparent;
   color: var(--palette-secondary90);
   border: none;
@@ -168,5 +166,6 @@ main {
 
 .file-item:hover .delete-trigger {
   display: block;
+  font-size: 4px;
 }
 </style>
