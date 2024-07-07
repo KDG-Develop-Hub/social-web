@@ -23,6 +23,17 @@ const linkContents = ref([
 
 const inputText = ref('')
 const buttonDisabled = computed(() => inputText.value.trim().length === 0)
+
+const maxFilesExceededError = ref('')
+
+const handleFileReject = event => {
+  if (event.files.length > 0) {
+    maxFilesExceededError.value = 'アップロードできるファイルの最大数を超えています。'
+    setTimeout(() => {
+      maxFilesExceededError.value = ''
+    }, 3000)
+  }
+}
 </script>
 
 <template>
@@ -36,6 +47,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
             </MaterialFAB>
           </ArkDialog.Trigger>
           <MaterialDialog>
+            <p v-if="maxFilesExceededError" class="error-message">{{ maxFilesExceededError }}</p>
             <template #icon>
               <Feather stroke="var(--color-primary)" />
             </template>
@@ -55,7 +67,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
               multi-line
               max-rows="16"
             />
-            <FileUpload.Root :max-files="3" accept="image/*">
+            <FileUpload.Root :max-files="3" accept="image/*" @file-reject="handleFileReject">
               <FileUpload.ItemGroup class="ark-file-upload-item-group image-list">
                 <FileUpload.Context v-slot="{ acceptedFiles }">
                   <div v-for="file in acceptedFiles" :key="file.name" class="file-item">
@@ -80,6 +92,7 @@ const buttonDisabled = computed(() => inputText.value.trim().length === 0)
                 </span>
               </div>
             </FileUpload.Root>
+
             <template #buttons>
               <ArkDialog.CloseTrigger as-child>
                 <MaterialButton variant="text">やっぱやめる</MaterialButton>
@@ -167,5 +180,10 @@ main {
 .file-item:hover .delete-trigger {
   display: block;
   font-size: 4px;
+}
+
+.error-message {
+  color: var(--palette-error40);
+  text-align: center;
 }
 </style>
