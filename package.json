@@ -19,7 +19,6 @@
     "lucide-vue-next": "^0.358.0",
     "normalize.css": "^8.0.1",
     "nuxt": "^3.11.2",
-    "vitest": "^1.6.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
@@ -37,16 +36,18 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "prettier": "^3.3.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none",
     "arrowParens": "avoid",
-    "printWidth": 100,
+    "printWidth": 80,
     "tabWidth": 2,
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "vueIndentScriptAndStyle": true
   },
   "lint-staged": {
     "*.{json,mjs,yaml,js,ts,vue}": "eslint --fix",
