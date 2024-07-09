@@ -1,13 +1,30 @@
 <script setup lang="ts">
-  import { Dialog } from '@ark-ui/vue'
-  import type { VNode } from 'vue'
+import { Dialog } from '@ark-ui/vue'
+import type { VNode } from 'vue'
 
-  withDefaults(
-    defineProps<{
-      width?: number | string
-    }>(),
-    {
-      width: '100%'
+const slots = defineSlots<{
+  default: () => VNode
+  icon?: () => VNode
+  buttons?: () => VNode
+}>()
+const content = ref<HTMLElement | null>(null)
+const { width: contentWidth } = useElementSize(content)
+const {
+  state: contentHeight,
+  isReady,
+  execute
+} = useAsyncState(
+  async () => {
+    return await nextTick(() => `${content.value?.clientHeight}px`)
+  },
+  '0px',
+  { immediate: false }
+)
+const resize = () => execute()
+watchOnce(content, content => {
+  if (content)
+    for (const el of content.children) {
+      new ResizeObserver(resize).observe(el)
     }
   )
   const slots = defineSlots<{
@@ -42,14 +59,16 @@
   <Teleport to="body">
     <Dialog.Backdrop class="overlay" />
     <Dialog.Positioner class="positioner">
-      <Dialog.Content as-child :data-updated="isReady" class="content">
+      <Dialog.Content as-child :data-updated="isReady" class="content-wrapper">
         <div ref="content">
-          <div v-if="slots.icon" class="v-stack icon">
-            <slot name="icon" />
-          </div>
-          <slot name="default" />
-          <div v-if="slots.buttons" class="h-stack button-set">
-            <slot name="buttons" />
+          <div class="content">
+            <div v-if="slots.icon" class="v-stack icon">
+              <slot name="icon" />
+            </div>
+            <slot name="default" />
+            <div v-if="slots.buttons" class="h-stack button-set">
+              <slot name="buttons" />
+            </div>
           </div>
         </div>
       </Dialog.Content>
@@ -73,8 +92,46 @@
       opacity: 1;
     }
 
-    &[data-state='closed'] {
-      opacity: 0;
+  &[data-state='closed'] {
+    opacity: 0;
+  }
+}
+
+.positioner {
+  position: fixed;
+  z-index: 1;
+  padding: 1rem;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.content-wrapper {
+  --dialog-height: v-bind(contentHeight);
+  --dialog-padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: var(--dialog-padding) 0;
+  gap: calc(var(--dialog-padding) - 0.5rem);
+  box-sizing: border-box;
+  max-width: 48rem;
+  border-radius: 1rem;
+  background: var(--color-surface);
+
+  &[data-state='open'] {
+    opacity: 1;
+    translate: 0;
+    height: var(--dialog-height);
+
+    &[data-updated='false'] {
+      height: auto;
     }
   }
 
@@ -161,7 +218,14 @@
     }
   }
 
-  .button-set {
-    justify-content: flex-end;
-  }
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-surface);
+}
+
+.button-set {
+  justify-content: flex-end;
+}
 </style>
