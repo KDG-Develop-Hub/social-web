@@ -12,14 +12,14 @@ import {
   X
 } from 'lucide-vue-next'
 
-  const currentUser = useCurrentUserStore()
-  const linkContents = ref([
-    { to: '/', icon: History, text: 'アプデ' },
-    { to: '/browse', icon: Compass, text: '見つける' },
-    { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
-    { to: '/friends', icon: Users, text: '知り合い' },
-    { to: '/settings', icon: Settings2, text: 'せってー' }
-  ])
+const currentUser = useCurrentUserStore()
+const linkContents = ref([
+  { to: '/', icon: History, text: 'アプデ' },
+  { to: '/browse', icon: Compass, text: '見つける' },
+  { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
+  { to: '/friends', icon: Users, text: '知り合い' },
+  { to: '/settings', icon: Settings2, text: 'せってー' }
+])
 
 const inputText = ref('')
 const buttonDisabled = computed(() => inputText.value.trim().length === 0)
@@ -121,24 +121,25 @@ const handleFileReject = event => {
 </template>
 
 <style scoped>
-  .layout {
-    display: flex;
-    height: 100vh;
-  }
+.layout {
+  display: flex;
+  height: 100vh;
+}
 
-  main {
-    overflow-y: auto;
-    width: 100%;
-    padding: 2rem 1.5rem;
-  }
+main {
+  overflow-y: auto;
+  width: 100%;
+  padding: 2rem 1.5rem;
+}
 
 .border-bottom {
   border-bottom: solid 1px var(--palette-secondary90);
 }
-  .icons {
-    display: flex;
-    gap: 20px;
-  }
+
+.icons {
+  display: flex;
+  gap: 20px;
+}
 
 .ark-dialog-title {
   text-align: center;

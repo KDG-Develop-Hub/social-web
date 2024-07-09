@@ -14,9 +14,7 @@ export function formatDistanceFromNow(dateTime: Date): string {
   const OneWeekPerMinutes = 7 * OneDayPerMinutes
   if (diff < 1) return 'たった今'
   if (diff < OneHourPerMinutes) return `${diff}分前`
-  if (diff < OneDayPerMinutes)
-    return `${Math.floor(diff / OneHourPerMinutes)}時間前`
-  if (diff < OneWeekPerMinutes * 2)
-    return `${Math.floor(diff / OneDayPerMinutes)}日前`
+  if (diff < OneDayPerMinutes) return `${Math.floor(diff / OneHourPerMinutes)}時間前`
+  if (diff < OneWeekPerMinutes * 2) return `${Math.floor(diff / OneDayPerMinutes)}日前`
   return dateFns.format(dateTime, 'yyyy年M月d日')
 }

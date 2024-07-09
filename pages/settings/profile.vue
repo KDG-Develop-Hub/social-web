@@ -1,30 +1,30 @@
 <script setup lang="ts">
-  import {
-    DialogRoot,
-    DialogTrigger,
-    FileUploadContext,
-    FileUploadDropzone,
-    FileUploadHiddenInput,
-    FileUploadItem,
-    FileUploadItemDeleteTrigger,
-    FileUploadItemPreview,
-    FileUploadItemPreviewImage,
-    FileUploadLabel,
-    FileUploadRoot,
-    FileUploadTrigger
-  } from '@ark-ui/vue'
+import {
+  DialogRoot,
+  DialogTrigger,
+  FileUploadContext,
+  FileUploadDropzone,
+  FileUploadHiddenInput,
+  FileUploadItem,
+  FileUploadItemDeleteTrigger,
+  FileUploadItemPreview,
+  FileUploadItemPreviewImage,
+  FileUploadLabel,
+  FileUploadRoot,
+  FileUploadTrigger
+} from '@ark-ui/vue'
 
-  const file = ref<File | null>(null)
-  const user: User = {
-    avatarUrl: 'https://via.placeholder.com/256',
-    bio: '',
-    birthday: new Date(),
-    displayName: 'imeankenshin',
-    website: 'https://example.com',
-    name: 'Kenshin Ito',
-    email: 'itoken@kdg.social'
-  }
-  const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
+const file = ref<File | null>(null)
+const user: User = {
+  avatarUrl: 'https://via.placeholder.com/256',
+  bio: '',
+  birthday: new Date(),
+  displayName: 'imeankenshin',
+  website: 'https://example.com',
+  name: 'Kenshin Ito',
+  email: 'itoken@kdg.social'
+}
+const acceptedImageTypes = ['jpeg', 'png', 'gif', 'webp']
 </script>
 
 <template>
@@ -34,12 +34,8 @@
       <DialogRoot>
         <DialogTrigger class="avatar-wrapper">
           <div class="avatar-backdrop" />
-          <span class="avatar-label label-md">アバターを変更</span>
-          <img
-            :src="user.avatarUrl"
-            class="square avatar"
-            :alt="`${user.displayName}のアバター`"
-          />
+          <span class="avatar-label">アバターを変更</span>
+          <img :src="user.avatarUrl" class="square avatar" :alt="`${user.displayName}のアバター`" >
         </DialogTrigger>
         <MaterialDialog>
           <FileUploadRoot
@@ -48,11 +44,7 @@
             :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
           >
             <FileUploadContext v-slot="{ acceptedFiles }">
-              <FileUploadItem
-                v-if="acceptedFiles.length"
-                as-child
-                :file="acceptedFiles[0]"
-              >
+              <FileUploadItem v-if="acceptedFiles.length" as-child :file="acceptedFiles[0]">
                 <form class="avatar-change-accept">
                   <FileUploadItemPreview type="image/*">
                     <FileUploadItemPreviewImage class="square avatar" />
@@ -60,20 +52,14 @@
                   このファイルをアップロードしますか？
                   <div class="h-stack">
                     <FileUploadItemDeleteTrigger as-child>
-                      <MaterialButton variant="text"
-                        >んーこれじゃないな</MaterialButton
-                      >
+                      <MaterialButton variant="text">んーこれじゃないな</MaterialButton>
                     </FileUploadItemDeleteTrigger>
-                    <MaterialButton type="submit"
-                      >アップロードする！</MaterialButton
-                    >
+                    <MaterialButton type="submit">アップロードする！</MaterialButton>
                   </div>
                 </form>
               </FileUploadItem>
               <FileUploadDropzone v-else class="avatar-drop-zone">
-                <FileUploadLabel
-                  >枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel
-                >
+                <FileUploadLabel>枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel>
                 <span>もしくは...</span>
                 <FileUploadTrigger as-child>
                   <MaterialButton>ファイルを選択</MaterialButton>
@@ -98,93 +84,92 @@
 </template>
 
 <style scoped>
-  h2 {
-    margin-bottom: 1rem;
-  }
+h2 {
+  margin-bottom: 1rem;
+}
 
-  .profile {
-    gap: 4rem;
-  }
+.profile {
+  gap: 4rem;
+}
 
-  .fields {
-    max-width: 32rem;
-  }
+.fields {
+  max-width: 32rem;
+}
 
-  .avatar {
-    border-radius: var(--md-sys-shape-corner-full);
-    --square-size: 16rem;
-    object-fit: cover;
-  }
+.avatar {
+  border-radius: 8rem;
+  --square-size: 16rem;
+  object-fit: cover;
+}
 
-  .avatar-wrapper {
-    position: relative;
-    border-radius: var(--md-sys-shape-corner-full);
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    background: none;
-    border: none;
-  }
+.avatar-wrapper {
+  position: relative;
+  border-radius: 99rem;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: none;
+  border: none;
+}
 
-  .avatar-label,
-  .avatar-backdrop {
-    transition: opacity var(--md-sys-motion-duration-short4)
-      var(--md-sys-motion-easing-emphasized);
+.avatar-label,
+.avatar-backdrop {
+  transition: opacity 200ms ease-out;
 
-    .avatar-wrapper:hover & {
-      opacity: 1;
-    }
+  .avatar-wrapper:hover & {
+    opacity: 1;
   }
+}
 
-  .avatar-label {
-    text-align: center;
-    display: block;
-    color: white;
-    position: absolute;
-    opacity: 0;
-  }
+.avatar-label {
+  font-size: 0.875rem;
+  text-align: center;
+  display: block;
+  color: white;
+  position: absolute;
+  opacity: 0;
+}
 
-  .avatar-change-accept {
-    display: grid;
-    gap: 1rem;
-    place-items: center;
-    place-content: center;
-  }
+.avatar-change-accept {
+  display: grid;
+  gap: 1rem;
+  place-items: center;
+  place-content: center;
+}
 
-  .avatar-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: block;
-    opacity: 0;
-  }
+.avatar-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  opacity: 0;
+}
 
-  .avatar-drop-zone {
-    height: 24rem;
-    display: grid;
-    place-content: center;
-    place-items: center;
-    gap: 1rem;
-    border: 1px dashed var(--md-sys-color-outline-variant);
-  }
+.avatar-drop-zone {
+  height: 24rem;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 1rem;
+  border: 1px dashed var(--color-outline-variant);
+}
 
-  .avatar-accept-enter-active,
-  .avatar-accept-leave-active {
-    transition: opacity var(--md-sys-motion-duration-short4)
-      var(--md-sys-motion-easing-emphasized);
-  }
+.avatar-accept-enter-active,
+.avatar-accept-leave-active {
+  transition: opacity 200ms ease-out;
+}
 
-  .avatar-accept-enter,
-  .avatar-accept-leave-to {
-    position: absolute;
-    opacity: 0;
-  }
+.avatar-accept-enter,
+.avatar-accept-leave-to {
+  position: absolute;
+  opacity: 0;
+}
 
-  .button-set {
-    justify-content: flex-end;
-  }
+.button-set {
+  justify-content: flex-end;
+}
 </style>

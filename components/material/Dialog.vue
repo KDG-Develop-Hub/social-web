@@ -26,33 +26,8 @@ watchOnce(content, content => {
     for (const el of content.children) {
       new ResizeObserver(resize).observe(el)
     }
-  )
-  const slots = defineSlots<{
-    default: () => VNode
-    icon?: () => VNode
-    buttons?: () => VNode
-  }>()
-  const content = ref<HTMLElement | null>(null)
-  const { width: contentWidth } = useElementSize(content)
-  const {
-    state: contentHeight,
-    isReady,
-    execute
-  } = useAsyncState(
-    async () => {
-      return await nextTick(() => `${content.value?.clientHeight}px`)
-    },
-    '0px',
-    { immediate: false }
-  )
-  const resize = () => execute()
-  watchOnce(content, content => {
-    if (content)
-      for (const el of content.querySelectorAll('.resize')) {
-        new ResizeObserver(resize).observe(el)
-      }
-  })
-  watch(contentWidth, resize)
+})
+watch(contentWidth, resize)
 </script>
 
 <template>
@@ -77,20 +52,19 @@ watchOnce(content, content => {
 </template>
 
 <style scoped>
-  .overlay {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.36);
-    transition: opacity var(--md-sys-motion-duration-short4)
-      var(--md-sys-motion-easing-emphasized);
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.36);
+  transition: opacity 200ms ease-out;
 
-    &[data-state='open'] {
-      opacity: 1;
-    }
+  &[data-state='open'] {
+    opacity: 1;
+  }
 
   &[data-state='closed'] {
     opacity: 0;
@@ -133,90 +107,42 @@ watchOnce(content, content => {
     &[data-updated='false'] {
       height: auto;
     }
-  }
 
-  .positioner {
-    position: fixed;
-    z-index: 1;
-    padding: 1rem;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-  }
-
-  .content {
-    --dialog-height: v-bind(contentHeight);
-    --dialog-padding: 1.5rem;
-    display: flex;
-    box-shadow: var(--md-sys-elevation-3);
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    padding: var(--dialog-padding) 0;
-    gap: calc(var(--dialog-padding) - 0.5rem);
-    box-sizing: border-box;
-    width: v-bind(width);
-    max-width: 48rem;
-    border-radius: var(--md-sys-shape-corner-lg);
-    background: var(--md-sys-color-surface);
     transition:
-      opacity var(--md-sys-motion-duration-short4)
-        var(--md-sys-motion-easing-emphasized),
-      height var(--md-sys-motion-duration-medium4)
-        var(--md-sys-motion-easing-emphasized),
-      translate var(--md-sys-motion-duration-medium4)
-        var(--md-sys-motion-easing-emphasized);
+      opacity 200ms ease-out,
+      height 400ms cubic-bezier(0.14, 0.92, 0.34, 1),
+      translate 400ms cubic-bezier(0.14, 0.92, 0.34, 1);
+  }
 
-    &[data-state='open'] {
-      opacity: 1;
-      translate: 0;
-      height: var(--dialog-height);
+  &[data-state='closed'] {
+    translate: 0 calc(var(--dialog-height) * -1);
+    opacity: 0;
+    transition:
+      opacity 200ms ease-out,
+      height 1000ms cubic-bezier(0.14, 0.92, 0.34, 1),
+      translate 1000ms cubic-bezier(0.14, 0.92, 0.34, 1);
 
-      &[data-updated='false'] {
-        height: auto;
-      }
-    }
-
-    &[data-state='closed'] {
-      translate: 0 calc(var(--dialog-height) * -1);
-      opacity: 0;
-
-      &[data-updated='true'] {
-        height: 4rem;
-      }
-
-      :global(& > *) {
-        transition: opacity var(--md-sys-motion-duration-short1)
-          var(--md-sys-motion-easing-emphasized);
-        opacity: 0;
-      }
+    &[data-updated='true'] {
+      height: 4rem;
     }
 
     :global(& > *) {
-      transition: opacity var(--md-sys-motion-duration-short4)
-        var(--md-sys-motion-easing-emphasized)
-        var(--md-sys-motion-duration-short3);
-      margin: 0 var(--dialog-padding);
-      flex-shrink: 0;
-
-      &:global(&:last-child) {
-        transition: opacity var(--md-sys-motion-duration-short4)
-          var(--md-sys-motion-easing-emphasized);
-        margin-top: 0.5rem;
-      }
+      transition: opacity 50ms ease-out;
+      opacity: 0;
     }
   }
 
-  .icon {
-    :global(*) {
-      color: var(--md-sys-color-error);
+  :global(& > *) {
+    transition: opacity 200ms ease-out 150ms;
+    margin: 0 var(--dialog-padding);
+    flex-shrink: 0;
+
+    &:global(&:last-child) {
+      transition: opacity 200ms ease-out;
+      margin-top: 0.5rem;
     }
   }
+}
 
 .content {
   display: flex;

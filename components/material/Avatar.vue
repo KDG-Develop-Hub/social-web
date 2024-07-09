@@ -1,17 +1,17 @@
 <script setup lang="ts">
-  import { Avatar } from '@ark-ui/vue'
+import { Avatar } from '@ark-ui/vue'
 
-  withDefaults(
-    defineProps<{
-      name: string
-      src: string
-      size?: 'sm' | 'md' | 'lg'
-    }>(),
-    {
-      size: 'md'
-    }
-  )
-  const id = useId()
+withDefaults(
+  defineProps<{
+    name: string
+    src: string
+    size?: 'sm' | 'md' | 'lg'
+  }>(),
+  {
+    size: 'md'
+  }
+)
+const id = useId()
 </script>
 
 <template>
@@ -20,43 +20,39 @@
       src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
       :alt="`${name}のプロフィールの写真`"
     />
-    <Avatar.Fallback class="square fallback">{{
-      initialName(name)
-    }}</Avatar.Fallback>
+    <Avatar.Fallback class="square fallback">{{ initialName(name) }}</Avatar.Fallback>
   </Avatar.Root>
 </template>
 
 <style scoped>
-  .square {
-    &[data-size='sm'] {
-      --square-size: 2rem;
-      border-radius: var(--md-sys-shape-corner-sm);
-    }
-
-    &[data-size='md'] {
-      --square-size: 3rem;
-      border-radius: var(--md-sys-shape-corner-md);
-    }
-
-    &[data-size='lg'] {
-      --square-size: 4rem;
-      border-radius: var(--md-sys-shape-corner-lg);
-    }
+.square {
+  &[data-size='sm'] {
+    --square-size: 2rem;
   }
 
-  .root {
-    flex-shrink: 0;
-    display: inline-flex;
-    overflow: hidden;
+  &[data-size='md'] {
+    --square-size: 3rem;
   }
 
-  .fallback {
-    display: grid;
-    place-items: center;
-    font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
-    font-weight: 500;
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
-    position: relative;
+  &[data-size='lg'] {
+    --square-size: 4rem;
   }
+}
+
+.root {
+  flex-shrink: 0;
+  display: inline-flex;
+  border-radius: calc(var(--square-size) / 4);
+  overflow: hidden;
+}
+
+.fallback {
+  display: grid;
+  place-items: center;
+  font-size: calc((var(--square-size) - 2rem) / 4 + 1rem);
+  font-weight: 500;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  position: relative;
+}
 </style>
