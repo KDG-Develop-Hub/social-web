@@ -9,7 +9,7 @@ importers:
     dependencies:
       '@ark-ui/vue':
         specifier: ^3.0.3
-        version: 3.0.3(@internationalized/date@3.5.4)(vue@3.4.27(typescript@5.4.5))
+        version: 3.0.3(@internationalized/date@3.5.3)(vue@3.4.27(typescript@5.4.5))
       '@nuxt/kit':
         specifier: ^3.11.2
         version: 3.11.2(rollup@4.18.0)
@@ -50,6 +50,9 @@ importers:
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@4.18.0)(typescript@5.4.5)(vue@3.4.27(typescript@5.4.5))
+      '@types/eslint':
+        specifier: ^8.56.10
+        version: 8.56.10
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.16.0
         version: 7.16.0(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
@@ -8809,7 +8812,7 @@ snapshots:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.0
 
-  '@ark-ui/anatomy@3.2.0(@internationalized/date@3.5.4)':
+  '@ark-ui/anatomy@3.2.0(@internationalized/date@3.5.3)':
     dependencies:
       '@zag-js/accordion': 0.51.1
       '@zag-js/anatomy': 0.51.1
@@ -8822,7 +8825,7 @@ snapshots:
       '@zag-js/color-utils': 0.51.1
       '@zag-js/combobox': 0.51.1
       '@zag-js/date-picker': 0.51.1
-      '@zag-js/date-utils': 0.51.1(@internationalized/date@3.5.4)
+      '@zag-js/date-utils': 0.51.1(@internationalized/date@3.5.3)
       '@zag-js/dialog': 0.51.1
       '@zag-js/editable': 0.51.1
       '@zag-js/file-upload': 0.51.1
@@ -8849,9 +8852,9 @@ snapshots:
     transitivePeerDependencies:
       - '@internationalized/date'
 
-  '@ark-ui/vue@3.0.3(@internationalized/date@3.5.4)(vue@3.4.27(typescript@5.4.5))':
+  '@ark-ui/vue@3.0.3(@internationalized/date@3.5.3)(vue@3.4.27(typescript@5.4.5))':
     dependencies:
-      '@ark-ui/anatomy': 3.2.0(@internationalized/date@3.5.4)
+      '@ark-ui/anatomy': 3.2.0(@internationalized/date@3.5.3)
       '@zag-js/accordion': 0.51.2
       '@zag-js/avatar': 0.51.2
       '@zag-js/carousel': 0.51.2
@@ -11137,10 +11140,6 @@ snapshots:
   '@zag-js/date-utils@0.51.1(@internationalized/date@3.5.3)':
     dependencies:
       '@internationalized/date': 3.5.3
-
-  '@zag-js/date-utils@0.51.1(@internationalized/date@3.5.4)':
-    dependencies:
-      '@internationalized/date': 3.5.4
 
   '@zag-js/date-utils@0.51.2(@internationalized/date@3.5.4)':
     dependencies:

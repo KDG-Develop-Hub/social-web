@@ -1,4 +1,3 @@
-// @ts-check
 import typescript from '@typescript-eslint/eslint-plugin'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
