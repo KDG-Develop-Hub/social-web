@@ -41,7 +41,8 @@
     "lint-staged": "^15.2.5",
     "prettier": "^3.3.0",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "vue-tsc": "^2.0.26"
   },
   "prettier": {
     "semi": false,
@@ -54,9 +55,10 @@
     "vueIndentScriptAndStyle": true
   },
   "lint-staged": {
-    "*.{json,mjs,yaml,js,ts,vue}": [
+    "*.{json,ts,vue}": [
       "eslint --fix"
     ],
+    "*.{ts,vue}": "vue-tsc --noEmit",
     "*.{json,mjs,yaml,js,ts,vue,css}": "prettier --write"
   },
   "packageManager": "pnpm@9.1.4"
