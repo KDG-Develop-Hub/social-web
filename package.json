@@ -15,6 +15,7 @@
     "@ark-ui/vue": "^3.0.3",
     "@nuxt/kit": "^3.11.2",
     "@vueuse/core": "^10.10.0",
+    "@zag-js/file-upload": "^0.61.0",
     "date-fns": "^3.6.0",
     "lucide-vue-next": "^0.358.0",
     "normalize.css": "^8.0.1",
@@ -31,13 +32,17 @@
     "@nuxt/fonts": "^0.7.0",
     "@nuxt/test-utils": "^3.13.1",
     "@pinia/nuxt": "^0.5.1",
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
     "@vueuse/nuxt": "^10.10.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "prettier": "^3.3.0",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "vue-tsc": "^2.0.26"
   },
   "prettier": {
     "semi": false,
@@ -50,7 +55,10 @@
     "vueIndentScriptAndStyle": true
   },
   "lint-staged": {
-    "*.{json,mjs,yaml,js,ts,vue}": "eslint --fix",
+    "*.{json,ts,vue}": [
+      "eslint --fix"
+    ],
+    "*.{ts,vue}": "vue-tsc --noEmit",
     "*.{json,mjs,yaml,js,ts,vue,css}": "prettier --write"
   },
   "packageManager": "pnpm@9.1.4"
