@@ -58,7 +58,7 @@
     "*.{json,ts,vue}": [
       "eslint --fix"
     ],
-    "*.{ts,vue}": "vue-tsc --noEmit",
+    "*.{ts,vue}": "pnpm nuxi typecheck",
     "*.{json,mjs,yaml,js,ts,vue,css}": "prettier --write"
   },
   "packageManager": "pnpm@9.1.4"
