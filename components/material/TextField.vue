@@ -279,7 +279,7 @@
   .hint,
   .counter {
     font-size: 0.75rem;
-    color: var(--color-on-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
   }
 
   .counter {

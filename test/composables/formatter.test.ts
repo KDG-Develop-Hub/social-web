@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest'
+
 describe('formatDistanceFromNow', async () => {
   it('exists', async () => {
     expect(formatDistanceFromNow).toBeDefined()
