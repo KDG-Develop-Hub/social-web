@@ -9,7 +9,7 @@
     "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, *.config.js, *.config.mjs, *.config.cjs, *.config.ts, *.config.json"
   },
   "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "Vue.volar"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
