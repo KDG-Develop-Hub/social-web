@@ -1,18 +1,12 @@
 <script setup lang="ts">
   import { Dialog } from '@ark-ui/vue'
-  import type { VNode } from 'vue'
+  import type { FunctionalComponent, VNode } from 'vue'
 
-  withDefaults(
-    defineProps<{
-      width?: number | string
-    }>(),
-    {
-      width: '100%'
-    }
-  )
+  defineProps<{
+    icon?: FunctionalComponent
+  }>()
   const slots = defineSlots<{
     default: () => VNode
-    icon?: () => VNode
     buttons?: () => VNode
   }>()
   const content = ref<HTMLElement | null>(null)
@@ -30,10 +24,13 @@
   )
   const resize = () => execute()
   watchOnce(content, content => {
-    if (content)
-      for (const el of content.querySelectorAll('.resize')) {
-        new ResizeObserver(resize).observe(el)
+    if (content) {
+      const observer = new ResizeObserver(resize)
+      for (const el of content.children) {
+        observer.observe(el)
       }
+      onBeforeUnmount(() => observer.disconnect())
+    }
   })
   watch(contentWidth, resize)
 </script>
@@ -44,8 +41,8 @@
     <Dialog.Positioner class="positioner">
       <Dialog.Content as-child :data-updated="isReady" class="content">
         <div ref="content">
-          <div v-if="slots.icon" class="v-stack icon">
-            <slot name="icon" />
+          <div v-if="icon" class="v-stack icon-wrapper">
+            <component :is="icon" class="icon" />
           </div>
           <slot name="default" />
           <div v-if="slots.buttons" class="h-stack button-set">
@@ -103,7 +100,7 @@
     padding: var(--dialog-padding) 0;
     gap: calc(var(--dialog-padding) - 0.5rem);
     box-sizing: border-box;
-    width: v-bind(width);
+    width: 100%;
     max-width: 48rem;
     border-radius: var(--md-sys-shape-corner-lg);
     background: var(--md-sys-color-surface);
@@ -156,9 +153,8 @@
   }
 
   .icon {
-    :global(*) {
-      color: var(--md-sys-color-error);
-    }
+    color: var(--md-sys-color-primary);
+    stroke: var(--md-sys-color-primary);
   }
 
   .button-set {

@@ -48,13 +48,10 @@
               <Feather />
             </MaterialFAB>
           </ArkDialog.Trigger>
-          <MaterialDialog>
+          <MaterialDialog :icon="Feather" icon-is-filled>
             <p v-if="maxFilesExceededError" class="error-message">
               {{ maxFilesExceededError }}
             </p>
-            <template #icon>
-              <Feather stroke="var(--color-primary)" />
-            </template>
             <ArkDialog.Title class="ark-dialog-title"
               >今回は何を綴るのかな？</ArkDialog.Title
             >
