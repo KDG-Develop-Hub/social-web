@@ -2,7 +2,8 @@
   const navItems = [
     { to: '', text: 'アカウント' },
     { to: '/profile', text: 'プロフィール' },
-    { to: '/appearance', text: '見た目' }
+    { to: '/appearance', text: '見た目' },
+    { to: '/langage', text: '言語' }
   ]
 </script>
 
