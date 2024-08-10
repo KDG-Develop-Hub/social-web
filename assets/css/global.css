@@ -24,3 +24,8 @@ pre {
 a {
   cursor: pointer;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
