@@ -1,4 +1,13 @@
 * {
+  --md-sys-typescale-display-lg-size: 3.5625rem;
+  --md-sys-typescale-display-lg-weight: 400;
+  --md-sys-typescale-display-lg-tracking: -0.25pt;
+  --md-sys-typescale-display-md-size: 2.8125rem;
+  --md-sys-typescale-display-md-weight: 400;
+  --md-sys-typescale-display-md-tracking: 0;
+  --md-sys-typescale-display-sm-size: 2.25rem;
+  --md-sys-typescale-display-sm-weight: 400;
+  --md-sys-typescale-display-sm-tracking: 0;
   --md-sys-typescale-headline-lg-size: 2rem;
   --md-sys-typescale-headline-lg-weight: 400;
   --md-sys-typescale-headline-lg-tracking: 0;
@@ -36,6 +45,24 @@
   --md-sys-typescale-label-md-tracking: 0.5pt;
   --md-sys-typescale-label-sm-size: 0.6875rem;
   --md-sys-typescale-label-sm-weight: 500;
+}
+
+.display-lg {
+  font-size: var(--md-sys-typescale-display-lg-size);
+  font-weight: var(--md-sys-typescale-display-lg-weight);
+  letter-spacing: var(--md-sys-typescale-display-lg-tracking);
+}
+
+.display-md {
+  font-size: var(--md-sys-typescale-display-md-size);
+  font-weight: var(--md-sys-typescale-display-md-weight);
+  letter-spacing: var(--md-sys-typescale-display-md-tracking);
+}
+
+.display-sm {
+  font-size: var(--md-sys-typescale-display-sm-size);
+  font-weight: var(--md-sys-typescale-display-sm-weight);
+  letter-spacing: var(--md-sys-typescale-display-sm-tracking);
 }
 
 .headline-lg {
