@@ -16,16 +16,13 @@
     text: string
   }
 
-  const searchHistories = ref([
-    'Javascript',
-    'Javascript',
-    'Javascript',
-    'Javascript',
-    'Javascript'
-  ])
+  const searchHistories = ref<string[]>([])
   const searchCandidates = ref<SearchCandidate[]>([
     { icon: 'Search', text: 'Nextjs' },
-    { icon: 'History', text: 'Nextjs パラレル' }
+    { icon: 'Search', text: 'Vue.js' },
+    { icon: 'Search', text: 'React' },
+    { icon: 'Search', text: 'Angular' },
+    { icon: 'Search', text: 'Svelte' }
   ])
   // const searchResults = ref('リザルト');
   const searchInput = ref<HTMLInputElement | null>(null)
@@ -34,6 +31,10 @@
 
   onMounted(() => {
     searchInput.value?.focus()
+    const storedHistory = localStorage.getItem('searchHistory')
+    if (storedHistory) {
+      searchHistories.value = JSON.parse(storedHistory)
+    }
   })
 
   const getIconComponent = (
@@ -47,6 +48,32 @@
       return
     }
     showResults.value = true
+    addToSearchHistory(inputValue.value)
+  }
+
+  const addToSearchHistory = (query: string) => {
+    const index = searchHistories.value.indexOf(query)
+
+    if (index > -1) {
+      searchHistories.value.splice(index, 1)
+    }
+
+    searchHistories.value.unshift(query)
+    if (searchHistories.value.length > 5) {
+      searchHistories.value = searchHistories.value.slice(0, 5)
+    }
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistories.value))
+  }
+
+  const useSearchHistory = (query: string) => {
+    inputValue.value = query
+    handleEnter()
+  }
+
+  const clearSearchHistory = () => {
+    searchHistories.value = []
+    localStorage.removeItem('searchHistory')
   }
 
   watch(inputValue, (newValue: string, oldValue: string) => {
@@ -100,9 +127,18 @@
     <ul class="search-history-unordered">
       <li v-for="searchHistory in searchHistories" :key="searchHistory">
         <span><History /></span>
-        {{ searchHistory }}
+        <span class="history-item" @click="useSearchHistory(searchHistory)">{{
+          searchHistory
+        }}</span>
       </li>
     </ul>
+    <button
+      v-if="searchHistories.length"
+      class="clear-history-button"
+      @click="clearSearchHistory"
+    >
+      履歴をクリア
+    </button>
   </div>
 </template>
 
@@ -158,6 +194,15 @@
     gap: 10px;
   }
 
+  .history-item {
+    cursor: pointer;
+    color: var(--md-sys-color-scrim);
+  }
+
+  .history-item:hover {
+    text-decoration: underline;
+  }
+
   .tweet-component {
     display: flex;
     gap: 10px;
@@ -189,5 +234,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .clear-history-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .clear-history-button:hover {
+    background-color: #e0e0e0;
   }
 </style>
