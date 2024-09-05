@@ -17,14 +17,25 @@
   }
 
   const searchHistories = ref<string[]>([])
-  const searchCandidates = ref<SearchCandidate[]>([
+
+  const allSearchCandidates = ref<SearchCandidate[]>([
     { icon: 'Search', text: 'Nextjs' },
     { icon: 'Search', text: 'Vue.js' },
     { icon: 'Search', text: 'React' },
     { icon: 'Search', text: 'Angular' },
     { icon: 'Search', text: 'Svelte' }
   ])
-  // const searchResults = ref('リザルト');
+  const filteredSearchCandidates = computed(() => {
+    if (!inputValue.value) return []
+    return allSearchCandidates.value.filter(candidate =>
+      candidate.text.toLowerCase().includes(inputValue.value.toLowerCase())
+    )
+  })
+
+  // const showSuggestions = computed(
+  //   () => inputValue.value.length > 0 && !showResults.value
+  // )
+
   const searchInput = ref<HTMLInputElement | null>(null)
   const inputValue = ref('')
   const showResults = ref(false)
@@ -115,8 +126,9 @@
   <div v-else-if="inputValue.length">
     <ul class="search-candidate-unordered">
       <li
-        v-for="searchCandidate in searchCandidates"
+        v-for="searchCandidate in filteredSearchCandidates"
         :key="searchCandidate.text"
+        @click="useSearchHistory(searchCandidate.text)"
       >
         <component :is="getIconComponent(searchCandidate.icon)" />
         {{ searchCandidate.text }}
