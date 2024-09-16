@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   imports: {
-    dirs: ['./types/**'],
+    dirs: ['./entities/**'],
     presets: [
       {
         from: 'date-fns',
