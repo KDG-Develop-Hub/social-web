@@ -10,8 +10,11 @@
 
 <template>
   <NuxtLink :to="to" class="v-stack link label-md">
-    <MaterialRippleRoot class="indicator h-stack">
-      <span class="h-stack">
+    <MaterialRippleRoot
+      color="var(--md-sys-color-on-surface) "
+      class="indicator h-stack"
+    >
+      <span class="icon-wrapper">
         <component :is="icon" class="link-icon" />
       </span>
     </MaterialRippleRoot>
@@ -39,6 +42,12 @@
     transition: stroke-width var(--md-sys-motion-duration-short4)
       var(--md-sys-motion-easing-emphasized);
     stroke-width: var(--navr-link-icon-width);
+  }
+
+  .icon-wrapper {
+    display: grid;
+    place-items: center;
+    pointer-events: none;
   }
 
   .indicator {
