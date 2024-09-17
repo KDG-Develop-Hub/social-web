@@ -10,9 +10,11 @@
 
 <template>
   <NuxtLink :to="to" class="v-stack link label-md">
-    <span class="indicator h-stack">
-      <component :is="icon" class="link-icon" />
-    </span>
+    <MaterialRippleRoot class="indicator h-stack">
+      <span class="h-stack">
+        <component :is="icon" class="link-icon" />
+      </span>
+    </MaterialRippleRoot>
     {{ label }}
   </NuxtLink>
 </template>
