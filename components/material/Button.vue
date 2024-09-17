@@ -20,24 +20,26 @@
 </script>
 
 <template>
-  <component
-    :is="as"
-    :data-width="width"
-    :data-variant="variant"
-    :data-color="color"
-    class="container"
-    :disabled="disabled"
-  >
-    <slot name="icon" />
-    <span
-      class="label-wrapper label-md"
-      :aria-disabled="disabled"
+  <MaterialRippleRoot as-child color="var(--button-ctn-bgcolor-to-mix)">
+    <component
+      :is="as"
+      :data-width="width"
       :data-variant="variant"
       :data-color="color"
+      class="container"
+      :disabled="disabled"
     >
-      <slot>ここを押してね</slot>
-    </span>
-  </component>
+      <slot name="icon" />
+      <span
+        class="label-wrapper label-md"
+        :aria-disabled="disabled"
+        :data-variant="variant"
+        :data-color="color"
+      >
+        <slot>ここを押してね</slot>
+      </span>
+    </component>
+  </MaterialRippleRoot>
 </template>
 
 <style scoped>
@@ -52,21 +54,17 @@
     border-radius: var(--md-sys-shape-corner-full);
     height: 2.5rem;
     background: var(--button-ctn-bgcolor-basic);
+    transition: box-shadow var(--md-sys-motion-duration-medium1)
+      var(--md-sys-motion-easing-standard);
 
     &:hover {
-      background: color-mix(
-        in srgb,
-        var(--button-ctn-bgcolor-basic),
-        var(--button-ctn-bgcolor-to-mix) 10%
-      );
-    }
-
-    &:active {
-      background: color-mix(
-        in srgb,
-        var(--button-ctn-bgcolor-basic),
-        var(--button-ctn-bgcolor-to-mix) 18%
-      );
+      @media (hover: hover) {
+        background: color-mix(
+          in srgb,
+          var(--button-ctn-bgcolor-basic),
+          var(--button-ctn-bgcolor-to-mix) 10%
+        );
+      }
     }
 
     &:disabled {
@@ -74,6 +72,14 @@
     }
 
     &[data-variant='filled'] {
+      &:hover {
+        @media (hover: hover) {
+          box-shadow: var(--md-sys-elevation-1);
+        }
+      }
+      &:active {
+        box-shadow: none;
+      }
       &[data-color='primary'] {
         --button-ctn-bgcolor-basic: var(--md-sys-color-primary);
         --button-ctn-bgcolor-to-mix: var(--md-sys-color-on-primary);
@@ -102,10 +108,16 @@
     }
 
     &[data-variant='outlined'] {
-      --button-ctn-bgcolor-to-mix: white;
       --button-ctn-bgcolor-basic: transparent;
+      border: 1px solid var(--md-sys-color-outline);
       &[data-color='primary'] {
-        border: 1px solid var(--md-sys-color-outline);
+        --button-ctn-bgcolor-to-mix: var(--md-sys-color-primary);
+      }
+      &[data-color='secondary'] {
+        --button-ctn-bgcolor-to-mix: var(--md-sys-color-secondary);
+      }
+      &[data-color='danger'] {
+        --button-ctn-bgcolor-to-mix: var(--md-sys-color-error);
       }
     }
 
