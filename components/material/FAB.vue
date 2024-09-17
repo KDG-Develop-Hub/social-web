@@ -2,9 +2,14 @@
 
 <template>
   <span>
-    <button class="container square">
-      <slot />
-    </button>
+    <MaterialRippleRoot
+      as-child
+      color="var(--md-sys-color-on-tertiary-container)"
+    >
+      <button class="container square">
+        <slot />
+      </button>
+    </MaterialRippleRoot>
   </span>
 </template>
 
@@ -15,11 +20,11 @@
     border-radius: var(--md-sys-shape-corner-md);
     border: none;
     cursor: pointer;
-    background-color: var(--md-sys-color-tertiary);
+    background-color: var(--md-sys-color-tertiary-container);
     --square-size: 3.5rem;
-    color: var(--md-sys-color-on-tertiary);
-    :global(*) {
-      color: var(--md-sys-color-on-tertiary);
+    color: var(--md-sys-color-on-tertiary-container);
+    :deep(*) {
+      color: var(--md-sys-color-on-tertiary-container);
     }
   }
 </style>
