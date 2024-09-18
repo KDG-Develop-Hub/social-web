@@ -1,10 +1,6 @@
 <script setup>
-  setResponseStatus(404)
-</script>
+  import { useRouter } from 'vue-router'
 
-<template>
-  <div>
-    <h1>404</h1>
-    <p>Page not found</p>
-  </div>
-</template>
+  const router = useRouter()
+  router.push('/404')
+</script>
