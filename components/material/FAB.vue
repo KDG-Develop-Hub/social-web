@@ -2,12 +2,12 @@
 
 <template>
   <span>
-    <MaterialRippleRoot
-      as-child
-      color="var(--md-sys-color-on-tertiary-container)"
-    >
+    <MaterialRippleRoot as-child>
       <button class="container square">
         <slot />
+        <MaterialRippleContainer
+          color="var(--md-sys-color-on-tertiary-container)"
+        />
       </button>
     </MaterialRippleRoot>
   </span>

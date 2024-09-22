@@ -10,13 +10,11 @@
 
 <template>
   <NuxtLink :to="to" class="v-stack link label-md">
-    <MaterialRippleRoot
-      color="var(--md-sys-color-on-surface) "
-      class="indicator h-stack"
-    >
+    <MaterialRippleRoot class="indicator h-stack">
       <span class="icon-wrapper">
         <component :is="icon" class="link-icon" />
       </span>
+      <MaterialRippleContainer color="var(--md-sys-color-on-surface)" />
     </MaterialRippleRoot>
     {{ label }}
   </NuxtLink>

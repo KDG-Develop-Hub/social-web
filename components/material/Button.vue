@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <MaterialRippleRoot as-child color="var(--button-ctn-bgcolor-to-mix)">
+  <MaterialRippleRoot as-child>
     <component
       :is="as"
       :data-width="width"
@@ -38,6 +38,7 @@
       >
         <slot>ここを押してね</slot>
       </span>
+      <MaterialRippleContainer color="var(--button-ctn-bgcolor-to-mix)" />
     </component>
   </MaterialRippleRoot>
 </template>
