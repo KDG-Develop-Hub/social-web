@@ -32,10 +32,6 @@
     )
   })
 
-  // const showSuggestions = computed(
-  //   () => inputValue.value.length > 0 && !showResults.value
-  // )
-
   const searchInput = ref<HTMLInputElement | null>(null)
   const inputValue = ref('')
   const showResults = ref(false)
@@ -79,6 +75,7 @@
 
   const useSearchHistory = (query: string) => {
     inputValue.value = query
+    searchInput.value?.focus()
     handleEnter()
   }
 
