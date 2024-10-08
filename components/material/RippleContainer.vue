@@ -40,11 +40,13 @@
     border-radius: 50%;
     background: color-mix(in srgb, v-bind(color) 10%, transparent);
     scale: 0;
-    animation: ripple-scale 450ms 150ms forwards linear;
+    animation: ripple-scale var(--md-sys-motion-duration-long1)
+      var(--md-sys-motion-duration-short3) forwards linear;
     &.remove {
       opacity: 0;
-      transition: opacity 450ms 50ms linear;
-    }
+      transition: opacity var(--md-sys-motion-duration-long1)
+        var(--md-sys-motion-duration-short1) linear;
+    }`
   }
 
   @keyframes ripple-scale {
