@@ -7,3 +7,13 @@
     </p>
   </div>
 </template>
+
+<style scoped>
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+</style>
