@@ -2,23 +2,22 @@ import styles from '@/assets/css/modules/ripple.module.css'
 
 type RippleOptions = {
   color?: string
-  keys?: string
+  disabled?: boolean
 }
 
 type RippleEvent = MouseEvent | TouchEvent | KeyboardEvent
 
-type RippleHTMLElement = HTMLElement & {
-  _ripple: RippleOptions
-}
-
 let keyboardRipple = false
 
 export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.directive<RippleHTMLElement, RippleOptions>('ripple', {
+  nuxtApp.vueApp.directive<HTMLElement, RippleOptions>('ripple', {
     mounted(el, options) {
+      if (!el.classList.contains(styles['ripple-container'])) {
+        el.classList.add(styles['ripple-container'])
+      }
       el.style.setProperty(
         '--material-ripple-color',
-        options.value.color || 'black'
+        options.value?.color || 'black'
       )
       el.addEventListener('mousedown', createRipple)
       el.addEventListener('touchstart', createRipple, { passive: true })
@@ -31,11 +30,14 @@ export default defineNuxtPlugin(nuxtApp => {
       el.addEventListener('mouseup', removeRipple)
     },
     updated(el, options) {
-      if (options.value === options.oldValue)
-        el.style.setProperty(
-          '--material-ripple-color',
-          options.value.color || 'black'
-        )
+      if (options.value === options.oldValue) return
+      if (!el.classList.contains(styles['ripple-container'])) {
+        el.classList.add(styles['ripple-container'])
+      }
+      el.style.setProperty(
+        '--material-ripple-color',
+        options.value.color || 'black'
+      )
     },
     beforeUnmount(el) {
       el.removeEventListener('mousedown', createRipple)
@@ -47,6 +49,14 @@ export default defineNuxtPlugin(nuxtApp => {
       el.removeEventListener('touchmove', removeRipple)
       el.removeEventListener('mouseleave', removeRipple)
       el.removeEventListener('mouseup', removeRipple)
+    },
+    getSSRProps(binding) {
+      return {
+        style: {
+          '--material-ripple-color': binding.value.color || 'black'
+        },
+        class: styles['ripple-container']
+      }
     }
   })
 })
@@ -79,8 +89,6 @@ function createRipple(event: RippleEvent) {
   if (!(root instanceof HTMLElement)) throw new Error('Invalid event target')
   const { x, y, diameter } = calculate(event)
   const circle = document.createElement('span')
-
-  root.classList.add(styles['ripple-container'])
 
   circle.style.width = circle.style.height = `${diameter}px`
   circle.style.left = `${x}px`
