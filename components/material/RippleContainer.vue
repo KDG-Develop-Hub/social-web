@@ -46,7 +46,7 @@
       opacity: 0;
       transition: opacity var(--md-sys-motion-duration-long1)
         var(--md-sys-motion-duration-short1) linear;
-    }`
+    }
   }
 
   @keyframes ripple-scale {
