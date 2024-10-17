@@ -5,12 +5,12 @@
   border-radius: 50%;
   background: color-mix(in srgb, var(--material-ripple-color) 12%, transparent);
   scale: 0;
-  animation: ripple-scale var(--md-sys-motion-duration-long1)
-    var(--md-sys-motion-duration-short1) forwards linear;
+  animation: ripple-scale var(--md-sys-motion-duration-medium2)
+    var(--md-sys-motion-duration-short2) forwards linear;
   &.remove {
     opacity: 0;
-    transition: opacity var(--md-sys-motion-duration-long1)
-      var(--md-sys-motion-duration-short1) linear;
+    transition: opacity var(--md-sys-motion-duration-medium2)
+      var(--md-sys-motion-duration-short2) linear;
   }
 }
 
