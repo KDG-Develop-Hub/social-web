@@ -20,27 +20,27 @@
 </script>
 
 <template>
-  <MaterialRippleRoot as-child>
-    <component
-      :is="as"
-      :data-width="width"
+  <component
+    :is="as"
+    v-ripple="{
+      color: 'var(--button-ctn-bgcolor-to-mix)'
+    }"
+    :data-width="width"
+    :data-variant="variant"
+    :data-color="color"
+    class="container"
+    :disabled="disabled"
+  >
+    <slot name="icon" />
+    <span
+      class="label-wrapper label-md"
+      :aria-disabled="disabled"
       :data-variant="variant"
       :data-color="color"
-      class="container"
-      :disabled="disabled"
     >
-      <slot name="icon" />
-      <span
-        class="label-wrapper label-md"
-        :aria-disabled="disabled"
-        :data-variant="variant"
-        :data-color="color"
-      >
-        <slot>ここを押してね</slot>
-      </span>
-      <MaterialRippleContainer color="var(--button-ctn-bgcolor-to-mix)" />
-    </component>
-  </MaterialRippleRoot>
+      <slot>ここを押してね</slot>
+    </span>
+  </component>
 </template>
 
 <style scoped>

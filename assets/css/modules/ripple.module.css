@@ -1,0 +1,30 @@
+.ripple {
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--material-ripple-color) 12%, transparent);
+  scale: 0;
+  animation: ripple-scale var(--md-sys-motion-duration-long1)
+    var(--md-sys-motion-duration-short1) forwards linear;
+  &.remove {
+    opacity: 0;
+    transition: opacity var(--md-sys-motion-duration-long1)
+      var(--md-sys-motion-duration-short1) linear;
+  }
+}
+
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes ripple-scale {
+  from {
+    scale: 0.125;
+  }
+
+  to {
+    scale: 1;
+  }
+}
