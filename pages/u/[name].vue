@@ -36,6 +36,7 @@
       <Tabs.Trigger
         v-for="i in tabItems"
         :key="i.value"
+        v-ripple="{ color: 'red' }"
         as-child
         class="tab title-sm"
         :value="i.value"
