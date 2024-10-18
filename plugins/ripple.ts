@@ -10,15 +10,14 @@ type RippleEvent = MouseEvent | TouchEvent | KeyboardEvent
 let keyboardRipple = false
 
 export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.directive<HTMLElement, RippleOptions>('ripple', {
-    mounted(el, options) {
-      if (!el.classList.contains(styles['ripple-container'])) {
-        el.classList.add(styles['ripple-container'])
-      }
+  nuxtApp.vueApp.directive<HTMLElement, RippleOptions | undefined>('ripple', {
+    created(el, options) {
+      el.classList.add(styles['ripple-container'])
       el.style.setProperty(
         '--material-ripple-color',
-        options.value?.color || 'black'
+        options.value?.color || 'var(md-sys-color-on-surface)'
       )
+      if (options.value?.disabled) return
       el.addEventListener('mousedown', createRipple)
       el.addEventListener('touchstart', createRipple, { passive: true })
       el.addEventListener('keydown', createRippleByKeydown)
@@ -29,14 +28,16 @@ export default defineNuxtPlugin(nuxtApp => {
       el.addEventListener('mouseleave', removeRipple)
       el.addEventListener('mouseup', removeRipple)
     },
-    updated(el, options) {
-      if (options.value === options.oldValue) return
+    async updated(el, options) {
+      await nextTick()
       if (!el.classList.contains(styles['ripple-container'])) {
         el.classList.add(styles['ripple-container'])
       }
       el.style.setProperty(
         '--material-ripple-color',
-        options.value.color || 'black'
+        options.value?.color
+          ? options.value.color
+          : 'var(--md-sys-color-on-surface)'
       )
     },
     beforeUnmount(el) {
@@ -53,7 +54,9 @@ export default defineNuxtPlugin(nuxtApp => {
     getSSRProps(binding) {
       return {
         style: {
-          '--material-ripple-color': binding.value.color || 'black'
+          '--material-ripple-color': binding.value?.color
+            ? binding.value.color
+            : 'var(--md-sys-color-on-surface)'
         },
         class: styles['ripple-container']
       }
