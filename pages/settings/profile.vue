@@ -31,8 +31,8 @@
   <h2>プロフィール</h2>
   <div class="row profile full-width">
     <div>
-      <DialogRoot>
-        <DialogTrigger class="avatar-wrapper">
+      <DialogRoot id="avatar">
+        <DialogTrigger v-ripple class="avatar-wrapper">
           <div class="avatar-backdrop" />
           <span class="avatar-label label-md">アバターを変更</span>
           <img
@@ -43,6 +43,7 @@
         </DialogTrigger>
         <MaterialDialog>
           <FileUploadRoot
+            id="avatar-image-uploader"
             :max-files="1"
             :max-file-size="50 * 1024 ** 2"
             :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
