@@ -23,4 +23,17 @@ pre {
 :enabled,
 a {
   cursor: pointer;
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color-scheme: light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+  }
 }
