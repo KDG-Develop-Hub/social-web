@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .error-container {
     display: flex;
     flex-direction: column;
