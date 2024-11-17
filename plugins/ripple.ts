@@ -11,7 +11,7 @@ let keyboardRipple = false
 
 export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.directive<HTMLElement, RippleOptions | undefined>('ripple', {
-    created(el, options) {
+    mounted(el, options) {
       el.classList.add(styles['ripple-container'])
       el.style.setProperty(
         '--material-ripple-color',
