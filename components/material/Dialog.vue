@@ -137,14 +137,14 @@
       }
     }
 
-    :global(& > *) {
+    :deep(& > *) {
       transition: opacity var(--md-sys-motion-duration-short4)
         var(--md-sys-motion-easing-emphasized)
         var(--md-sys-motion-duration-short3);
       margin: 0 var(--dialog-padding);
       flex-shrink: 0;
 
-      &:global(&:last-child) {
+      &:last-child {
         transition: opacity var(--md-sys-motion-duration-short4)
           var(--md-sys-motion-easing-emphasized);
         margin-top: 0.5rem;
