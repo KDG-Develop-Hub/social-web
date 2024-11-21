@@ -28,6 +28,7 @@
             :datetime="dateTimeFormatter.format(tweet.createdAt)"
             >{{ formatDistanceFromNow(tweet.createdAt) }}</time
           >
+          <MaterialMenuTrigger />
         </header>
         <p>{{ tweet.content }}</p>
       </div>

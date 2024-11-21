@@ -34,11 +34,17 @@ export default defineNuxtConfig({
       }
     ]
   },
+  icon: {
+    serverBundle: {
+      collections: ['material-symbols']
+    }
+  },
   modules: [
     '@pinia/nuxt',
     '@nuxt/test-utils/module',
     '@vueuse/nuxt',
     '@nuxt/eslint',
-    '@nuxt/fonts'
+    '@nuxt/fonts',
+    '@nuxt/icon'
   ]
 })
