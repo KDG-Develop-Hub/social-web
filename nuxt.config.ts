@@ -5,6 +5,7 @@ export default defineNuxtConfig({
       title: 'kdg.social'
     }
   },
+
   css: [
     '@/assets/css/global.css',
     '@/assets/css/layout.css',
@@ -19,12 +20,15 @@ export default defineNuxtConfig({
     '@/assets/css/colors/dark-mc.css',
     '@/assets/css/colors/dark-hc.css'
   ],
+
   fonts: {
     defaults: {
       weights: [400, 500, 700]
     }
   },
+
   devtools: { enabled: true },
+
   imports: {
     dirs: ['./entities/**'],
     presets: [
@@ -34,11 +38,13 @@ export default defineNuxtConfig({
       }
     ]
   },
+
   icon: {
     serverBundle: {
       collections: ['material-symbols']
     }
   },
+
   modules: [
     '@pinia/nuxt',
     '@nuxt/test-utils/module',

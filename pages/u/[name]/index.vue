@@ -15,24 +15,12 @@
 
 <template>
   <div class="articles v-stack">
-    <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
-      <MaterialAvatar
-        :name="users[tweet.userId].name"
-        :src="users[tweet.userId].avatarUrl"
-      />
-      <div class="body">
-        <header class="h-stack">
-          <strong>{{ users[tweet.userId].name }}</strong>
-          <time
-            class="body-sm"
-            :datetime="dateTimeFormatter.format(tweet.createdAt)"
-            >{{ formatDistanceFromNow(tweet.createdAt) }}</time
-          >
-          <MaterialMenuTrigger />
-        </header>
-        <p>{{ tweet.content }}</p>
-      </div>
-    </article>
+    <OrgTweet
+      v-for="tweet in tweets"
+      :key="tweet.userId"
+      :tweet="tweet"
+      :user="users[tweet.userId]"
+    />
   </div>
 </template>
 
@@ -41,21 +29,5 @@
     width: 100%;
     gap: 1rem;
     padding: 1.5rem 0;
-  }
-  .tweet {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--md-sys-color-outline-variant);
-    border-radius: 0.75rem;
-    display: flex;
-    gap: 0.75rem;
-  }
-  .body {
-    width: 100%;
-
-    header {
-      height: 1.5rem;
-    }
   }
 </style>

@@ -4,7 +4,6 @@
   defineProps<{
     value: string
     selected?: boolean
-    icon?: string
   }>()
 </script>
 
@@ -24,6 +23,7 @@
 
 <style scoped>
   .item {
+    cursor: pointer;
     user-select: none;
     display: flex;
     gap: 0.75rem;

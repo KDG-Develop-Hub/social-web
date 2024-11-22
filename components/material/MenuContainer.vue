@@ -38,12 +38,12 @@
     padding: 0.5rem 0;
   }
   .container {
+    z-index: var(--layer-index);
     overflow: hidden;
     box-shadow: var(--md-sys-elevation-2);
     border-radius: var(--md-sys-shape-corner-xs);
     background-color: var(--md-sys-color-surface-container);
     outline: none;
-    transition: height var(--md-sys-motion-duration-short4);
     min-width: 7rem;
     max-width: 17.5rem;
     opacity: 1;
