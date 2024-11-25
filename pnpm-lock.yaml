@@ -10,6 +10,9 @@ importers:
       '@ark-ui/vue':
         specifier: ^3.14.0
         version: 3.14.0(vue@3.5.12(typescript@5.6.3))
+      '@iconify-json/material-symbols':
+        specifier: ^1.2.8
+        version: 1.2.8
       '@nuxt/kit':
         specifier: ^3.11.2
         version: 3.13.2(magicast@0.3.5)(rollup@4.24.0)(webpack-sources@3.2.3)
@@ -1137,6 +1140,12 @@ packages:
         integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
       }
     deprecated: Use @eslint/object-schema instead
+
+  '@iconify-json/material-symbols@1.2.8':
+    resolution:
+      {
+        integrity: sha512-X89QwN5eRMVHEfm5HWMYCZxkUqUPQM2TNv7D8rIPUn2jTzDmgjgiTMomn3DOXWyh1/geHPnTt1bTSFcUXlpGbw==
+      }
 
   '@iconify/collections@1.0.485':
     resolution:
@@ -8631,6 +8640,10 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/object-schema@2.0.3': {}
+
+  '@iconify-json/material-symbols@1.2.8':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/collections@1.0.485':
     dependencies:
