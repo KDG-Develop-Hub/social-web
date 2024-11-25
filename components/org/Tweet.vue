@@ -39,63 +39,55 @@
     <MaterialAvatar size="sm" :name="user.name" :src="user.avatarUrl" />
     <div class="body">
       <div class="h-stack">
-        <span class="body-lg">{{ user.name }}</span>
-        <time
-          class="body-sm"
-          :datetime="dateTimeFormatter.format(tweet.createdAt)"
-        >
-          {{ formatDistanceFromNow(tweet.createdAt) }}
-        </time>
-        <MaterialMenuRoot v-if="!readonly" id="menu" @select="handleSelect">
-          <Menu.Trigger>
-            <Icon size="24" name="material-symbols:more-vert" />
+        <div class="h-stack full-width">
+          <span class="body-lg">{{ user.name }}</span>
+          <time
+            class="body-sm"
+            :datetime="dateTimeFormatter.format(tweet.createdAt)"
+          >
+            {{ formatDistanceFromNow(tweet.createdAt) }}
+          </time>
+        </div>
+        <MaterialMenuRoot v-if="!readonly" @select="handleSelect">
+          <Menu.Trigger as-child>
+            <button class="icon-button">
+              <Icon name="material-symbols:more-vert" />
+            </button>
           </Menu.Trigger>
           <MaterialMenuContainer>
             <MaterialMenuItem value="reply">
               <template #leading-icon>
-                <Icon
-                  size="24"
-                  name="material-symbols:mode-comment-outline-rounded"
-                />
+                <Icon name="material-symbols:mode-comment-outline-rounded" />
               </template>
               返信する
             </MaterialMenuItem>
             <MaterialMenuItem value="emoji">
               <template #leading-icon>
-                <Icon
-                  size="24"
-                  name="material-symbols:add-reaction-outline-rounded"
-                />
+                <Icon name="material-symbols:add-reaction-outline-rounded" />
               </template>
               絵文字
             </MaterialMenuItem>
             <MaterialMenuItem value="bookmark">
               <template #leading-icon>
-                <Icon
-                  size="24"
-                  name="material-symbols:bookmark-outline-rounded"
-                />
+                <Icon name="material-symbols:bookmark-outline-rounded" />
               </template>
               ブックマーク
             </MaterialMenuItem>
             <MaterialMenuItem value="share">
               <template #leading-icon>
-                <Icon size="24" name="material-symbols:share-outline" />
+                <Icon name="material-symbols:share-outline" />
               </template>
               共有する
             </MaterialMenuItem>
             <MaterialMenuItem value="delete">
               <template #leading-icon>
-                <Icon
-                  size="24"
-                  name="material-symbols:delete-outline-rounded"
-                />
+                <Icon name="material-symbols:delete-outline-rounded" />
               </template>
               削除する
             </MaterialMenuItem>
             <MaterialMenuItem value="report">
               <template #leading-icon>
-                <Icon size="24" name="material-symbols:flag-outline-rounded" />
+                <Icon name="material-symbols:flag-outline-rounded" />
               </template>
               報告する
             </MaterialMenuItem>
@@ -108,6 +100,13 @@
 </template>
 
 <style scoped>
+  .icon-button {
+    border-radius: var(--md-sys-shape-corner-full);
+    display: inline-grid;
+    place-items: center;
+    height: 2rem;
+    width: 2rem;
+  }
   .tweet {
     box-sizing: border-box;
     width: 100%;

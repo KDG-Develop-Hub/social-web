@@ -40,6 +40,7 @@ export default defineNuxtConfig({
   },
 
   icon: {
+    size: '1.5rem',
     serverBundle: {
       collections: ['material-symbols']
     }

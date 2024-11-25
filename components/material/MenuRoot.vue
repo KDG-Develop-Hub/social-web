@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <Menu.Root :id="id" @select="$emit('select', $event.value)">
+  <Menu.Root :id @select="$emit('select', $event.value)">
     <slot />
   </Menu.Root>
 </template>

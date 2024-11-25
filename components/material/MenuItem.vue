@@ -15,9 +15,8 @@
     :class="{ selected }"
   >
     <slot name="leading-icon" />
-    <span class="label-lg">
-      <slot />
-    </span>
+
+    <slot />
   </Menu.Item>
 </template>
 
