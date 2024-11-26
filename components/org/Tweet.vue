@@ -9,8 +9,9 @@
     tweet: Tweet
     user: BasicUserInfo
   }>()
+  const menuId = useId()
 
-  function handleSelect(value: string) {
+  function handleSelect({ value }: { value: string }) {
     switch (value) {
       case 'reply':
         // TODO: コメントダイアログを表示する
@@ -48,11 +49,11 @@
             {{ formatDistanceFromNow(tweet.createdAt) }}
           </time>
         </div>
-        <MaterialMenuRoot v-if="!readonly" @select="handleSelect">
+        <Menu.Root v-if="!readonly" :id="menuId" @select="handleSelect">
           <Menu.Trigger as-child>
-            <button class="icon-button">
+            <MaterialIconButton>
               <Icon name="material-symbols:more-vert" />
-            </button>
+            </MaterialIconButton>
           </Menu.Trigger>
           <MaterialMenuContainer>
             <MaterialMenuItem value="reply">
@@ -92,7 +93,7 @@
               報告する
             </MaterialMenuItem>
           </MaterialMenuContainer>
-        </MaterialMenuRoot>
+        </Menu.Root>
       </div>
       <p>{{ tweet.content }}</p>
     </div>
