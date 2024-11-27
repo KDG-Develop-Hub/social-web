@@ -14,13 +14,21 @@
     :value
     :class="{ selected }"
   >
-    <slot name="leading-icon" />
-
-    <slot />
+    <span class="leading-icon">
+      <slot name="leading-icon" />
+    </span>
+    <span class="label-lg">
+      <slot />
+    </span>
   </Menu.Item>
 </template>
 
 <style scoped>
+  .leading-icon {
+    display: grid;
+    place-items: center;
+    color: var(--md-sys-color-on-surface-variant);
+  }
   .item {
     cursor: pointer;
     user-select: none;
