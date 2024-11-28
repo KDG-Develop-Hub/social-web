@@ -16,7 +16,7 @@
       <MaterialCircularProgressIndicator indeterminate />
     </div>
     <div v-else class="home">
-      <h2 variant="text" disabled class="headline-sm">ホーム</h2>
+      <MaterialTopAppBar> ホーム </MaterialTopAppBar>
       <div class="post-list">
         <OrgTweet v-for="post in data" :key="post.id" :post />
       </div>
@@ -34,7 +34,6 @@
   .home {
     width: 100%;
     gap: 1rem;
-    padding: 1.5rem 0;
     &.v-enter-active,
     &.v-leave-active {
       transition:
