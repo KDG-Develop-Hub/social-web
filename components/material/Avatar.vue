@@ -16,10 +16,7 @@
 
 <template>
   <Avatar.Root :id="id" :data-size="size" class="square root">
-    <Avatar.Image
-      src="https://avatars.githubusercontent.com/u/103516503?s=60&v=4"
-      :alt="`${name}のプロフィールの写真`"
-    />
+    <Avatar.Image :src :alt="`${name}のプロフィールの写真`" />
     <Avatar.Fallback class="square fallback">{{
       initialName(name)
     }}</Avatar.Fallback>
