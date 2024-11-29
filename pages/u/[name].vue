@@ -13,43 +13,56 @@
 </script>
 
 <template>
-  <div class="profile">
-    <header class="h-stack profile-header">
-      <MaterialAvatar
-        size="lg"
-        :name="currentUser.name"
-        src="https://avatars.githubusercontent.com/u/103516503?s=60&v="
-      />
-      <div class="names">
-        <h1>{{ name }}</h1>
-        <span>{{ name }}</span>
+  <div class="body">
+    <div class="profile">
+      <header class="h-stack profile-header">
+        <MaterialAvatar
+          size="lg"
+          :name="currentUser.name"
+          src="https://avatars.githubusercontent.com/u/103516503?s=60&v="
+        />
+        <div class="names">
+          <h1>{{ name }}</h1>
+          <span>{{ name }}</span>
+        </div>
+        <MaterialButton v-if="name === currentUser.name" variant="outlined"
+          >プローフィールをいじる</MaterialButton
+        >
+        <MaterialButton v-else>この人を知っておく</MaterialButton>
+      </header>
+      <p>{{ bio }}</p>
+    </div>
+    <Tabs.Root
+      id="user-profile-tabs"
+      class="tabs-root"
+      :default-value="$route.fullPath"
+    >
+      <Tabs.List class="tabs-list">
+        <Tabs.Trigger
+          v-for="i in tabItems"
+          :key="i.value"
+          v-ripple="{ color: 'var(--md-sys-color-on-surface)' }"
+          as-child
+          class="tab title-sm"
+          :value="i.value"
+        >
+          <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
+        </Tabs.Trigger>
+        <Tabs.Indicator class="tabs-indicator" />
+      </Tabs.List>
+      <div :key="$route.path" class="tabs-content">
+        <NuxtPage />
       </div>
-      <MaterialButton v-if="name === currentUser.name" variant="outlined"
-        >プローフィールをいじる</MaterialButton
-      >
-      <MaterialButton v-else>この人を知っておく</MaterialButton>
-    </header>
-    <p>{{ bio }}</p>
+    </Tabs.Root>
   </div>
-  <Tabs.Root id="user-profile-tabs" :default-value="$route.fullPath">
-    <Tabs.List class="tabs-list">
-      <Tabs.Trigger
-        v-for="i in tabItems"
-        :key="i.value"
-        v-ripple="{ color: 'var(--md-sys-color-on-surface)' }"
-        as-child
-        class="tab title-sm"
-        :value="i.value"
-      >
-        <NuxtLink :to="i.value">{{ i.label }}</NuxtLink>
-      </Tabs.Trigger>
-      <Tabs.Indicator class="tabs-indicator" />
-    </Tabs.List>
-    <NuxtPage />
-  </Tabs.Root>
 </template>
 
 <style scoped>
+  .body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .profile {
     display: flex;
     flex-direction: column;
@@ -89,6 +102,14 @@
     text-decoration: none;
     height: 3rem;
     padding: 0 0.5rem;
+  }
+  .tabs-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .tabs-content {
+    flex-grow: 1;
   }
   .profile-header {
     gap: 1.5rem;
