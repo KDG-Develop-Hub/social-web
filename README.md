@@ -34,7 +34,7 @@ pnpm install
 pnpm dev
 ```
 
-> デフォルトでは、ローカルのデータベースにアクセスするためのドメインを`localhost:3000`に設定しています。
+開発用とプロダクション用のFirebaseの設定を分けているため、`.env.development`と`.env.production`にファイルを置いています。それぞれを使用するには、`--dotenv {使用するファイル名}`をデフォルトのファイルから指定してください。
 
 ```bash
 pnpm dev --dotenv .env.development 
