@@ -146,6 +146,7 @@
 
   main {
     overflow-y: auto;
+    height: 100vh;
     width: 100%;
     padding: 2rem 1.5rem;
   }

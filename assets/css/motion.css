@@ -10,6 +10,7 @@
   --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
   --md-sys-motion-easing-standard-decelerated: cubic-bezier(0, 0, 0, 1);
   --md-sys-motion-easing-standard-accelerated: cubic-bezier(0.3, 0, 1, 1);
+  --md-sys-motion-easing-linear: cubic-bezier(0, 0, 1, 1);
   --md-sys-motion-duration-short1: 50ms;
   --md-sys-motion-duration-short2: 100ms;
   --md-sys-motion-duration-short3: 150ms;
