@@ -15,31 +15,33 @@
 </script>
 
 <template>
-  <h2>見た目</h2>
   <div>
-    <h3 id="theme">テーマ</h3>
-    <p id="theme-describe">
-      テーマを選択すると、アプリケーションの見た目が変わります。
-    </p>
-    <RadioGroupRoot
-      aria-labelledby="theme"
-      aria-describedby="theme-describe"
-      class="h-stack"
-    >
-      <RadioGroupItem
-        v-for="theme in themes"
-        :key="theme.id"
-        class="item v-stack"
-        :value="theme.id"
+    <h2>見た目</h2>
+    <div>
+      <h3 id="theme">テーマ</h3>
+      <p id="theme-describe">
+        テーマを選択すると、アプリケーションの見た目が変わります。
+      </p>
+      <RadioGroupRoot
+        aria-labelledby="theme"
+        aria-describedby="theme-describe"
+        class="h-stack"
       >
-        <RadioGroupItemControl
-          class="indicator square"
-          :data-color="theme.id"
-        />
-        <RadioGroupItemText>{{ theme.name }}</RadioGroupItemText>
-        <RadioGroupItemHiddenInput />
-      </RadioGroupItem>
-    </RadioGroupRoot>
+        <RadioGroupItem
+          v-for="theme in themes"
+          :key="theme.id"
+          class="item v-stack"
+          :value="theme.id"
+        >
+          <RadioGroupItemControl
+            class="indicator square"
+            :data-color="theme.id"
+          />
+          <RadioGroupItemText>{{ theme.name }}</RadioGroupItemText>
+          <RadioGroupItemHiddenInput />
+        </RadioGroupItem>
+      </RadioGroupRoot>
+    </div>
   </div>
 </template>
 

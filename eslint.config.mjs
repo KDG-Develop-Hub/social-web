@@ -12,7 +12,6 @@ export default withNuxt({
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'vue/multi-word-component-names': 'off',
-    'vue/no-multiple-template-root': 'off',
     'no-console': 'error',
     'vue/html-closing-bracket-newline': 'off',
     'vue/html-self-closing': 'off',

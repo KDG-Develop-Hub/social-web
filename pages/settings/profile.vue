@@ -28,73 +28,75 @@
 </script>
 
 <template>
-  <h2>プロフィール</h2>
-  <div class="row profile full-width">
-    <div>
-      <DialogRoot id="avatar">
-        <DialogTrigger v-ripple class="avatar-wrapper">
-          <div class="avatar-backdrop" />
-          <span class="avatar-label label-md">アバターを変更</span>
-          <img
-            :src="user.avatarUrl"
-            class="square avatar"
-            :alt="`${user.displayName}のアバター`"
-          />
-        </DialogTrigger>
-        <MaterialDialog>
-          <FileUploadRoot
-            id="avatar-image-uploader"
-            :max-files="1"
-            :max-file-size="50 * 1024 ** 2"
-            :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
-          >
-            <FileUploadContext v-slot="{ acceptedFiles }">
-              <FileUploadItem
-                v-if="acceptedFiles.length"
-                as-child
-                :file="acceptedFiles[0]"
-              >
-                <form class="avatar-change-accept">
-                  <FileUploadItemPreview type="image/*">
-                    <FileUploadItemPreviewImage class="square avatar" />
-                  </FileUploadItemPreview>
-                  このファイルをアップロードしますか？
-                  <div class="h-stack">
-                    <FileUploadItemDeleteTrigger as-child>
-                      <MaterialButton variant="text"
-                        >んーこれじゃないな</MaterialButton
-                      >
-                    </FileUploadItemDeleteTrigger>
-                    <MaterialButton type="submit"
-                      >アップロードする！</MaterialButton
-                    >
-                  </div>
-                </form>
-              </FileUploadItem>
-              <FileUploadDropzone v-else class="avatar-drop-zone">
-                <FileUploadLabel
-                  >枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel
+  <div>
+    <h2>プロフィール</h2>
+    <div class="row profile full-width">
+      <div>
+        <DialogRoot id="avatar">
+          <DialogTrigger v-ripple class="avatar-wrapper">
+            <div class="avatar-backdrop" />
+            <span class="avatar-label label-md">アバターを変更</span>
+            <img
+              :src="user.avatarUrl"
+              class="square avatar"
+              :alt="`${user.displayName}のアバター`"
+            />
+          </DialogTrigger>
+          <MaterialDialog>
+            <FileUploadRoot
+              id="avatar-image-uploader"
+              :max-files="1"
+              :max-file-size="50 * 1024 ** 2"
+              :accept="acceptedImageTypes.map(i => `image/${i}`).join(',')"
+            >
+              <FileUploadContext v-slot="{ acceptedFiles }">
+                <FileUploadItem
+                  v-if="acceptedFiles.length"
+                  as-child
+                  :file="acceptedFiles[0]"
                 >
-                <span>もしくは...</span>
-                <FileUploadTrigger as-child>
-                  <MaterialButton>ファイルを選択</MaterialButton>
-                </FileUploadTrigger>
-              </FileUploadDropzone>
-              <FileUploadHiddenInput v-model="file" name="avatar" />
-            </FileUploadContext>
-          </FileUploadRoot>
-        </MaterialDialog>
-      </DialogRoot>
-    </div>
-    <form class="fields v-stack full-width">
-      <MaterialTextField full-width label="表示名" required />
-      <MaterialTextField full-width label="メールアドレス" required />
-      <MaterialTextField full-width prefix="https://" label="ウェブサイト" />
-      <MaterialTextField full-width label="自己紹介" multi-line />
-      <div class="h-stack button-set full-width">
-        <MaterialButton type="submit">変更を保存する！</MaterialButton>
+                  <form class="avatar-change-accept">
+                    <FileUploadItemPreview type="image/*">
+                      <FileUploadItemPreviewImage class="square avatar" />
+                    </FileUploadItemPreview>
+                    このファイルをアップロードしますか？
+                    <div class="h-stack">
+                      <FileUploadItemDeleteTrigger as-child>
+                        <MaterialButton variant="text"
+                          >んーこれじゃないな</MaterialButton
+                        >
+                      </FileUploadItemDeleteTrigger>
+                      <MaterialButton type="submit"
+                        >アップロードする！</MaterialButton
+                      >
+                    </div>
+                  </form>
+                </FileUploadItem>
+                <FileUploadDropzone v-else class="avatar-drop-zone">
+                  <FileUploadLabel
+                    >枠線にファイルをドラッグ&ドロップ(5MB以下)</FileUploadLabel
+                  >
+                  <span>もしくは...</span>
+                  <FileUploadTrigger as-child>
+                    <MaterialButton>ファイルを選択</MaterialButton>
+                  </FileUploadTrigger>
+                </FileUploadDropzone>
+                <FileUploadHiddenInput v-model="file" name="avatar" />
+              </FileUploadContext>
+            </FileUploadRoot>
+          </MaterialDialog>
+        </DialogRoot>
       </div>
-    </form>
+      <form class="fields v-stack full-width">
+        <MaterialTextField full-width label="表示名" required />
+        <MaterialTextField full-width label="メールアドレス" required />
+        <MaterialTextField full-width prefix="https://" label="ウェブサイト" />
+        <MaterialTextField full-width label="自己紹介" multi-line />
+        <div class="h-stack button-set full-width">
+          <MaterialButton type="submit">変更を保存する！</MaterialButton>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 

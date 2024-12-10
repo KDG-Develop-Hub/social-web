@@ -6,20 +6,21 @@
 </script>
 
 <template>
-  <h2>言語</h2>
-
-  <RadioGroup.Root class="langage">
-    <RadioGroup.Indicator />
-    <RadioGroup.Item
-      v-for="framework in frameworks"
-      :key="framework"
-      :value="framework"
-      class="langage-select"
-    >
-      <RadioGroup.ItemHiddenInput name="langage" />
-      <RadioGroup.ItemText>{{ framework }}</RadioGroup.ItemText>
-    </RadioGroup.Item>
-  </RadioGroup.Root>
+  <div>
+    <h2>言語</h2>
+    <RadioGroup.Root class="langage">
+      <RadioGroup.Indicator />
+      <RadioGroup.Item
+        v-for="framework in frameworks"
+        :key="framework"
+        :value="framework"
+        class="langage-select"
+      >
+        <RadioGroup.ItemHiddenInput name="langage" />
+        <RadioGroup.ItemText>{{ framework }}</RadioGroup.ItemText>
+      </RadioGroup.Item>
+    </RadioGroup.Root>
+  </div>
 </template>
 
 <style scoped>
