@@ -11,6 +11,11 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+      type: 'transition'
+    },
     head: {
       title: 'kdg.social'
     }

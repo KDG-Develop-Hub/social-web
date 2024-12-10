@@ -30,3 +30,14 @@ button {
   background: transparent;
   padding: 0;
 }
+
+.page-enter-active {
+  transition: all var(--md-sys-motion-duration-medium3)
+    var(--md-sys-motion-easing-standard) var(--md-sys-motion-duration-short4);
+}
+.page-enter-from,
+.page-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(2rem);
+}
