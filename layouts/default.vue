@@ -150,6 +150,10 @@
     width: 100%;
     padding: 2rem 1.5rem;
   }
+  ::slotted(div) {
+    min-width: 100%;
+    min-height: 100%;
+  }
 
   .border-bottom {
     border-bottom: solid 1px var(--md-sys-color-outline);
