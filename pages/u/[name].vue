@@ -1,14 +1,16 @@
 <script setup lang="ts">
   import { Tabs } from '@ark-ui/vue'
 
-  const { name } = useRoute().params
-  const routePrefix = `/u/${name}`
+  const route = useRoute()
+  const prevTab = ref<string | null>(null)
+  const { name } = route.params
+  const routePrefix = computed(() => `/u/${name}`)
   const currentUser = useCurrentUserStore()
   const bio = 'This is bio'
   const tabItems = [
-    { label: 'つぶやき', value: routePrefix },
-    { label: '返信', value: `${routePrefix}/replies` },
-    { label: 'メディア', value: `${routePrefix}/media` }
+    { label: 'つぶやき', value: routePrefix.value },
+    { label: '返信', value: `${routePrefix.value}/replies` },
+    { label: 'メディア', value: `${routePrefix.value}/media` }
   ]
 </script>
 
@@ -25,9 +27,9 @@
           <h1>{{ name }}</h1>
           <span>{{ name }}</span>
         </div>
-        <MaterialButton v-if="name === currentUser.name" variant="outlined"
-          >プローフィールをいじる</MaterialButton
-        >
+        <MaterialButton v-if="name === currentUser.name" variant="outlined">
+          プローフィールをいじる
+        </MaterialButton>
         <MaterialButton v-else>この人を知っておく</MaterialButton>
       </header>
       <p>{{ bio }}</p>
@@ -36,6 +38,7 @@
       id="user-profile-tabs"
       class="tabs-root"
       :default-value="$route.fullPath"
+      @value-change="console.log($event.value)"
     >
       <Tabs.List class="tabs-list">
         <Tabs.Trigger
@@ -50,8 +53,19 @@
         </Tabs.Trigger>
         <Tabs.Indicator class="tabs-indicator" />
       </Tabs.List>
-      <div :key="$route.path" class="tabs-content">
-        <NuxtPage />
+      <div class="tabs-content-wrapper">
+        <Transition mode="out-in">
+          <div
+            :key="$route.fullPath"
+            :data-direction="
+              tabItems.findIndex(i => i.value === prevTab) -
+              tabItems.findIndex(i => i.value === $route.fullPath)
+            "
+            class="tabs-content"
+          >
+            <NuxtPage />
+          </div>
+        </Transition>
       </div>
     </Tabs.Root>
   </div>
@@ -108,8 +122,35 @@
     flex-direction: column;
     height: 100%;
   }
-  .tabs-content {
+  .tabs-content-wrapper {
+    position: relative;
     flex-grow: 1;
+    position: relative;
+    &:has(> .v-enter-active),
+    &:has(> .v-leave-active) {
+      overflow: hidden;
+    }
+  }
+  .tabs-content {
+    --tab-content-direction: 1;
+    &[data-direction='ltr'] {
+      --tab-content-direction: -1;
+    }
+    &.v-enter-active,
+    &.v-leave-active {
+      transition: all var(--md-sys-motion-duration-medium2)
+        var(--md-sys-motion-easing-standard);
+    }
+    &.v-enter-from {
+      position: absolute;
+      opacity: 0;
+      transform: translateX(calc(2rem * var(--tab-content-direction)));
+    }
+    &.v-leave-to {
+      position: absolute;
+      opacity: 0;
+      transform: translateX(calc(-2rem * var(--tab-content-direction)));
+    }
   }
   .profile-header {
     gap: 1.5rem;
