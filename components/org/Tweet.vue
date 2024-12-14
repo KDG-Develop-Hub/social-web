@@ -6,8 +6,7 @@
      * 投稿が読み込み専用ならば、メニューを表示しない。
      */
     readonly?: boolean
-    tweet: Tweet
-    user: BasicUserInfo
+    post: Post
   }>()
   const menuId = useId()
 
@@ -36,17 +35,19 @@
 </script>
 
 <template>
-  <article :key="tweet.userId" class="tweet">
-    <MaterialAvatar size="sm" :name="user.name" :src="user.avatarUrl" />
+  <article :key="post.userId" class="tweet">
+    <MaterialAvatar size="sm" :name="post.userName" :src="post.userImageUrl" />
     <div class="body">
       <div class="h-stack">
         <div class="h-stack full-width">
-          <span class="body-lg">{{ user.name }}</span>
+          <span class="body-lg">{{ post.userName }}</span>
           <time
             class="body-sm"
-            :datetime="dateTimeFormatter.format(tweet.createdAt)"
+            :datetime="
+              post.createdAt ? formatDateTime(post.createdAt) : 'error!!'
+            "
           >
-            {{ formatDistanceFromNow(tweet.createdAt) }}
+            {{ post.createdAt ? formatDistanceFromNow(post.createdAt) : '' }}
           </time>
         </div>
         <Menu.Root v-if="!readonly" :id="menuId" @select="handleSelect">
@@ -95,7 +96,7 @@
           </MaterialMenuContainer>
         </Menu.Root>
       </div>
-      <p>{{ tweet.content }}</p>
+      <p>{{ post.content }}</p>
     </div>
   </article>
 </template>
