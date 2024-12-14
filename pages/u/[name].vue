@@ -2,7 +2,7 @@
   import { Tabs } from '@ark-ui/vue'
 
   const route = useRoute()
-  const prevTab = ref<string | null>(null)
+  const direction = ref<string | null>(null)
   const { name } = route.params
   const routePrefix = computed(() => `/u/${name}`)
   const currentUser = useCurrentUserStore()
@@ -12,6 +12,13 @@
     { label: '返信', value: `${routePrefix.value}/replies` },
     { label: 'メディア', value: `${routePrefix.value}/media` }
   ]
+  onBeforeRouteUpdate(e => {
+    direction.value =
+      tabItems.findIndex(i => i.value === route.fullPath) <
+      tabItems.findIndex(i => i.value === e.fullPath)
+        ? 'ltr'
+        : 'rtl'
+  })
 </script>
 
 <template>
@@ -38,7 +45,6 @@
       id="user-profile-tabs"
       class="tabs-root"
       :default-value="$route.fullPath"
-      @value-change="console.log($event.value)"
     >
       <Tabs.List class="tabs-list">
         <Tabs.Trigger
@@ -57,10 +63,7 @@
         <Transition mode="out-in">
           <div
             :key="$route.fullPath"
-            :data-direction="
-              tabItems.findIndex(i => i.value === prevTab) -
-              tabItems.findIndex(i => i.value === $route.fullPath)
-            "
+            :data-direction="direction"
             class="tabs-content"
           >
             <NuxtPage />
@@ -128,10 +131,12 @@
     position: relative;
     &:has(> .v-enter-active),
     &:has(> .v-leave-active) {
-      overflow: hidden;
+      overflow: visible;
     }
   }
   .tabs-content {
+    min-width: 100%;
+    min-height: 100%;
     --tab-content-direction: 1;
     &[data-direction='ltr'] {
       --tab-content-direction: -1;
