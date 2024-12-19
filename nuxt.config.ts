@@ -17,7 +17,15 @@ export default defineNuxtConfig({
       type: 'transition'
     },
     head: {
-      title: 'kdg.social'
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'kdg.social',
+      meta: [
+        {
+          name: 'description',
+          content: 'デモテキストデモテキスデモテキストデモテキスト'
+        }
+      ]
     }
   },
 
