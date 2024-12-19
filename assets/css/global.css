@@ -30,3 +30,31 @@ button {
   background: transparent;
   padding: 0;
 }
+
+.page-enter-active {
+  transition: all var(--md-sys-motion-duration-medium3)
+    var(--md-sys-motion-easing-standard) var(--md-sys-motion-duration-short4);
+}
+.page-enter-from,
+.page-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+  .page-enter-from,
+  .page-leave-to {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

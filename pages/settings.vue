@@ -23,7 +23,9 @@
       </ul>
     </nav>
     <div class="page">
-      <NuxtPage />
+      <Transition name="page">
+        <NuxtPage />
+      </Transition>
     </div>
   </div>
 </template>

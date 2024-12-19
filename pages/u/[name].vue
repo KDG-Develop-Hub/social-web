@@ -1,15 +1,24 @@
 <script setup lang="ts">
   import { Tabs } from '@ark-ui/vue'
 
-  const { name } = useRoute().params
-  const routePrefix = `/u/${name}`
+  const route = useRoute()
+  const direction = ref<string | null>(null)
+  const { name } = route.params
+  const routePrefix = computed(() => `/u/${name}`)
   const currentUser = useCurrentUserStore()
   const bio = 'This is bio'
   const tabItems = [
-    { label: 'つぶやき', value: routePrefix },
-    { label: '返信', value: `${routePrefix}/replies` },
-    { label: 'メディア', value: `${routePrefix}/media` }
+    { label: 'つぶやき', value: routePrefix.value },
+    { label: '返信', value: `${routePrefix.value}/replies` },
+    { label: 'メディア', value: `${routePrefix.value}/media` }
   ]
+  onBeforeRouteUpdate(e => {
+    direction.value =
+      tabItems.findIndex(i => i.value === route.fullPath) <
+      tabItems.findIndex(i => i.value === e.fullPath)
+        ? 'ltr'
+        : 'rtl'
+  })
 </script>
 
 <template>
@@ -25,9 +34,9 @@
           <h1>{{ name }}</h1>
           <span>{{ name }}</span>
         </div>
-        <MaterialButton v-if="name === currentUser.name" variant="outlined"
-          >プローフィールをいじる</MaterialButton
-        >
+        <MaterialButton v-if="name === currentUser.name" variant="outlined">
+          プローフィールをいじる
+        </MaterialButton>
         <MaterialButton v-else>この人を知っておく</MaterialButton>
       </header>
       <p>{{ bio }}</p>
@@ -50,8 +59,16 @@
         </Tabs.Trigger>
         <Tabs.Indicator class="tabs-indicator" />
       </Tabs.List>
-      <div :key="$route.path" class="tabs-content">
-        <NuxtPage />
+      <div class="tabs-content-wrapper">
+        <Transition mode="out-in">
+          <div
+            :key="$route.fullPath"
+            :data-direction="direction"
+            class="tabs-content"
+          >
+            <NuxtPage />
+          </div>
+        </Transition>
       </div>
     </Tabs.Root>
   </div>
@@ -108,8 +125,37 @@
     flex-direction: column;
     height: 100%;
   }
-  .tabs-content {
+  .tabs-content-wrapper {
+    position: relative;
     flex-grow: 1;
+    position: relative;
+    &:has(> .v-enter-active),
+    &:has(> .v-leave-active) {
+      overflow: visible;
+    }
+  }
+  .tabs-content {
+    min-width: 100%;
+    min-height: 100%;
+    --tab-content-direction: 1;
+    &[data-direction='ltr'] {
+      --tab-content-direction: -1;
+    }
+    &.v-enter-active,
+    &.v-leave-active {
+      transition: all var(--md-sys-motion-duration-medium2)
+        var(--md-sys-motion-easing-standard);
+    }
+    &.v-enter-from {
+      position: absolute;
+      opacity: 0;
+      transform: translateX(calc(2rem * var(--tab-content-direction)));
+    }
+    &.v-leave-to {
+      position: absolute;
+      opacity: 0;
+      transform: translateX(calc(-2rem * var(--tab-content-direction)));
+    }
   }
   .profile-header {
     gap: 1.5rem;
