@@ -10,7 +10,6 @@
     Menu,
     Settings2,
     User,
-    Users,
     X
   } from 'lucide-vue-next'
 
@@ -19,7 +18,6 @@
     { to: '/', icon: History, text: 'アプデ' },
     { to: '/browse', icon: Compass, text: '見つける' },
     { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
-    { to: '/friends', icon: Users, text: '知り合い' },
     { to: '/settings', icon: Settings2, text: 'せってー' },
     { to: '/_debug', icon: Bug, text: 'デバッグ' }
   ])
