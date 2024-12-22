@@ -9,15 +9,18 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint .",
+    "format-check": "prettier --check .",
+    "typecheck": "nuxi typecheck --cwd ."
   },
   "dependencies": {
     "@ark-ui/vue": "^3.14.0",
-    "@iconify-json/material-symbols": "^1.2.8",
-    "@nuxt/kit": "^3.11.2",
     "@firebase/app-types": "^0.9.3",
-    "@vueuse/core": "^10.10.0",
-    "@zag-js/file-upload": "^0.61.0",
+    "@iconify-json/material-symbols": "^1.2.8",
+    "@nuxt/kit": "^3.14.1592",
+    "@vueuse/core": "^10.11.1",
+    "@zag-js/file-upload": "^0.61.1",
     "date-fns": "^3.6.0",
     "firebase": "^10.14.1",
     "firebase-admin": "^12.7.0",
@@ -26,7 +29,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "^3.14.1592",
     "vue": "^3.5.13",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.4.5"
   },
   "engines": {
     "node": ">=20.11.1",
@@ -34,22 +37,22 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
-    "@nuxt/fonts": "^0.7.0",
+    "@nuxt/fonts": "^0.7.2",
     "@nuxt/icon": "^1.8.2",
-    "@nuxt/test-utils": "^3.13.1",
-    "@pinia/nuxt": "^0.5.1",
-    "@types/eslint": "^8.56.10",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "@vueuse/nuxt": "^10.10.0",
-    "eslint-plugin-simple-import-sort": "^12.1.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.5",
+    "@nuxt/test-utils": "^3.14.3",
+    "@pinia/nuxt": "^0.5.5",
+    "@types/eslint": "^8.56.12",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@vueuse/nuxt": "^10.11.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "nuxt-vuefire": "^1.0.4",
-    "prettier": "^3.3.0",
-    "typescript": "^5.4.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
     "vitest": "^1.6.0",
-    "vue-tsc": "^2.0.26"
+    "vue-tsc": "^2.1.6"
   },
   "prettier": {
     "semi": false,
