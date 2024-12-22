@@ -9,7 +9,6 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "prepare": "husky install",
     "lint": "eslint .",
     "format-check": "prettier --check .",
     "typecheck": "nuxi typecheck --cwd ."
