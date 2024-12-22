@@ -46,8 +46,6 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vueuse/nuxt": "^10.11.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
     "nuxt-vuefire": "^1.0.4",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3",
@@ -63,13 +61,6 @@
     "tabWidth": 2,
     "endOfLine": "lf",
     "vueIndentScriptAndStyle": true
-  },
-  "lint-staged": {
-    "*.{json,ts,vue}": [
-      "eslint --fix"
-    ],
-    "*.{ts,vue}": "nuxi typecheck --cwd .",
-    "*.{json,mjs,yaml,js,ts,vue,css}": "prettier --write"
   },
   "packageManager": "pnpm@9.1.4"
 }
