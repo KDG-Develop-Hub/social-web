@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "lint": "eslint .",
+    "format": "prettier --write .",
     "format-check": "prettier --check .",
     "typecheck": "nuxi typecheck --cwd ."
   },
