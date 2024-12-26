@@ -9,10 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "format-check": "prettier --check .",
-    "typecheck": "nuxi typecheck --cwd ."
+    "lint": "eslint . && prettier --check . && nuxi typecheck --cwd .",
+    "fix": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
     "@ark-ui/vue": "^3.14.0",
