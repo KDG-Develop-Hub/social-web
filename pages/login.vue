@@ -20,13 +20,22 @@
 </script>
 
 <template>
-  <form v-if="!mailIsSent" class="column full-height" @submit.prevent="execute()">
+  <form
+    v-if="!mailIsSent"
+    class="column full-height"
+    @submit.prevent="execute()"
+  >
     <div class="login-form-fields">
       <h2 class="headline-md">ログイン</h2>
       <p class="body-md">
         入力されたメールアドレス宛に、ログインするためのリンクを送信します。
       </p>
-      <MaterialTextField v-model="email" required label="メールアドレス" type="email" />
+      <MaterialTextField
+        v-model="email"
+        required
+        label="メールアドレス"
+        type="email"
+      />
     </div>
     <div class="button-set">
       <MaterialButton type="submit" :disabled="isLoading">
