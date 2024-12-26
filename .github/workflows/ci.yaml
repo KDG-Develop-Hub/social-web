@@ -1,4 +1,4 @@
-name: Code Check
+name: Ci
 
 on:
   push:
