@@ -2,13 +2,35 @@
   definePageMeta({
     layout: 'auth'
   })
+  const route = useRoute()
+  const token = computed(() => route.query.token as string)
+  const tokenIsValid = computed(() => {
+    if (token.value === null ? undefined : token.value === undefined)
+      return null
+    return token.value.length === 32
+  })
 </script>
 
 <template>
-  <div class="signup">
+  <form v-if="tokenIsValid" @submit.prevent>
+    <h2 class="headline-md">新規登録</h2>
+    <p class="body-md">メールアドレスとユーザーIDを入力してください。</p>
+    <div class="full-height">
+      <MaterialTextField label="メールアドレス" type="email" required />
+      <MaterialTextField label="ユーザーID" required />
+    </div>
+    <div class="button-set">
+      <MaterialButton type="submit">新規登録</MaterialButton>
+    </div>
+  </form>
+  <div v-else-if="tokenIsValid === false">
+    <h2 class="headline-md">エラー</h2>
+    <p class="body-md">トークンが無効です。</p>
+  </div>
+  <div v-else class="signup">
     <h2 class="headline-md">新規登録するには...</h2>
     <p class="body-md">
-      サービス管理者に直接お問い合わせてね。
+      サービス管理者に直接お問い合わせてね。<br />
       そうしたら、新規登録用のQRコードをお送ります。
     </p>
   </div>
@@ -18,23 +40,15 @@
   .signup {
     width: 100%;
     gap: 1rem;
-    &.v-enter-active,
-    &.v-leave-active {
-      transition:
-        opacity var(--md-sys-motion-duration-long4)
-          var(--md-sys-motion-easing-decelerated),
-        translate var(--md-sys-motion-duration-long4)
-          var(--md-sys-motion-easing-decelerated);
-    }
-    &.v-enter-from,
-    &.v-leave-to {
-      opacity: 0;
-      translate: 0 1rem;
-    }
   }
   .signup-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  .button-set {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
   }
 </style>
