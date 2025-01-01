@@ -21,7 +21,7 @@
   .card {
     width: 100%;
     max-width: 640px;
-    height: 384px;
+    min-height: 384px;
     display: flex;
     flex-direction: column;
     background-color: var(--md-sys-color-surface-container);
