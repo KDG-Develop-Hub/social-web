@@ -9,10 +9,40 @@
       return null
     return token.value.length === 32
   })
+  const {
+    execute,
+    isLoading,
+    state: mailIsSent
+  } = useAsyncState(
+    async () => {
+      await sleep(1000)
+
+      // TODO: ログイン用のメールを送信する。成功する場合はtrue, 失敗する場合はfalseを返す。
+      return true
+    },
+    undefined,
+    { immediate: false }
+  )
+  const reset = () => {
+    mailIsSent.value = false
+  }
 </script>
 
 <template>
-  <form v-if="tokenIsValid" @submit.prevent>
+  <div v-if="mailIsSent" class="signup-form">
+    <div class="signup-form-content">
+      <h2 class="headline-lg">後もう一歩です！</h2>
+      <p class="body-md">
+        入力されたメールを認証するために、あなたのメールにマジックリンクを送信しました。マジックリンクをクリックして、新規登録を完了させましょう。
+      </p>
+    </div>
+    <div class="button-set">
+      <MaterialButton variant="outlined" :disabled="isLoading" @click="reset()">
+        メールを再入力する
+      </MaterialButton>
+    </div>
+  </div>
+  <form v-else-if="tokenIsValid" class="signup-form" @submit.prevent="execute()">
     <div class="signup-form-content">
       <h2 class="headline-md">新規登録</h2>
       <p class="body-md">メールアドレスとユーザーIDを入力してください。</p>
@@ -20,7 +50,9 @@
       <MaterialTextField label="ユーザーID" required />
     </div>
     <div class="button-set">
-      <MaterialButton type="submit">新規登録</MaterialButton>
+      <MaterialButton type="submit" :disabled="isLoading"
+        >新規登録</MaterialButton
+      >
     </div>
   </form>
   <div v-else-if="tokenIsValid === false" class="signup-form-content">
@@ -37,6 +69,11 @@
 </template>
 
 <style scoped>
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
   .signup-form-content {
     display: flex;
     flex-direction: column;
@@ -47,6 +84,7 @@
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+    align-items: flex-end;
     flex-grow: 1;
   }
 </style>
