@@ -42,7 +42,11 @@
       </MaterialButton>
     </div>
   </div>
-  <form v-else-if="tokenIsValid" class="signup-form" @submit.prevent="execute()">
+  <form
+    v-else-if="tokenIsValid"
+    class="signup-form"
+    @submit.prevent="execute()"
+  >
     <div class="signup-form-content">
       <h2 class="headline-md">新規登録</h2>
       <p class="body-md">メールアドレスとユーザーIDを入力してください。</p>

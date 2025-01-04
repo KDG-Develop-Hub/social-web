@@ -55,11 +55,7 @@
       </p>
     </div>
     <div class="button-set">
-      <MaterialButton
-        variant="outlined"
-        :disabled="isLoading"
-        @click="reset()"
-      >
+      <MaterialButton variant="outlined" :disabled="isLoading" @click="reset()">
         メールを再入力する
       </MaterialButton>
     </div>
