@@ -4,7 +4,7 @@
       Partial<{
         variant: 'filled' | 'text' | 'outlined'
         color: 'primary' | 'secondary' | 'tertiary' | 'danger' | ''
-        as: string | object
+        to?: string
         width: 'fit' | 'full'
         disabled: boolean
       }>
@@ -20,11 +20,34 @@
 </script>
 
 <template>
-  <component
-    :is="as"
+  <NuxtLink
+    v-if="to"
     v-ripple="{
       color: 'var(--button-ctn-bgcolor-to-mix)'
     }"
+    v-bind="$attrs"
+    :to="to"
+    :data-width="width"
+    :data-variant="variant"
+    :data-color="color"
+    class="container"
+  >
+    <slot name="icon" />
+    <span
+      class="label-wrapper label-md"
+      :aria-disabled="disabled"
+      :data-variant="variant"
+      :data-color="color"
+    >
+      <slot>ここを押してね</slot>
+    </span>
+  </NuxtLink>
+  <button
+    v-else
+    v-ripple="{
+      color: 'var(--button-ctn-bgcolor-to-mix)'
+    }"
+    v-bind="$attrs"
     :data-width="width"
     :data-variant="variant"
     :data-color="color"
@@ -40,7 +63,7 @@
     >
       <slot>ここを押してね</slot>
     </span>
-  </component>
+  </button>
 </template>
 
 <style scoped>
