@@ -1,19 +1,19 @@
 <script setup lang="ts">
   definePageMeta({
-    layout: false
+    layout: 'auth'
   })
 </script>
 
 <template>
-  <NuxtLayout name="auth">
-    <template #title>後もう一歩です！</template>
-    <template #description>
+  <div>
+    <AuthFormTitle>後もう一歩です！</AuthFormTitle>
+    <AuthFormDescription>
       あなたのメールアドレスにログイン用のマジックリンクを送信しました。マジックリンクをクリックして、ログインしてください。
-    </template>
-    <template #actions>
+    </AuthFormDescription>
+    <AuthFormActionButtonSet>
       <MaterialButton variant="outlined" to="/login">
         メールを再入力する
       </MaterialButton>
-    </template>
-  </NuxtLayout>
+    </AuthFormActionButtonSet>
+  </div>
 </template>
