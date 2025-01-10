@@ -12,16 +12,18 @@
 
 <template>
   <div class="card-positioner">
-    <div class="card">
+    <MaterialCard variant="elevated" class="card">
       <div ref="card-content" class="card-content">
-        <div class="card-headline-group">
+        <div>
           <img class="logo" src="/logo.svg" alt="logo" />
-          <h2 class="headline-md">
-            <slot name="title">タイトル</slot>
-          </h2>
-          <p class="body-md">
-            <slot name="description">こちらに説明文が入ります。</slot>
-          </p>
+          <div class="card-headline-group">
+            <h2 class="headline-md">
+              <slot name="title">タイトル</slot>
+            </h2>
+            <p class="body-md">
+              <slot name="description">こちらに説明文が入ります。</slot>
+            </p>
+          </div>
         </div>
         <form class="card-form-group" >
           <div class="card-form-fields">
@@ -32,7 +34,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </MaterialCard>
   </div>
 </template>
 
@@ -51,11 +53,6 @@
     max-width: 896px;
     min-height: 384px;
     height: v-bind(contentHeight);
-    display: flex;
-    flex-direction: column;
-    background-color: var(--md-sys-color-surface-container);
-    border-radius: var(--md-sys-shape-corner-lg);
-    box-shadow: var(--md-sys-elevation-2);
     transition: height var(--md-sys-motion-duration-xlong1)
       var(--md-sys-motion-easing-emphasized);
   }
