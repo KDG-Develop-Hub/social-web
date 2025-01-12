@@ -2,7 +2,10 @@
 
 <template>
   <span>
-    <button class="container square">
+    <button
+      v-ripple="{ color: 'var(--md-sys-color-on-tertiary)' }"
+      class="container square"
+    >
       <slot />
     </button>
   </span>
@@ -18,7 +21,7 @@
     background-color: var(--md-sys-color-tertiary);
     --square-size: 3.5rem;
     color: var(--md-sys-color-on-tertiary);
-    :global(*) {
+    :slotted(*) {
       color: var(--md-sys-color-on-tertiary);
     }
   }

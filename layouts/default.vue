@@ -2,6 +2,7 @@
   import { Dialog as ArkDialog, FileUpload } from '@ark-ui/vue'
   import type { FileRejectDetails } from '@zag-js/file-upload'
   import {
+    Bug,
     Compass,
     Feather,
     History,
@@ -19,7 +20,8 @@
     { to: '/browse', icon: Compass, text: '見つける' },
     { to: `/u/${currentUser.name}`, icon: User, text: '君とは' },
     { to: '/friends', icon: Users, text: '知り合い' },
-    { to: '/settings', icon: Settings2, text: 'せってー' }
+    { to: '/settings', icon: Settings2, text: 'せってー' },
+    { to: '/_debug', icon: Bug, text: 'デバッグ' }
   ])
 
   const inputText = ref('')
@@ -52,7 +54,7 @@
             <p v-if="maxFilesExceededError" class="error-message">
               {{ maxFilesExceededError }}
             </p>
-            <ArkDialog.Title class="ark-dialog-title"
+            <ArkDialog.Title class="ark-dialog-title headline-sm"
               >今回は何を綴るのかな？</ArkDialog.Title
             >
             <ArkDialog.Description as-child>
@@ -144,12 +146,17 @@
 
   main {
     overflow-y: auto;
+    height: 100vh;
     width: 100%;
     padding: 2rem 1.5rem;
   }
+  ::slotted(div) {
+    min-width: 100%;
+    min-height: 100%;
+  }
 
   .border-bottom {
-    border-bottom: solid 1px var(--palette-secondary90);
+    border-bottom: solid 1px var(--md-sys-color-outline);
   }
   .icons {
     display: flex;

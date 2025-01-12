@@ -1,60 +1,50 @@
 <script setup lang="ts">
-  const tweets: Tweet[] = Array.from({ length: 6 }, () => ({
-    userId: 1,
-    content: 'Hello world! This is my tweet you know?',
-    createdAt: dateFns.add(new Date(), { minutes: -20 })
-  }))
-  const users: Record<Tweet['userId'], BasicUserInfo> = {
-    1: {
-      avatarUrl: 'https://via.placeholder.com/32',
-      name: 'imeankenshin',
-      displayName: 'Kenshin'
+  import { collection, limit, orderBy, query } from 'firebase/firestore'
+  const { params } = useRoute()
+  const db = useFirestore()
+  const { data: posts, pending } = useCollection<Post>(
+    //TODO: 対応するユーザーの投稿のみ表示させる。インデックスが設定されてないため現在はできない。
+    query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(30)),
+    {
+      ssrKey: `posts-${params.name}`
     }
-  }
+  )
 </script>
 
 <template>
-  <div class="articles v-stack">
-    <article v-for="tweet in tweets" :key="tweet.userId" class="tweet">
-      <MaterialAvatar
-        :name="users[tweet.userId].name"
-        :src="users[tweet.userId].avatarUrl"
-      />
-      <div class="body">
-        <header class="h-stack">
-          <strong>{{ users[tweet.userId].name }}</strong>
-          <time
-            class="body-sm"
-            :datetime="dateTimeFormatter.format(tweet.createdAt)"
-            >{{ formatDistanceFromNow(tweet.createdAt) }}</time
-          >
-        </header>
-        <p>{{ tweet.content }}</p>
-      </div>
-    </article>
-  </div>
+  <Transition>
+    <div v-if="pending" class="loading-screen v-stack">
+      <MaterialCircularProgressIndicator indeterminate />
+    </div>
+    <div v-else class="articles v-stack">
+      <OrgTweet v-for="post in posts" :key="post.id" :post />
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
+  .loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
   .articles {
     width: 100%;
     gap: 1rem;
     padding: 1.5rem 0;
-  }
-  .tweet {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid var(--md-sys-color-outline-variant);
-    border-radius: 0.75rem;
-    display: flex;
-    gap: 0.75rem;
-  }
-  .body {
-    width: 100%;
-
-    header {
-      height: 1.5rem;
+    &.v-enter-active,
+    &.v-leave-active {
+      transition:
+        opacity var(--md-sys-motion-duration-long4)
+          var(--md-sys-motion-easing-decelerated),
+        translate var(--md-sys-motion-duration-long4)
+          var(--md-sys-motion-easing-decelerated);
+    }
+    &.v-enter-from,
+    &.v-leave-to {
+      opacity: 0;
+      translate: 0 1rem;
     }
   }
 </style>

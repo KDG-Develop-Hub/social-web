@@ -3,11 +3,13 @@
     Zen Maru Gothic,
     sans-serif;
   margin: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   color: var(--md-sys-color-on-surface);
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-background);
   overflow: hidden;
 }
 
@@ -21,4 +23,38 @@ pre {
 :enabled,
 a {
   cursor: pointer;
+}
+
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.page-enter-active {
+  transition: all var(--md-sys-motion-duration-medium3)
+    var(--md-sys-motion-easing-standard) var(--md-sys-motion-duration-short4);
+}
+.page-enter-from,
+.page-leave-to {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+  .page-enter-from,
+  .page-leave-to {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
 }

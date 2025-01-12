@@ -13,15 +13,19 @@
       <ul class="nav">
         <li v-for="item in navItems" :key="item.to" class="h-stack">
           <NuxtLink
+            v-ripple
             class="nav-item title-sm h-stack"
             :to="`/settings${item.to}`"
-            >{{ item.text }}</NuxtLink
           >
+            {{ item.text }}
+          </NuxtLink>
         </li>
       </ul>
     </nav>
     <div class="page">
-      <NuxtPage />
+      <Transition name="page">
+        <NuxtPage />
+      </Transition>
     </div>
   </div>
 </template>

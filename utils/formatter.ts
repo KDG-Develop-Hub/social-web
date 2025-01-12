@@ -2,12 +2,18 @@ export function initialName(name: string) {
   return name.substring(0, 2)
 }
 
-export const dateTimeFormatter = new Intl.DateTimeFormat('ja-JP', {
+const dateTimeFormatter = new Intl.DateTimeFormat('ja-JP', {
   dateStyle: 'long',
   timeStyle: 'short'
 })
 
-export function formatDistanceFromNow(dateTime: Date): string {
+export function formatDateTime(dateTime: string | number | Date): string {
+  return dateTimeFormatter.format(new Date(dateTime))
+}
+
+export function formatDistanceFromNow(
+  dateTime: string | number | Date
+): string {
   const diff = dateFns.differenceInMinutes(new Date(), dateTime)
   const OneHourPerMinutes = 60
   const OneDayPerMinutes = 24 * OneHourPerMinutes
