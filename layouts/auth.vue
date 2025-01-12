@@ -10,6 +10,7 @@
 <style scoped>
   .logo {
     height: 48px;
+    margin-bottom: 1rem;
     width: fit-content;
   }
   .card-positioner {

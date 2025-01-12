@@ -1,9 +1,3 @@
-<script setup lang="ts">
-  definePageMeta({
-    layout: 'auth'
-  })
-</script>
-
 <template>
   <div>
     <AuthFormTitle>後もう一歩です！</AuthFormTitle>
@@ -11,7 +5,7 @@
       あなたのメールアドレスにログイン用のマジックリンクを送信しました。マジックリンクをクリックして、ログインしてください。
     </AuthFormDescription>
     <AuthFormActionButtonSet>
-      <MaterialButton variant="outlined" to="/login">
+      <MaterialButton variant="outlined" @click="$emit('reset')">
         メールを再入力する
       </MaterialButton>
     </AuthFormActionButtonSet>

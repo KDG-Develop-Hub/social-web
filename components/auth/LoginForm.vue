@@ -1,28 +1,17 @@
 <script setup lang="ts">
-  definePageMeta({
-    layout: 'auth'
-  })
-  const router = useRouter()
-  const email = ref('')
-  const {
-    execute,
-    isLoading,
-    state: mailIsSent
-  } = useAsyncState(
-    async () => {
-      await sleep(1000)
+  defineProps<{
+    isLoading: boolean
+  }>()
 
-      // TODO: ログイン用のメールを送信する。成功する場合はtrue, 失敗する場合はfalseを返す。
-      return true
-    },
-    undefined,
-    { immediate: false }
-  )
-  watch(mailIsSent, () => {
-    if (mailIsSent.value) {
-      router.push('/login/sent')
-    }
-  })
+  const emit = defineEmits<{
+    (e: 'submit', email: string): void
+  }>()
+
+  const email = ref('')
+
+  const execute = () => {
+    emit('submit', email.value)
+  }
 </script>
 
 <template>
@@ -48,16 +37,3 @@
     </AuthFormActionButtonSet>
   </form>
 </template>
-
-<style lang="css" scoped>
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-  .login-form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    height: 100%;
-  }
-</style>
