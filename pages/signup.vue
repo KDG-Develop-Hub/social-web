@@ -17,7 +17,6 @@
     async () => {
       await sleep(1000)
 
-
       // TODO: ログイン用のメールを送信する。成功する場合はtrue, 失敗する場合はfalseを返す。
       return true
     },
@@ -31,11 +30,7 @@
 
 <template>
   <AuthSignUpEmailSent v-if="mailIsSent" @reset="reset()" />
-  <AuthSignUpForm
-    v-else-if="tokenIsValid"
-    :is-loading
-    @submit="execute()"
-  />
+  <AuthSignUpForm v-else-if="tokenIsValid" :is-loading @submit="execute()" />
   <AuthSignUpInvalidToken v-else-if="tokenIsValid === false" />
   <AuthSignUpIntroduction v-else />
 </template>

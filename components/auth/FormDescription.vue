@@ -4,7 +4,6 @@
   </p>
 </template>
 
-
 <style scoped>
   .form-description {
     padding-bottom: 1rem;

@@ -20,9 +20,5 @@
 
 <template>
   <AuthLoginMailSent v-if="mailIsSent" @reset="mailIsSent = false" />
-  <AuthLoginForm
-    v-else
-    :is-loading="isLoading"
-    @submit.passive="execute()"
-  />
+  <AuthLoginForm v-else :is-loading="isLoading" @submit.passive="execute()" />
 </template>
