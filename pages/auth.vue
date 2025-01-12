@@ -1,8 +1,14 @@
+<script lang="ts" setup>
+  definePageMeta({
+    layout: 'empty'
+  })
+</script>
+
 <template>
-  <div class="card-positioner">
-    <MaterialCard variant="elevated" class="card-content">
-      <img class="logo" src="/logo.svg" alt="logo" />
-      <slot></slot>
+  <div class="auth-content-positioner">
+    <MaterialCard variant="elevated" class="auth-content">
+      <img class="logo" src="/logo.svg" alt="kdg.socialのロゴ" />
+      <NuxtPage />
     </MaterialCard>
   </div>
 </template>
@@ -13,12 +19,12 @@
     margin-bottom: 1rem;
     width: fit-content;
   }
-  .card-positioner {
+  .auth-content-positioner {
     display: grid;
     place-items: center;
     height: 100vh;
   }
-  .card-content {
+  .auth-content {
     display: flex;
     flex-direction: column;
     padding: 2rem;

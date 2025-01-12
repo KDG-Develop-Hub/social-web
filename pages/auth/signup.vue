@@ -1,7 +1,4 @@
 <script setup lang="ts">
-  definePageMeta({
-    layout: 'auth'
-  })
   const route = useRoute()
   const token = computed(() => route.query.token as string)
   const tokenIsValid = computed(() => {
