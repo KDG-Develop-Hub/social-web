@@ -19,10 +19,10 @@
 </script>
 
 <template>
+  <AuthLoginMailSent v-if="mailIsSent" @reset="mailIsSent = false" />
   <AuthLoginForm
-    v-if="!mailIsSent"
+    v-else
     :is-loading="isLoading"
     @submit.passive="execute()"
   />
-  <AuthLoginMailSent v-else @reset="mailIsSent = false" />
 </template>

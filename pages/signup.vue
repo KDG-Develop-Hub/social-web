@@ -30,11 +30,11 @@
 </script>
 
 <template>
-  <AuthSignUpEmailSent v-if="mailIsSent" @reset.passive="reset()" />
+  <AuthSignUpEmailSent v-if="mailIsSent" @reset="reset()" />
   <AuthSignUpForm
     v-else-if="tokenIsValid"
     :is-loading
-    @submit.passive="execute()"
+    @submit="execute()"
   />
   <AuthSignUpInvalidToken v-else-if="tokenIsValid === false" />
   <AuthSignUpIntroduction v-else />
