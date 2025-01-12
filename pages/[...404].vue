@@ -12,12 +12,13 @@
     ':-|',
     ':-/',
     'uwu',
-    '\\(^o^)/'
+    '\\(^o^)/',
+    '( ́・ω・`)',
   ]
   const { data } = await useAsyncData(async () => ({
     emoticon: emoticons[Math.floor(Math.random() * emoticons.length)]
   }))
-</script>
+</script>s
 
 <template>
   <div class="message">
