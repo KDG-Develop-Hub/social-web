@@ -21,8 +21,8 @@
     background: var(--icon-button-bg);
     display: inline-grid;
     place-items: center;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 3rem;
+    width: 3rem;
     flex-shrink: 0;
     &.icon-button-filled {
       --icon-button-color: var(--md-sys-color-on-primary);
