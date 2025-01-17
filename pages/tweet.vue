@@ -42,7 +42,7 @@
         :name="tweet.userName"
         :src="tweet.userImageUrl"
       />
-      <div>
+      <div class="tweet-content">
         <div class="body-lg">{{ tweet.userName }}</div>
         <div class="label-md tweeter-user-id">@{{ tweet.userId }}</div>
         <p class="body-lg">{{ tweet.content }}</p>
@@ -66,8 +66,15 @@
   .tweet-page {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    max-width: 48rem;
     gap: 1rem;
     height: 100%;
+  }
+  .tweet-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
   }
   .tweeter-user-id {
     user-select: all;
