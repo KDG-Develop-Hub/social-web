@@ -1,11 +1,7 @@
 <script setup lang="ts">
   import { Menu } from '@ark-ui/vue'
 
-  defineProps<{
-    /**
-     * 投稿が読み込み専用ならば、メニューを表示しない。
-     */
-    readonly?: boolean
+  const { post } = defineProps<{
     post: Post
   }>()
   const menuId = useId()
@@ -32,10 +28,18 @@
         break
     }
   }
+  function jumpToTweetPage() {
+    navigateTo(`/tweets/${post.id}`)
+  }
 </script>
 
 <template>
-  <article :key="post.userId" class="tweet">
+  <div
+    role="link"
+    :to="`/tweets/${post.id}`"
+    class="tweet"
+    @click="jumpToTweetPage"
+  >
     <MaterialAvatar size="sm" :name="post.userName" :src="post.userImageUrl" />
     <div class="body">
       <div class="h-stack">
@@ -50,7 +54,7 @@
             {{ post.createdAt ? formatDistanceFromNow(post.createdAt) : '' }}
           </time>
         </div>
-        <Menu.Root v-if="!readonly" :id="menuId" @select="handleSelect">
+        <Menu.Root :id="menuId" @select="handleSelect">
           <Menu.Trigger as-child>
             <MaterialIconButton>
               <Icon name="material-symbols:more-vert" />
@@ -98,7 +102,7 @@
       </div>
       <p>{{ post.content }}</p>
     </div>
-  </article>
+  </div>
 </template>
 
 <style scoped>
@@ -110,10 +114,18 @@
     width: 2rem;
   }
   .tweet {
+    padding: 1rem;
+    pointer-events: auto;
+    text-decoration: none;
+    cursor: pointer;
     box-sizing: border-box;
     width: 100%;
     display: flex;
     gap: 0.75rem;
+    border-radius: var(--md-sys-shape-corner-md);
+    &:hover {
+      background-color: var(--md-sys-color-surface-container);
+    }
   }
   .body {
     width: 100%;
