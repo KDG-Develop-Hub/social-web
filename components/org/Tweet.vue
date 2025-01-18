@@ -38,7 +38,7 @@
     role="link"
     :to="`/tweets/${post.id}`"
     class="tweet"
-    @click="jumpToTweetPage"
+    @auxclick="jumpToTweetPage"
   >
     <MaterialAvatar size="sm" :name="post.userName" :src="post.userImageUrl" />
     <div class="body">
