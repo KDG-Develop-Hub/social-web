@@ -38,12 +38,12 @@
     role="link"
     :to="`/tweets/${post.id}`"
     class="tweet"
-    @auxclick="jumpToTweetPage"
+    @click.self="jumpToTweetPage"
   >
     <MaterialAvatar size="sm" :name="post.userName" :src="post.userImageUrl" />
-    <div class="body">
-      <div class="h-stack">
-        <div class="h-stack full-width">
+    <div class="body" @click.self="jumpToTweetPage">
+      <div class="tweet-header" @click.self="jumpToTweetPage">
+        <div class="h-stack">
           <span class="body-lg">{{ post.userName }}</span>
           <time
             class="body-sm"
@@ -54,53 +54,55 @@
             {{ post.createdAt ? formatDistanceFromNow(post.createdAt) : '' }}
           </time>
         </div>
-        <Menu.Root :id="menuId" @select="handleSelect">
-          <Menu.Trigger as-child>
-            <MaterialIconButton>
-              <Icon name="material-symbols:more-vert" />
-            </MaterialIconButton>
-          </Menu.Trigger>
-          <MaterialMenuContainer>
-            <MaterialMenuItem value="reply">
-              <template #leading-icon>
-                <Icon name="material-symbols:mode-comment-outline-rounded" />
-              </template>
-              返信する
-            </MaterialMenuItem>
-            <MaterialMenuItem value="emoji">
-              <template #leading-icon>
-                <Icon name="material-symbols:add-reaction-outline-rounded" />
-              </template>
-              絵文字
-            </MaterialMenuItem>
-            <MaterialMenuItem value="bookmark">
-              <template #leading-icon>
-                <Icon name="material-symbols:bookmark-outline-rounded" />
-              </template>
-              ブックマーク
-            </MaterialMenuItem>
-            <MaterialMenuItem value="share">
-              <template #leading-icon>
-                <Icon name="material-symbols:share-outline" />
-              </template>
-              共有する
-            </MaterialMenuItem>
-            <MaterialMenuItem value="delete">
-              <template #leading-icon>
-                <Icon name="material-symbols:delete-outline-rounded" />
-              </template>
-              削除する
-            </MaterialMenuItem>
-            <MaterialMenuItem value="report">
-              <template #leading-icon>
-                <Icon name="material-symbols:flag-outline-rounded" />
-              </template>
-              報告する
-            </MaterialMenuItem>
-          </MaterialMenuContainer>
-        </Menu.Root>
+        <div class="tweet-more-wrapper">
+          <Menu.Root :id="menuId" @select="handleSelect">
+            <Menu.Trigger as-child>
+              <MaterialIconButton>
+                <Icon name="material-symbols:more-vert" />
+              </MaterialIconButton>
+            </Menu.Trigger>
+            <MaterialMenuContainer>
+              <MaterialMenuItem value="reply">
+                <template #leading-icon>
+                  <Icon name="material-symbols:mode-comment-outline-rounded" />
+                </template>
+                返信する
+              </MaterialMenuItem>
+              <MaterialMenuItem value="emoji">
+                <template #leading-icon>
+                  <Icon name="material-symbols:add-reaction-outline-rounded" />
+                </template>
+                絵文字
+              </MaterialMenuItem>
+              <MaterialMenuItem value="bookmark">
+                <template #leading-icon>
+                  <Icon name="material-symbols:bookmark-outline-rounded" />
+                </template>
+                ブックマーク
+              </MaterialMenuItem>
+              <MaterialMenuItem value="share">
+                <template #leading-icon>
+                  <Icon name="material-symbols:share-outline" />
+                </template>
+                共有する
+              </MaterialMenuItem>
+              <MaterialMenuItem value="delete">
+                <template #leading-icon>
+                  <Icon name="material-symbols:delete-outline-rounded" />
+                </template>
+                削除する
+              </MaterialMenuItem>
+              <MaterialMenuItem value="report">
+                <template #leading-icon>
+                  <Icon name="material-symbols:flag-outline-rounded" />
+                </template>
+                報告する
+              </MaterialMenuItem>
+            </MaterialMenuContainer>
+          </Menu.Root>
+        </div>
       </div>
-      <p>{{ post.content }}</p>
+      <p class="tweet-content">{{ post.content }}</p>
     </div>
   </div>
 </template>
@@ -126,6 +128,16 @@
     &:hover {
       background-color: var(--md-sys-color-surface-container);
     }
+  }
+  .tweet-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .tweet-content {
+    width: fit-content;
+  }
+  .tweet-more-wrapper {
+    margin-left: 0.5rem;
   }
   .body {
     width: 100%;
