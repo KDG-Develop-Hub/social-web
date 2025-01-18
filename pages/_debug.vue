@@ -1,6 +1,6 @@
 <script setup>
   function emits505() {
-    throw createError({
+    showError({
       statusCode: 505,
       message: 'このエラーはデバッグ用です。'
     })
