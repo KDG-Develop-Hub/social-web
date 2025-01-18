@@ -1,25 +1,12 @@
 <script setup lang="ts">
-  const tweet = {
-    id: '1',
-    userId: 'nihonkokukenpou',
-    userName: '日本国憲法',
-    userImageUrl: 'https://via.placeholder.com/256',
-    content: `日本国民は、正当に選挙された国会における代表者を通じて行動
-し、われらとわれらの子孫のために、諸国民との協和による成果
-と、わが国全土にわたつて自由のもたらす恵沢を確保し、政府の行
-為によつて再び戦争の惨禍が起ることのないやうにすることを決意
-し、ここに主権が国民に存することを宣言し、この憲法を確定す
-る。そもそも国政は、国民の厳粛な信託によるものであつて、その
-権威は国民に由来し、その権力は国民の代表者がこれを行使し、そ
-の福利は国民がこれを享受する。これは人類普遍の原理であり、こ
-の憲法は、かかる原理に基くものである。われらは、これに反する
-一切の憲法、法令及び詔勅を排除する。`,
-    createdAt: new Date().toISOString(),
-    bookmarkedUserIds: [],
-    imageUrls: [],
-    reactions: null,
-    updatedAt: null
-  }
+  import { doc } from 'firebase/firestore'
+
+  const route = useRoute()
+  const id = route.params.id as string
+  const db = useFirestore()
+  const { data: tweet, pending } = useDocument<Post>(doc(db, 'posts', id), {
+    ssrKey: `tweet-${id}`
+  })
   const replies: Post[] = Array.from({ length: 40 }, () => ({
     id: '1',
     userId: '1',
@@ -32,11 +19,15 @@
     reactions: null,
     updatedAt: null
   }))
+  watchEffect(() => {
+    if (!tweet.value && !pending.value)
+      showError({ statusCode: 404, message: 'Tweet not found' })
+  })
 </script>
 
 <template>
   <div class="tweet-page">
-    <div class="tweet">
+    <div v-if="!pending && tweet" class="tweet">
       <MaterialAvatar
         size="md"
         :name="tweet.userName"
@@ -47,6 +38,9 @@
         <div class="label-md tweeter-user-id">@{{ tweet.userId }}</div>
         <p class="body-lg">{{ tweet.content }}</p>
       </div>
+    </div>
+    <div v-else>
+      <MaterialCircularProgressIndicator indeterminate />
     </div>
     <MaterialDivider />
     <div class="reply-list">
