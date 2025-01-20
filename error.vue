@@ -1,19 +1,22 @@
-<template>
-  <div class="error-container">
-    <h1 class="display-lg">_(x0x_)zz</h1>
-    <h2 class="display-md">問題が起きました。</h2>
-    <p class="body-md">
-      ページの読み込みに問題が発生しちゃった（；；）もう一度ロードしなおしてください。
-    </p>
-  </div>
-</template>
+<script setup lang="ts">
+  import type { NuxtError } from '#app'
 
-<style scoped>
-  .error-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-</style>
+  defineProps<{
+    error: NuxtError
+  }>()
+</script>
+
+<template>
+  <ErrorContent v-if="error.statusCode === 404">
+    <template #title>ページが見つかりませんでした。</template>
+    <template #description>
+      与えられたURLに対応するページは存在しないか、削除されました...
+    </template>
+  </ErrorContent>
+  <ErrorContent v-else>
+    <template #title>問題が起きました。</template>
+    <template #description>
+      ページの読み込みに問題が発生しちゃった（；；）もう一度ロードしなおしてください。
+    </template>
+  </ErrorContent>
+</template>
