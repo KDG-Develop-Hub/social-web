@@ -1,10 +1,11 @@
 <script setup lang="ts">
-  import { doc } from 'firebase/firestore'
+  import { doc, updateDoc } from 'firebase/firestore'
 
   const route = useRoute()
   const id = route.params.id as string
   const db = useFirestore()
-  const { data: tweet, pending } = useDocument<Post>(doc(db, 'posts', id), {
+  const docRef = computed(() => doc(db, 'posts', id))
+  const { data: tweet, pending } = useDocument<Post>(docRef, {
     ssrKey: `tweet-${id}`
   })
   const replies: Post[] = Array.from({ length: 40 }, () => ({
@@ -19,6 +20,23 @@
     reactions: null,
     updatedAt: null
   }))
+  const isBookmarked = computed(() =>
+    tweet.value?.bookmarkedUserIds.includes('1')
+  )
+  async function toggleBookmark() {
+    if (tweet.value) {
+      if (isBookmarked.value) {
+        tweet.value.bookmarkedUserIds = tweet.value.bookmarkedUserIds.filter(
+          id => id !== '1'
+        )
+      } else {
+        tweet.value.bookmarkedUserIds.push('1')
+      }
+      await updateDoc(docRef.value, {
+        bookmarkedUserIds: tweet.value.bookmarkedUserIds
+      })
+    }
+  }
   watchEffect(() => {
     if (!tweet.value && !pending.value)
       showError({ statusCode: 404, message: 'Tweet not found' })
@@ -37,6 +55,17 @@
         <div class="body-lg">{{ tweet.userName }}</div>
         <div class="label-md tweeter-user-id">@{{ tweet.userId }}</div>
         <p class="body-lg">{{ tweet.content }}</p>
+        <div class="tweet-actions">
+          <MaterialIconButton :selected="isBookmarked" @click="toggleBookmark">
+            <Icon name="material-symbols:bookmark-outline-rounded" size="24" />
+            <template #selected>
+              <Icon name="material-symbols:bookmark-rounded" size="24" />
+            </template>
+          </MaterialIconButton>
+          <MaterialIconButton>
+            <Icon name="material-symbols:add-reaction-outline-rounded" size="24" />
+          </MaterialIconButton>
+        </div>
       </div>
     </div>
     <div v-else>
