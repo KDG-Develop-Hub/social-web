@@ -56,13 +56,19 @@
         <div class="label-md tweeter-user-id">@{{ tweet.userId }}</div>
         <p class="body-lg">{{ tweet.content }}</p>
         <div class="tweet-actions">
-          <MaterialIconButton :selected="isBookmarked" @click="toggleBookmark">
+          <MaterialIconButton
+            :selected="isBookmarked"
+            :title="isBookmarked ? 'ブックマーク解除' : 'ブックマーク'"
+            @click="toggleBookmark"
+          >
             <Icon name="material-symbols:bookmark-outline-rounded" size="24" />
             <template #selected>
               <Icon name="material-symbols:bookmark-rounded" size="24" />
             </template>
           </MaterialIconButton>
-          <MaterialIconButton>
+          <MaterialIconButton
+            title="リアクションを追加"
+          >
             <Icon name="material-symbols:add-reaction-outline-rounded" size="24" />
           </MaterialIconButton>
         </div>
