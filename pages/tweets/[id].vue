@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { doc, updateDoc } from 'firebase/firestore'
+  import { collection, doc, query, updateDoc } from 'firebase/firestore'
 
   const route = useRoute()
   const id = route.params.id as string
@@ -8,18 +8,9 @@
   const { data: tweet, pending } = useDocument<Post>(docRef, {
     ssrKey: `tweet-${id}`
   })
-  const replies: Post[] = Array.from({ length: 40 }, () => ({
-    id: '1',
-    userId: '1',
-    userName: 'test',
-    userImageUrl: 'https://via.placeholder.com/256',
-    content: 'test',
-    createdAt: new Date().toISOString(),
-    bookmarkedUserIds: [],
-    imageUrls: [],
-    reactions: null,
-    updatedAt: null
-  }))
+  const { data: replies } = useCollection<Post>(
+    query(collection(db, 'posts', id, 'replies'))
+  )
   const isBookmarked = computed(() =>
     tweet.value?.bookmarkedUserIds.includes('1')
   )
