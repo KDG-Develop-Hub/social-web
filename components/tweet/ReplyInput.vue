@@ -2,14 +2,14 @@
   const inputIsFull = ref(false)
   const form = templateRef<HTMLFormElement>('form')
   const contentEl = templateRef<HTMLDivElement>('content')
-  const content = useElementSize(
+  const contentSize = useElementSize(
     contentEl,
     { width: 0, height: 64 },
     {
       box: 'border-box'
     }
   )
-  const height = computed(() => `${content.height.value}px`)
+  const height = computed(() => `${contentSize.height.value}px`)
 </script>
 
 <template>
