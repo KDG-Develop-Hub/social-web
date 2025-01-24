@@ -11,8 +11,9 @@
       variant?: 'filled' | 'filled-tonal' | 'outlined' | 'standard'
       selected?: boolean
       title?: string
+      type?: 'button' | 'submit' | 'reset'
     }>(),
-    { disabled: false, variant: 'standard', selected: false, title: '' }
+    { disabled: false, variant: 'standard', selected: false, title: '', type: 'button' }
   )
 </script>
 
@@ -25,6 +26,7 @@
           class="icon-button"
           :class="`icon-button-${variant}`"
           :data-selected="selected || undefined"
+          :type
           @click="$emit('click', $event)"
         >
           <slot v-if="selected" name="selected" />
