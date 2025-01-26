@@ -1,9 +1,14 @@
 <script setup lang="ts">
   import type { NuxtError } from '#app'
 
-  defineProps<{
+  const props = defineProps<{
     error: NuxtError
   }>()
+  // デバッグ用
+  if (import.meta.dev) {
+    // eslint-disable-next-line no-console
+    console.error(props.error)
+  }
 </script>
 
 <template>
