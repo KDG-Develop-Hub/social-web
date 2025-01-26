@@ -1,20 +1,11 @@
 <script setup lang="ts">
   const inputIsFull = ref(false)
   const form = templateRef<HTMLFormElement>('form')
-  const contentEl = templateRef<HTMLDivElement>('content')
-  const contentSize = useElementSize(
-    contentEl,
-    { width: 0, height: 64 },
-    {
-      box: 'border-box'
-    }
-  )
-  const height = computed(() => `${contentSize.height.value}px`)
 </script>
 
 <template>
   <form ref="form" class="reply-input-root" @submit.prevent>
-    <div ref="content" class="reply-input-root-wrapped">
+    <div class="reply-input-root-wrapped">
       <div class="reply-input-container">
         <div class="avatar-wrapper">
           <MaterialAvatar
@@ -51,8 +42,8 @@
     height: 3rem;
   }
   .reply-input-root {
-    height: v-bind(height);
     border-radius: 2rem;
+    padding: 0.5rem;
     background-color: var(--md-sys-color-surface-container);
     transition: height var(--md-sys-motion-duration-short4)
       var(--md-sys-motion-easing-emphasized);
@@ -60,9 +51,6 @@
       outline: var(--md-sys-color-on-surface) solid 2px;
       outline-offset: 2px;
     }
-  }
-  .reply-input-root-wrapped {
-    padding: 0.5rem;
   }
   .reply-input-container {
     display: flex;
