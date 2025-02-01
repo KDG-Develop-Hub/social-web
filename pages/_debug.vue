@@ -1,6 +1,9 @@
 <script setup>
   function emits505() {
-    throw Error('This error occured by purpose.')
+    showError({
+      statusCode: 505,
+      message: 'このエラーはデバッグ用です。'
+    })
   }
 </script>
 
