@@ -1,11 +1,15 @@
 <script setup lang="ts">
-defineProps<{
-  variant?: boolean
-}>()
+  defineProps<{
+    variant?: boolean
+  }>()
 </script>
 
 <template>
-  <hr class="material-divider" :class="{ 'material-divider--variant': variant }" v-bind="$attrs" />
+  <hr
+    class="material-divider"
+    :class="{ 'material-divider--variant': variant }"
+    v-bind="$attrs"
+  />
 </template>
 
 <style scoped>

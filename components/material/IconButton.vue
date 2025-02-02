@@ -13,7 +13,13 @@
       title?: string
       type?: 'button' | 'submit' | 'reset'
     }>(),
-    { disabled: false, variant: 'standard', selected: false, title: '', type: 'button' }
+    {
+      disabled: false,
+      variant: 'standard',
+      selected: false,
+      title: '',
+      type: 'button'
+    }
   )
 </script>
 

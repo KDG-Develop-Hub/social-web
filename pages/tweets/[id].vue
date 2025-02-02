@@ -57,10 +57,11 @@
               <Icon name="material-symbols:bookmark-rounded" size="24" />
             </template>
           </MaterialIconButton>
-          <MaterialIconButton
-            title="リアクションを追加"
-          >
-            <Icon name="material-symbols:add-reaction-outline-rounded" size="24" />
+          <MaterialIconButton title="リアクションを追加">
+            <Icon
+              name="material-symbols:add-reaction-outline-rounded"
+              size="24"
+            />
           </MaterialIconButton>
         </div>
       </div>
