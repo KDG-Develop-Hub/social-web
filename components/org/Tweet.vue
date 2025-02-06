@@ -28,25 +28,23 @@
         break
     }
   }
-  function jumpToTweetPage() {
-    navigateTo(`/tweets/${post.id}`)
-  }
 </script>
 
 <template>
-  <div
-    role="link"
+  <NuxtLink
+    v-ripple
     :to="`/tweets/${post.id}`"
+    role="article"
+    tabindex="0"
     class="tweet"
-    @click.self="jumpToTweetPage"
   >
     <MaterialAvatar size="sm" :name="post.userName" :src="post.userImageUrl" />
-    <div class="body" @click.self="jumpToTweetPage">
-      <div class="tweet-header" @click.self="jumpToTweetPage">
+    <div class="body">
+      <div class="tweet-header">
         <div class="h-stack">
-          <span class="body-lg">{{ post.userName }}</span>
+          <span class="body-lg tweet-user-name">{{ post.userName }}</span>
           <time
-            class="body-sm"
+            class="body-sm tweet-created-at"
             :datetime="
               post.createdAt ? formatDateTime(post.createdAt) : 'error!!'
             "
@@ -104,7 +102,7 @@
         </MaterialMenuContainer>
       </Menu.Root>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <style scoped>
@@ -126,12 +124,30 @@
     gap: 0.75rem;
     border-radius: var(--md-sys-shape-corner-md);
     &:hover {
-      background-color: var(--md-sys-color-surface-container);
+      background-color: color-mix(
+        in srgb,
+        transparent,
+        var(--md-sys-color-on-surface) 8%
+      );
+    }
+    &:focus-visible {
+      background-color: color-mix(
+        in srgb,
+        transparent,
+        var(--md-sys-color-on-surface) 10%
+      );
     }
   }
   .tweet-header {
+    width: min-content;
     display: flex;
     justify-content: space-between;
+  }
+  .tweet-user-name {
+    white-space: nowrap;
+  }
+  .tweet-created-at {
+    white-space: nowrap;
   }
   .tweet-content {
     width: fit-content;
@@ -140,10 +156,6 @@
     margin-left: 0.5rem;
   }
   .body {
-    width: 100%;
-
-    header {
-      height: 1.5rem;
-    }
+    margin-right: auto;
   }
 </style>
