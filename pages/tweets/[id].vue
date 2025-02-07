@@ -1,6 +1,8 @@
 <script setup lang="ts">
+  import { Popover } from '@ark-ui/vue/popover'
   import { collection, doc, query, updateDoc } from 'firebase/firestore'
 
+  const emojiPickerVisible = ref(false)
   const route = useRoute()
   const id = route.params.id as string
   const db = useFirestore()
@@ -57,12 +59,24 @@
               <Icon name="material-symbols:bookmark-rounded" size="24" />
             </template>
           </MaterialIconButton>
-          <MaterialIconButton title="リアクションを追加">
-            <Icon
-              name="material-symbols:add-reaction-outline-rounded"
-              size="24"
-            />
-          </MaterialIconButton>
+          <Popover.Root id="emoji-picker" v-model:open="emojiPickerVisible">
+            <MaterialIconButton
+              title="リアクションを追加"
+              @click="emojiPickerVisible = true"
+            >
+              <Icon
+                name="material-symbols:add-reaction-outline-rounded"
+                size="24"
+              />
+            </MaterialIconButton>
+            <KeepAlive>
+              <Popover.Positioner v-if="emojiPickerVisible">
+                <Popover.Content>
+                  <OrgEmojiPicker @select="emojiPickerVisible = false" />
+                </Popover.Content>
+              </Popover.Positioner>
+            </KeepAlive>
+          </Popover.Root>
         </div>
       </div>
     </div>

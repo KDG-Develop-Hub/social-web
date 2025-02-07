@@ -49,7 +49,7 @@
 
 <style scoped>
   .card-elevated {
-    background-color: var(--md-sys-color-surface-container);
+    background-color: var(--md-sys-color-surface-container-low);
     border-radius: var(--md-sys-shape-corner-lg);
     box-shadow: var(--md-sys-elevation-2);
   }
