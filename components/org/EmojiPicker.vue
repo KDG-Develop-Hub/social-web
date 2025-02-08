@@ -7,32 +7,48 @@
   }>()
 
   const search = ref('')
-  const searchResults = computed(() => {
-    return Object.keys(emojilib).filter(emoji =>
-      emojilib[emoji].filter(i => i.startsWith(search.value)).length > 0
-    )
-  })
-  const headerEl = templateRef('header')
+  const historyGroupEl = templateRef<HTMLElement>('historyGroup')
+  const emojiGroupEls = templateRef<HTMLElement[]>('groups', [])
+  const groupEls = computed(() =>
+    historyGroupEl.value
+      ? [historyGroupEl.value, ...emojiGroupEls.value]
+      : emojiGroupEls.value
+  )
+  const headerEl = templateRef<HTMLElement>('header')
   const scrollContainerEl = templateRef('scrollContainer')
+  const searchResults = computed(() =>
+    Object.entries(emojilib)
+      .filter(([, keywords]) =>
+        keywords.some(keyword =>
+          keyword.replaceAll('_', ' ').startsWith(search.value)
+        )
+      )
+      .map(([emoji, keywords]) => [emoji, keywords[0].replaceAll('_', ' ')] as const)
+  )
+  const { y: scrollY } = useScroll(scrollContainerEl)
 
-  const history = useLocalStorage<string[]>('emoji-history', [])
-  const headerSize = useElementSize(
+  const history = useLocalStorage<[string, string][]>('emoji-history', [])
+  const { height: headerSize } = useElementSize(
     headerEl,
     { width: 0, height: 0 },
     {
       box: 'border-box'
     }
   )
+  const currentGroup = computed(() => {
+    return 'history'
+  })
 
-  function pickEmoji(emoji: string) {
+  function pickEmoji(emoji: string, name: string) {
     emit('select', emoji)
-    if (history.value.includes(emoji)) {
-      history.value.splice(history.value.indexOf(emoji), 1)
+    const index = history.value.findIndex(([h]) => h === emoji)
+    if (index !== -1) {
+      history.value.splice(index, 1)
     }
     if (history.value.length >= 36) {
       history.value.splice(36)
     }
-    history.value.unshift(emoji)
+    history.value.unshift([emoji, name])
   }
 
   async function scrollToSection(sectionId: string) {
@@ -41,8 +57,7 @@
     const element = document.getElementById(sectionId)
     if (element) {
       scrollContainerEl.value.scrollTo({
-        top: element.offsetTop - headerSize.height.value,
-        behavior: 'smooth'
+        top: element.offsetTop - headerSize.value
       })
     }
   }
@@ -52,38 +67,125 @@
   <MaterialCard variant="elevated" class="emoji-picker">
     <div ref="header" class="emoji-picker__header">
       <div class="emoji-picker__categories">
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('history')">
-          <Icon size="20" name="material-symbols:history-rounded" />
-        </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('smileys_emotion')">
-          <Icon size="20" name="material-symbols:mood-rounded" />
-        </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('people_body')">
-          <Icon size="20" name="material-symbols:emoji-people-rounded" />
-        </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('animals_nature')">
-          <Icon size="20" name="material-symbols:emoji-nature-rounded" />
-        </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('food_drink')">
-          <Icon size="20" name="material-symbols:emoji-food-beverage-rounded" />
-        </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('travel_places')">
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'history'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('history')"
+        >
           <Icon
-            size="20"
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:history-rounded"
+          />
+        </button>
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'smileys_emotion'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('smileys_emotion')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:mood-rounded"
+          />
+        </button>
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'people_body'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('people_body')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-people-rounded"
+          />
+        </button>
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'animals_nature'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('animals_nature')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-nature-rounded"
+          />
+        </button>
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'food_drink'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('food_drink')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-food-beverage-rounded"
+          />
+        </button>
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'travel_places'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('travel_places')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
             name="material-symbols:emoji-transportation-rounded"
           />
         </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('activities')">
-          <Icon size="20" name="material-symbols:emoji-events" />
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'activities'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('activities')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-events"
+          />
         </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('objects')">
-          <Icon size="20" name="material-symbols:emoji-objects-rounded" />
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'objects'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('objects')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-objects-rounded"
+          />
         </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('symbols')">
-          <Icon size="20" name="material-symbols:emoji-symbols-rounded" />
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'symbols'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('symbols')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:emoji-symbols-rounded"
+          />
         </button>
-        <button v-ripple class="emoji-picker__category_button" @click="scrollToSection('flags')">
-          <Icon size="20" name="material-symbols:flag-rounded" />
+        <button
+          v-ripple="{ color: 'var(--color)' }"
+          :data-active="currentGroup === 'flags'"
+          class="emoji-picker__category_button"
+          @click="scrollToSection('flags')"
+        >
+          <Icon
+            si
+            scroll-y-valuez-e="20"
+            name="material-symbols:flag-rounded"
+          />
         </button>
       </div>
       <div class="emoji-search">
@@ -98,27 +200,34 @@
     <div ref="scrollContainer" class="emoji-picker__scroll-container">
       <div v-if="search" class="emoji-picker__grid">
         <button
-          v-for="emoji in searchResults"
+          v-for="[emoji, name] in searchResults"
           :key="emoji"
+          :title="name"
           class="emoji-picker__emoji headline-sm"
-          @click="pickEmoji(emoji)"
+          @click="pickEmoji(emoji, name)"
         >
           {{ emoji }}
         </button>
       </div>
-      <template v-else>
-        <div id="history" class="emoji-picker__grid">
+      <div v-show="!search">
+        <div id="history" ref="historyGroup" class="emoji-picker__grid">
           <span class="body-sm emoji-picker__group-label">Recent</span>
           <button
-            v-for="emoji in history"
+            v-for="[emoji, name] in history"
             :key="emoji"
+            :title="name"
             class="emoji-picker__emoji headline-sm"
-            @click="pickEmoji(emoji)"
+            @click="pickEmoji(emoji, name)"
           >
             {{ emoji }}
           </button>
         </div>
-        <div v-for="group in emojiGroups" :id="group.slug" :key="group.slug">
+        <div
+          v-for="group in emojiGroups"
+          :id="group.slug"
+          ref="groups"
+          :key="group.slug"
+        >
           <div class="emoji-picker__grid">
             <span class="body-sm emoji-picker__group-label">
               {{ group.name }}
@@ -130,13 +239,13 @@
               :key="emoji.slug"
               :title="emoji.name"
               class="emoji-picker__emoji headline-sm"
-              @click="pickEmoji(emoji.emoji)"
+              @click="pickEmoji(emoji.emoji, emoji.name)"
             >
               {{ emoji.emoji }}
             </button>
           </div>
         </div>
-      </template>
+      </div>
     </div>
   </MaterialCard>
 </template>
@@ -171,7 +280,13 @@
     width: 2rem;
     border-radius: var(--md-sys-shape-corner-full);
     display: grid;
-    place-items: center
+    place-items: center;
+    color: var(--color);
+    --color: var(--md-sys-color-on-surface-variant);
+    &[data-active='true'] {
+      background-color: var(--md-sys-color-primary-container);
+      --color: var(--md-sys-color-on-primary-container);
+    }
   }
   .emoji-picker__grid {
     margin: 1rem;
@@ -191,7 +306,6 @@
   .emoji-search {
     display: flex;
     width: 100%;
-    justify-content: center;
     align-items: center;
     border-radius: var(--md-sys-shape-corner-full);
     padding: 0 0.5rem;
