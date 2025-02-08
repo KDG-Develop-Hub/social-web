@@ -39,8 +39,8 @@
     }
   )
   const currentGroup = computed(() => {
-    if (search.value) return
-    if (!scrollY.value) return groupEls.value[0].id
+    if (search.value || groupEls.value.length === 0) return
+    if (!scrollY.value) return 'history'
     const group = groupEls.value.find(group => {
       return (
         scrollY.value + headerEl.value.offsetHeight >= group.offsetTop &&
