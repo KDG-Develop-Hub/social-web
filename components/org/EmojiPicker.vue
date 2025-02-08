@@ -23,7 +23,10 @@
           keyword.replaceAll('_', ' ').startsWith(search.value)
         )
       )
-      .map(([emoji, keywords]) => [emoji, keywords[0].replaceAll('_', ' ')] as const)
+      .map(
+        ([emoji, keywords]) =>
+          [emoji, keywords[0].replaceAll('_', ' ')] as const
+      )
   )
   const { y: scrollY } = useScroll(scrollContainerEl)
 
@@ -36,7 +39,13 @@
     }
   )
   const currentGroup = computed(() => {
-    return 'history'
+    const group = groupEls.value.find(group => {
+      return (
+        scrollY.value + headerEl.value.offsetHeight >= group.offsetTop &&
+        scrollY.value + headerEl.value.offsetHeight < group.offsetTop + group.offsetHeight
+      )
+    })?.id
+    return group
   })
 
   function pickEmoji(emoji: string, name: string) {
@@ -74,7 +83,6 @@
           @click="scrollToSection('history')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:history-rounded"
           />
@@ -85,11 +93,7 @@
           class="emoji-picker__category_button"
           @click="scrollToSection('smileys_emotion')"
         >
-          <Icon
-            si
-            scroll-y-valuez-e="20"
-            name="material-symbols:mood-rounded"
-          />
+          <Icon scroll-y-valuez-e="20" name="material-symbols:mood-rounded" />
         </button>
         <button
           v-ripple="{ color: 'var(--color)' }"
@@ -98,7 +102,6 @@
           @click="scrollToSection('people_body')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-people-rounded"
           />
@@ -110,7 +113,6 @@
           @click="scrollToSection('animals_nature')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-nature-rounded"
           />
@@ -122,7 +124,6 @@
           @click="scrollToSection('food_drink')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-food-beverage-rounded"
           />
@@ -134,7 +135,6 @@
           @click="scrollToSection('travel_places')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-transportation-rounded"
           />
@@ -145,11 +145,7 @@
           class="emoji-picker__category_button"
           @click="scrollToSection('activities')"
         >
-          <Icon
-            si
-            scroll-y-valuez-e="20"
-            name="material-symbols:emoji-events"
-          />
+          <Icon scroll-y-valuez-e="20" name="material-symbols:emoji-events" />
         </button>
         <button
           v-ripple="{ color: 'var(--color)' }"
@@ -158,7 +154,6 @@
           @click="scrollToSection('objects')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-objects-rounded"
           />
@@ -170,7 +165,6 @@
           @click="scrollToSection('symbols')"
         >
           <Icon
-            si
             scroll-y-valuez-e="20"
             name="material-symbols:emoji-symbols-rounded"
           />
@@ -181,11 +175,7 @@
           class="emoji-picker__category_button"
           @click="scrollToSection('flags')"
         >
-          <Icon
-            si
-            scroll-y-valuez-e="20"
-            name="material-symbols:flag-rounded"
-          />
+          <Icon scroll-y-valuez-e="20" name="material-symbols:flag-rounded" />
         </button>
       </div>
       <div class="emoji-search">
@@ -289,11 +279,11 @@
     }
   }
   .emoji-picker__grid {
-    margin: 1rem;
+    padding: 1rem;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     &:first-child {
-      margin-top: 0;
+      padding-top: 0;
     }
   }
   .emoji-picker__emoji {
