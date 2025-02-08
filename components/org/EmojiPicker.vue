@@ -18,15 +18,11 @@
   const scrollContainerEl = templateRef('scrollContainer')
   const searchResults = computed(() =>
     Object.entries(emojilib)
-      .filter(([, keywords]) =>
-        keywords.some(keyword =>
-          keyword.replaceAll('_', ' ').startsWith(search.value)
-        )
+      .flatMap(([emoji, keywords]) =>
+        keywords.map(keyword => [emoji, keyword.replaceAll('_', ' ')])
       )
-      .map(
-        ([emoji, keywords]) =>
-          [emoji, keywords[0].replaceAll('_', ' ')] as const
-      )
+      .filter(([, keyword]) => keyword.startsWith(search.value))
+      .map(([emoji, keyword]) => [emoji, keyword] as const)
   )
   const { y: scrollY } = useScroll(scrollContainerEl)
 
