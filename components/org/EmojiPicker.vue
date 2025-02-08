@@ -262,6 +262,7 @@
     background-color: var(--md-sys-color-surface-container);
   }
   .emoji-picker__categories {
+    padding-bottom: 0.75rem;
     display: flex;
     align-items: center;
   }
