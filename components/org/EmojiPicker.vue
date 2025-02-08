@@ -39,10 +39,13 @@
     }
   )
   const currentGroup = computed(() => {
+    if (search.value) return
+    if (!scrollY.value) return groupEls.value[0].id
     const group = groupEls.value.find(group => {
       return (
         scrollY.value + headerEl.value.offsetHeight >= group.offsetTop &&
-        scrollY.value + headerEl.value.offsetHeight < group.offsetTop + group.offsetHeight
+        scrollY.value + headerEl.value.offsetHeight <
+          group.offsetTop + group.offsetHeight
       )
     })?.id
     return group
@@ -254,6 +257,7 @@
     color: var(--md-sys-color-on-surface-variant);
     position: sticky;
     padding: 0.25rem;
+    line-height: 1rem;
     top: 0;
     grid-column: 1 / -1;
   }
