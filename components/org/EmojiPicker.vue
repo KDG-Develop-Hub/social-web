@@ -47,8 +47,7 @@
     return group
   })
 
-  function pickEmoji(emoji: string, name: string) {
-    emit('select', emoji)
+  async function pickEmoji(emoji: string, name: string) {
     const index = history.value.findIndex(([h]) => h === emoji)
     if (index !== -1) {
       history.value.splice(index, 1)
@@ -57,6 +56,8 @@
       history.value.splice(36)
     }
     history.value.unshift([emoji, name])
+    await nextTick()
+    emit('select', emoji)
   }
 
   async function scrollToSection(sectionId: string) {

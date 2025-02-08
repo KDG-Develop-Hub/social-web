@@ -69,13 +69,11 @@
                 size="24"
               />
             </MaterialIconButton>
-            <KeepAlive>
-              <Popover.Positioner v-if="emojiPickerVisible">
-                <Popover.Content>
-                  <OrgEmojiPicker @select="emojiPickerVisible = false" />
-                </Popover.Content>
-              </Popover.Positioner>
-            </KeepAlive>
+            <Popover.Positioner v-if="emojiPickerVisible">
+              <Popover.Content>
+                <OrgEmojiPicker @select="emojiPickerVisible = false" />
+              </Popover.Content>
+            </Popover.Positioner>
           </Popover.Root>
         </div>
       </div>
