@@ -1,0 +1,31 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+
+## Panda
+styled-system
+styled-system-studio
+
+## Lock files
+pnpm-lock.yaml
+yarn-lock.yaml
+npm-shrinkwrap.yaml
