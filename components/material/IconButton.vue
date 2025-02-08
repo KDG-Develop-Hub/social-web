@@ -1,28 +1,68 @@
 <script setup lang="ts">
+  import { TooltipRoot, TooltipTrigger } from '@ark-ui/vue'
+
+  defineEmits<{
+    (e: 'click', event: MouseEvent): void
+  }>()
+  const id = useId()
   withDefaults(
     defineProps<{
       disabled?: boolean
       variant?: 'filled' | 'filled-tonal' | 'outlined' | 'standard'
+      selected?: boolean
+      title?: string
+      type?: 'button' | 'submit' | 'reset'
     }>(),
-    { disabled: false, variant: 'standard' }
+    {
+      disabled: false,
+      variant: 'standard',
+      selected: false,
+      title: '',
+      type: 'button'
+    }
   )
 </script>
 
 <template>
-  <button v-ripple class="icon-button" :class="`icon-button-${variant}`">
-    <slot />
-  </button>
+  <TooltipRoot :id :positioning="{ placement: 'bottom' }">
+    <div class="icon-button-wrapper">
+      <TooltipTrigger as-child>
+        <button
+          v-ripple
+          class="icon-button"
+          :class="`icon-button-${variant}`"
+          :data-selected="selected || undefined"
+          :type
+          @click="$emit('click', $event)"
+        >
+          <slot v-if="selected" name="selected" />
+          <slot v-else />
+        </button>
+      </TooltipTrigger>
+    </div>
+    <MaterialTooltip v-if="title">
+      {{ title }}
+    </MaterialTooltip>
+  </TooltipRoot>
 </template>
 
 <style scoped>
+  .icon-button-wrapper {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    height: 3rem;
+    width: 3rem;
+  }
   .icon-button {
     border-radius: var(--md-sys-shape-corner-full);
     color: var(--icon-button-color);
     background: var(--icon-button-bg);
+    outline: none;
     display: inline-grid;
     place-items: center;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 2.5rem;
+    width: 2.5rem;
     flex-shrink: 0;
     &.icon-button-filled {
       --icon-button-color: var(--md-sys-color-on-primary);
@@ -40,6 +80,23 @@
     &.icon-button-standard {
       --icon-button-color: var(--md-sys-color-on-surface);
       --icon-button-bg: transparent;
+      &[data-selected] {
+        --icon-button-color: var(--md-sys-color-primary);
+      }
+    }
+    &:hover {
+      background: color-mix(
+        in srgb,
+        var(--icon-button-color) 8%,
+        var(--icon-button-bg)
+      );
+    }
+    &:focus-visible {
+      background: color-mix(
+        in srgb,
+        var(--icon-button-color) 10%,
+        var(--icon-button-bg)
+      );
     }
     &:deep(*) {
       color: var(--icon-button-color);

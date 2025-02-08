@@ -104,6 +104,7 @@
 .body-lg {
   font-size: var(--md-sys-typescale-body-lg-size);
   font-weight: var(--md-sys-typescale-body-lg-weight);
+  line-height: 1.5rem;
   letter-spacing: var(--md-sys-typescale-body-lg-tracking);
 }
 
@@ -128,6 +129,18 @@
 .label-md {
   font-size: var(--md-sys-typescale-label-md-size);
   font-weight: var(--md-sys-typescale-label-md-weight);
+  letter-spacing: var(--md-sys-typescale-label-md-tracking);
+}
+
+.label-lg-prominent {
+  font-size: var(--md-sys-typescale-label-lg-size);
+  font-weight: var(--md-sys-typescale-label-lg-weight-prominent);
+  letter-spacing: var(--md-sys-typescale-label-lg-tracking);
+}
+
+.label-md-prominent {
+  font-size: var(--md-sys-typescale-label-md-size);
+  font-weight: var(--md-sys-typescale-label-md-weight-prominent);
   letter-spacing: var(--md-sys-typescale-label-md-tracking);
 }
 
